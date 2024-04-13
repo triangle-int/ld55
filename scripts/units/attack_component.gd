@@ -6,8 +6,14 @@ var _current_cooldown: float
 var _enemies_in_attack_range: Array[Unit] = []
 
 @export var unit: Unit
-@export var attack_cooldown: float
-@export var damage: int
+var attack_cooldown: float
+var damage: float
+
+func set_attack_cooldown(cooldown: float):
+	attack_cooldown = cooldown
+
+func set_damage(d: float):
+	damage = d
 
 func _on_attack_area_body_entered(body: Node2D):
 	if not unit.sight.enemies_in_range.has(body):

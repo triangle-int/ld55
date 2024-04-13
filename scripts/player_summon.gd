@@ -1,3 +1,4 @@
+class_name PlayerSummonClass
 extends Node
 
 signal state_updated(state: State)
@@ -32,10 +33,15 @@ func _on_called(stratagem: Stratagem):
 	_update_statagems()
 
 func _on_wrong_combination():
-	print('TODO: Make debuffs')
+	if state == State.ARMY:
+		print("TODO: Spawn bad army")
+	else:
+		print("TODO: Add bad debuff")
+	
 	if army != null:
 		_set_state(State.AWAIT_POSITION)
-	_set_state(State.ARMY)
+	else:
+		_set_state(State.ARMY)
 
 func _set_state(new_state: State):
 	state = new_state

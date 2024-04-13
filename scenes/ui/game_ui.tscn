@@ -17,15 +17,6 @@ font_size = 35
 
 [node name="GameUI" type="CanvasLayer"]
 
-[node name="SummonArea" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_g44e8")
-
 [node name="AvailableStratagems" type="VBoxContainer" parent="." node_paths=PackedStringArray("parent")]
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -95,3 +86,12 @@ label_settings = SubResource("LabelSettings_r22ak")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_qyw2r")
+
+[node name="SummonArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g44e8")

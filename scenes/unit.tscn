@@ -21,11 +21,12 @@ radius = 459.213
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health", "sight")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health", "attack", "sight")]
 motion_mode = 1
 script = ExtResource("1_cyour")
 movement = NodePath("MovementComponent")
 health = NodePath("HealthComponent")
+attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 
 [node name="HealthComponent" type="Node" parent="."]
@@ -35,14 +36,11 @@ script = ExtResource("1_ilnqg")
 script = ExtResource("2_g5k8q")
 character_body = NodePath("..")
 navigation_agent = NodePath("../NavigationAgent2D")
-movement_speed = 300.0
 
 [node name="AttackComponent" type="Area2D" parent="." node_paths=PackedStringArray("unit")]
 monitorable = false
 script = ExtResource("3_otypj")
 unit = NodePath("..")
-attack_cooldown = 3.0
-damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
 shape = SubResource("CircleShape2D_tvqax")

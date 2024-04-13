@@ -4,10 +4,13 @@ extends Node2D
 
 @export var character_body: CharacterBody2D
 @export var navigation_agent: NavigationAgent2D
-@export var movement_speed = 100.0
+var movement_speed: float
 
 func _process(_delta):
 	move_to_target()
+
+func set_movement_speed(speed: float):
+	movement_speed = speed
 
 func move_to_target() -> void:
 	if navigation_agent.is_navigation_finished():

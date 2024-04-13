@@ -1,14 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://d21mtfcmviuas"]
 
-[ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/unit.tscn" id="1_quqrm"]
+[ext_resource type="PackedScene" uid="uid://cxcryb3hmkdkg" path="res://scenes/units/large_unit.tscn" id="2_cnqpp"]
 
 [node name="SmallArmy" type="Node2D"]
 
-[node name="Unit" parent="." instance=ExtResource("1_quqrm")]
-position = Vector2(0, -82)
+[node name="LargeUnit" parent="." instance=ExtResource("2_cnqpp")]
+position = Vector2(2.08165e-12, -82)
 
-[node name="Unit2" parent="." instance=ExtResource("1_quqrm")]
+[node name="LargeUnit2" parent="." instance=ExtResource("2_cnqpp")]
 position = Vector2(160, 78)
 
-[node name="Unit3" parent="." instance=ExtResource("1_quqrm")]
+[node name="LargeUnit3" parent="." instance=ExtResource("2_cnqpp")]
 position = Vector2(-160, 78)
