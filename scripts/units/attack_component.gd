@@ -5,6 +5,8 @@ extends Area2D
 var _current_cooldown: float
 var _enemies_in_attack_range: Array[Unit] = []
 
+signal on_attack(target: Unit)
+
 @export var unit: Unit
 var attack_cooldown: float
 var damage: float
@@ -32,7 +34,18 @@ func _on_attack_state_processing(_delta: float):
 		return
 
 	_current_cooldown = attack_cooldown
-	_enemies_in_attack_range.front().health.deal_damage(damage)
+	var target = _enemies_in_attack_range.front()
+
+	while target != null and target.side == unit.side:
+		_enemies_in_attack_range.pop_front()
+		unit.sight.remove_enemy(target)
+		target = _enemies_in_attack_range.front()
+
+	if target == null:
+		return
+
+	target.health.deal_damage(damage)
+	on_attack.emit(target)
 
 func _process(delta: float):
 	if _current_cooldown > 0:

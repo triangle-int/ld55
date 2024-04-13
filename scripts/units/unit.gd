@@ -12,6 +12,10 @@ var side: Unit.Side
 @export var health: HealthComponent
 @export var attack: AttackComponent
 @export var sight: SightRangeComponent
+@export var buff: BuffContainer
+
+func switch_side():
+	$StateChart.send_event("switch_side")
 
 @export_group("Health")
 @export var start_health = 100.0

@@ -2,6 +2,7 @@ class_name HealthComponent
 
 extends Node
 
+@export var unit: Unit
 var health: float
 var max_health: float
 
@@ -16,6 +17,7 @@ func heal(amount: float):
 		health = max_health
 
 func deal_damage(damage: float):
+	damage = unit.buff.modify_damage(damage)
 	health -= damage
 
 	if health <= 0:
