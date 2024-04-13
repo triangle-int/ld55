@@ -15,13 +15,13 @@ run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
-
 [autoload]
 
 StratagemInput="*res://scenes/stratagem_input.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
 [input]
 
