@@ -6,7 +6,6 @@ var units: Array
 
 @export var unit_health: int
 @export var unit_count: int
-@export var unit_icon: Texture2D
 @export var unit_scene: PackedScene
 
 func prepare_units():

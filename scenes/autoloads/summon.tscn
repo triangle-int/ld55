@@ -1,0 +1,12 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch2nb86jf5r5j"]
+
+[ext_resource type="Script" path="res://scripts/summon.gd" id="1_1b252"]
+[ext_resource type="Resource" uid="uid://c716xti31ow7o" path="res://stratagems/armys/large.tres" id="2_0gijg"]
+[ext_resource type="Resource" uid="uid://dfqqsyvthsnx7" path="res://stratagems/armys/medium.tres" id="3_1hetq"]
+[ext_resource type="Resource" uid="uid://byosfoh5hh4ew" path="res://stratagems/armys/small.tres" id="4_saosi"]
+[ext_resource type="Resource" uid="uid://cw4f35di3mqrs" path="res://stratagems/buffs/empty.tres" id="5_vkb6l"]
+
+[node name="Summon" type="Node"]
+script = ExtResource("1_1b252")
+armys = Array[Resource("res://scripts/stratagem/stratagem.gd")]([ExtResource("2_0gijg"), ExtResource("3_1hetq"), ExtResource("4_saosi")])
+buffs = Array[Resource("res://scripts/stratagem/stratagem.gd")]([ExtResource("5_vkb6l")])

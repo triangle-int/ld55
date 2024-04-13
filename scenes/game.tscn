@@ -1,15 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0n1jhunflhnj"]
+[gd_scene load_steps=2 format=3 uid="uid://c0n1jhunflhnj"]
 
-[ext_resource type="Script" path="res://scripts/summon.gd" id="1_hwnvf"]
-[ext_resource type="Resource" uid="uid://c716xti31ow7o" path="res://stratagems/armys/large.tres" id="2_tdevb"]
-[ext_resource type="Resource" uid="uid://dfqqsyvthsnx7" path="res://stratagems/armys/medium.tres" id="3_mklei"]
-[ext_resource type="Resource" uid="uid://byosfoh5hh4ew" path="res://stratagems/armys/small.tres" id="4_4bcll"]
-[ext_resource type="Resource" uid="uid://cw4f35di3mqrs" path="res://stratagems/buffs/empty.tres" id="5_f4qgf"]
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="6_20aj5"]
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_hwnvf")
-armys = Array[Resource("res://scripts/stratagem/stratagem.gd")]([ExtResource("2_tdevb"), ExtResource("3_mklei"), ExtResource("4_4bcll")])
-buffs = Array[Resource("res://scripts/stratagem/stratagem.gd")]([ExtResource("5_f4qgf")])
 
 [node name="GameUI" parent="." instance=ExtResource("6_20aj5")]
