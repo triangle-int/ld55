@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd4ss3filn5ub"]
+
+[ext_resource type="Script" path="res://scripts/battle/control_point.gd" id="1_g0tkx"]
+[ext_resource type="Texture2D" uid="uid://dxoh4n4gamcqv" path="res://icon.svg" id="1_m4mdj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxvdt"]
+radius = 200.0
+
+[node name="ControlPoint" type="Node2D"]
+script = ExtResource("1_g0tkx")
+speed = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.5)
+texture = ExtResource("1_m4mdj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fxvdt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

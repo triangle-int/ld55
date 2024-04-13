@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgfuqyehlrpwj"]
+
+[ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/unit.tscn" id="1_1c51y"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_3x0gc"]
+[ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="3_2r6ee"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3r7l0"]
+vertices = PackedVector2Array(694, 438, -694, 438, -694, -438, 694, -438)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-704, -448, 704, -448, 704, 448, -704, 448)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_3r7l0")
+
+[node name="Unit1" parent="." instance=ExtResource("1_1c51y")]
+position = Vector2(552, 352)
+
+[node name="Unit2" parent="." instance=ExtResource("1_1c51y")]
+position = Vector2(-552, 352)
+
+[node name="AIUnit" parent="." instance=ExtResource("1_1c51y")]
+position = Vector2(0, 352)
+
+[node name="Side" parent="AIUnit/StateChart/UnitState" index="0"]
+initial_state = NodePath("AI")
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_3x0gc")]
+offset_left = -576.0
+offset_top = -320.0
+offset_right = -264.0
+initial_node_to_watch = NodePath("../Unit1")
+
+[node name="ControlPoint1" parent="." instance=ExtResource("3_2r6ee")]
+position = Vector2(0, -152)
+
+[node name="ControlPoint2" parent="." instance=ExtResource("3_2r6ee")]
+position = Vector2(0, -252)
+
+[editable path="AIUnit"]

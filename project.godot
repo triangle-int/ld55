@@ -17,7 +17,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-StratagemInput="*res://scenes/stratagem_input.tscn"
+StratagemInput="*res://scenes/autoloads/stratagem_input.tscn"
+Battle="*res://scenes/autoloads/battle.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
 [input]
 
