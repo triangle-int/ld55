@@ -1,27 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=11 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="1_ilnqg"]
+[ext_resource type="Script" path="res://scripts/units/movement_component.gd" id="2_g5k8q"]
 [ext_resource type="Texture2D" uid="uid://dxoh4n4gamcqv" path="res://icon.svg" id="2_njeh4"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_2wns5"]
+[ext_resource type="Script" path="res://scripts/units/attack_component.gd" id="3_otypj"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_8t6ly"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_5c3yn"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_6vo2k"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvqax"]
+radius = 86.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
+radius = 64.0
 
 [node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("1_ilnqg")
 
-[node name="MovementComponent" type="Node" parent="."]
+[node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character_body", "navigation_agent")]
+script = ExtResource("2_g5k8q")
+character_body = NodePath("..")
+navigation_agent = NodePath("../NavigationAgent2D")
+movement_speed = 300.0
+
+[node name="AttackComponent" type="Area2D" parent="."]
+monitorable = false
+script = ExtResource("3_otypj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+shape = SubResource("CircleShape2D_tvqax")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("2_njeh4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8pmd4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+radius = 64.0
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_2wns5")
@@ -54,3 +74,6 @@ script = ExtResource("6_6vo2k")
 
 [node name="AI" type="Node" parent="StateChart/UnitState/Side"]
 script = ExtResource("6_6vo2k")
+
+[connection signal="body_entered" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_exited"]
