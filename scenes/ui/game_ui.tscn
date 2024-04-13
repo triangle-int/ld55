@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdk0kbjb8exv0"]
+[gd_scene load_steps=6 format=3 uid="uid://cdk0kbjb8exv0"]
 
 [ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="1_1sr5l"]
 [ext_resource type="Texture2D" uid="uid://di560e6vrrhmr" path="res://ui/sprites/stratagem_arrow_up.tres" id="3_b4xfx"]
 [ext_resource type="Texture2D" uid="uid://1ym3x8238fep" path="res://ui/sprites/stratagems/large.tres" id="3_nnjaf"]
-[ext_resource type="Texture2D" uid="uid://ratylv63txhp" path="res://ui/sprites/stratagem_arrow_right.tres" id="4_iaijl"]
 [ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="5_u7ceq"]
 
 [sub_resource type="Theme" id="Theme_p6hul"]
@@ -17,7 +16,7 @@ offset_right = 282.0
 grow_vertical = 2
 theme = SubResource("Theme_p6hul")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="AvailableStratagems"]
+[node name="StratagemInfo" type="NinePatchRect" parent="AvailableStratagems"]
 texture_filter = 1
 custom_minimum_size = Vector2(2.08165e-12, 70)
 layout_mode = 2
@@ -28,7 +27,7 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="MarginContainer" type="MarginContainer" parent="AvailableStratagems/NinePatchRect"]
+[node name="MarginContainer" type="MarginContainer" parent="AvailableStratagems/StratagemInfo"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,53 +40,29 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AvailableStratagems/NinePatchRect/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AvailableStratagems/StratagemInfo/MarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer"]
+[node name="StatagemIcon" type="TextureRect" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("3_nnjaf")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="StratagemName" type="Label" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_1sr5l")
 text = "Stratagem 1"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("3_b4xfx")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("4_iaijl")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="TextureRect3" type="TextureRect" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("3_b4xfx")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="TextureRect4" type="TextureRect" parent="AvailableStratagems/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="StratagemArrow" type="TextureRect" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
