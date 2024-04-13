@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyei2kuujtgwl"]
+
+[ext_resource type="Texture2D" uid="uid://di560e6vrrhmr" path="res://ui/sprites/stratagem_arrow_up.tres" id="1_50qfj"]
+[ext_resource type="Script" path="res://scripts/ui/stratagem_arrow.gd" id="2_luq68"]
+[ext_resource type="Texture2D" uid="uid://dpdlw3ae21mc2" path="res://ui/sprites/stratagem_arrow_down.tres" id="3_gj75w"]
+[ext_resource type="Texture2D" uid="uid://ratylv63txhp" path="res://ui/sprites/stratagem_arrow_right.tres" id="4_85p0j"]
+[ext_resource type="Texture2D" uid="uid://5o7ubm3jv1hn" path="res://ui/sprites/stratagem_arrow_left.tres" id="5_fnqb4"]
+
+[node name="StratagemInputArrow" type="TextureRect"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+texture = ExtResource("1_50qfj")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("2_luq68")
+up_image = ExtResource("1_50qfj")
+down_image = ExtResource("3_gj75w")
+right_image = ExtResource("4_85p0j")
+left_image = ExtResource("5_fnqb4")

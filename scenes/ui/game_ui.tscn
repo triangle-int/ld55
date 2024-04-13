@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdk0kbjb8exv0"]
 
-[ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="1_1sr5l"]
-[ext_resource type="Texture2D" uid="uid://di560e6vrrhmr" path="res://ui/sprites/stratagem_arrow_up.tres" id="3_b4xfx"]
-[ext_resource type="Texture2D" uid="uid://1ym3x8238fep" path="res://ui/sprites/stratagems/large.tres" id="3_nnjaf"]
+[ext_resource type="PackedScene" uid="uid://pa2kech3qylp" path="res://scenes/ui/stratagem_info.tscn" id="1_y5d8v"]
+[ext_resource type="Script" path="res://scripts/ui/stratagem_input_panel.gd" id="3_2fyuu"]
+[ext_resource type="PackedScene" uid="uid://cyei2kuujtgwl" path="res://scenes/ui/stratagem_input_arrow.tscn" id="3_ibe4d"]
 [ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="5_u7ceq"]
 
 [sub_resource type="Theme" id="Theme_p6hul"]
@@ -16,61 +16,10 @@ offset_right = 282.0
 grow_vertical = 2
 theme = SubResource("Theme_p6hul")
 
-[node name="StratagemInfo" type="NinePatchRect" parent="AvailableStratagems"]
-texture_filter = 1
-custom_minimum_size = Vector2(2.08165e-12, 70)
-layout_mode = 2
-texture = ExtResource("5_u7ceq")
-region_rect = Rect2(2.08165e-12, 2.08165e-12, 64, 64)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
-[node name="MarginContainer" type="MarginContainer" parent="AvailableStratagems/StratagemInfo"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_1sr5l")
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="AvailableStratagems/StratagemInfo/MarginContainer"]
+[node name="StratagemInfo" parent="AvailableStratagems" instance=ExtResource("1_y5d8v")]
 layout_mode = 2
 
-[node name="StatagemIcon" type="TextureRect" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("3_nnjaf")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="StratagemName" type="Label" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_1sr5l")
-text = "Stratagem 1"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="StratagemArrow" type="TextureRect" parent="AvailableStratagems/StratagemInfo/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("3_b4xfx")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="StratagemInput" type="NinePatchRect" parent="."]
+[node name="StratagemInput" type="NinePatchRect" parent="." node_paths=PackedStringArray("parent")]
 texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -88,6 +37,9 @@ patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
+script = ExtResource("3_2fyuu")
+parent = NodePath("MarginContainer/HBoxContainer")
+stratagem_arrow = ExtResource("3_ibe4d")
 
 [node name="MarginContainer" type="MarginContainer" parent="StratagemInput"]
 layout_mode = 1
@@ -103,11 +55,3 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StratagemInput/MarginContainer"]
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="StratagemInput/MarginContainer/HBoxContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("3_b4xfx")
-expand_mode = 1
-stretch_mode = 4

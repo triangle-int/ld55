@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://pa2kech3qylp"]
+
+[ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="1_xujau"]
+[ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="2_db7wa"]
+[ext_resource type="Texture2D" uid="uid://1ym3x8238fep" path="res://ui/sprites/stratagems/large.tres" id="3_f3p1m"]
+[ext_resource type="Texture2D" uid="uid://di560e6vrrhmr" path="res://ui/sprites/stratagem_arrow_up.tres" id="4_n35u4"]
+
+[node name="StratagemInfo" type="NinePatchRect"]
+texture_filter = 1
+custom_minimum_size = Vector2(2.08165e-12, 70)
+texture = ExtResource("1_xujau")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_db7wa")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="StatagemIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("3_f3p1m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StratagemName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_db7wa")
+text = "Stratagem 1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StratagemArrow" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("4_n35u4")
+expand_mode = 1
+stretch_mode = 4
