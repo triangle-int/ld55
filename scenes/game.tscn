@@ -19,11 +19,15 @@ script = ExtResource("2_ejwlw")
 
 [node name="AIUnits" type="Node2D" parent="."]
 
-[node name="ControlPoint" parent="." instance=ExtResource("3_txksb")]
-position = Vector2(925, 75)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_2tpki")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Level1" type="Node2D" parent="Level"]
+
+[node name="ControlPoint" parent="Level/Level1" instance=ExtResource("3_txksb")]
+position = Vector2(925, 75)
