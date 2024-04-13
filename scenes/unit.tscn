@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=8 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="1_ilnqg"]
 [ext_resource type="Texture2D" uid="uid://dxoh4n4gamcqv" path="res://icon.svg" id="2_njeh4"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_2wns5"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_8t6ly"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_5c3yn"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_6vo2k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 
@@ -10,9 +14,43 @@
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("1_ilnqg")
 
+[node name="MovementComponent" type="Node" parent="."]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("2_njeh4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8pmd4")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_2wns5")
+
+[node name="UnitState" type="Node" parent="StateChart"]
+script = ExtResource("4_8t6ly")
+
+[node name="Action" type="Node" parent="StateChart/UnitState"]
+script = ExtResource("5_5c3yn")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/UnitState/Action"]
+script = ExtResource("6_6vo2k")
+
+[node name="MovingToEnemy" type="Node" parent="StateChart/UnitState/Action"]
+script = ExtResource("6_6vo2k")
+
+[node name="Attack" type="Node" parent="StateChart/UnitState/Action"]
+script = ExtResource("6_6vo2k")
+
+[node name="Fleeing" type="Node" parent="StateChart/UnitState/Action"]
+script = ExtResource("6_6vo2k")
+
+[node name="Side" type="Node" parent="StateChart/UnitState"]
+script = ExtResource("5_5c3yn")
+initial_state = NodePath("Player")
+
+[node name="Player" type="Node" parent="StateChart/UnitState/Side"]
+script = ExtResource("6_6vo2k")
+
+[node name="AI" type="Node" parent="StateChart/UnitState/Side"]
+script = ExtResource("6_6vo2k")

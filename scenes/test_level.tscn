@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgfuqyehlrpwj"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3r7l0"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(-674, -409, 685, -411, 681, 464, -711, 450)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_3r7l0")
