@@ -1,6 +1,6 @@
 class_name Stratagem
 
-extends Node
+extends Resource
 
 enum PathPart {UP, DOWN, LEFT, RIGHT}
 
