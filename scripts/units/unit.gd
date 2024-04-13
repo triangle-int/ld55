@@ -11,6 +11,8 @@ var side: Unit.Side
 @export var movement: MovementComponent
 @export var health: HealthComponent
 @export var sight: SightRangeComponent
+@export var buff: BuffContainer
+@export var attack: AttackComponent
 
 func _ready():
 	Battle.point_owner_updated.connect(func(_p): _update_target())
