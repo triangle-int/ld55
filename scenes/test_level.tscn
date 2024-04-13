@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgfuqyehlrpwj"]
+[gd_scene load_steps=4 format=3 uid="uid://cgfuqyehlrpwj"]
 
 [ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/unit.tscn" id="1_1c51y"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_3x0gc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3r7l0"]
 vertices = PackedVector2Array(671, 453, -700, 440, -664, -399, 674, -400)
@@ -16,6 +17,19 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 navigation_polygon = SubResource("NavigationPolygon_3r7l0")
 
 [node name="Unit2" parent="." instance=ExtResource("1_1c51y")]
+position = Vector2(-582, 321)
+
+[node name="Side" parent="Unit2/StateChart/UnitState" index="0"]
+initial_state = NodePath("AI")
 
 [node name="Unit" parent="." instance=ExtResource("1_1c51y")]
-position = Vector2(196, 149)
+position = Vector2(561, 342)
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_3x0gc")]
+offset_left = 70.0
+offset_top = -378.0
+offset_right = 606.0
+offset_bottom = 103.0
+initial_node_to_watch = NodePath("../Unit2/StateChart")
+
+[editable path="Unit2"]
