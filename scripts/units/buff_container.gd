@@ -2,9 +2,9 @@ class_name BuffContainer
 
 extends Node
 
-@export var unit: Unit
-
 var _buffs: Array[Buff] = []
+
+@export var unit: Unit
 
 func _ready():
 	unit.attack.on_attack.connect(_on_attack)
