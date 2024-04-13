@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://04n80bs6cnb4"]
+[gd_scene load_steps=3 format=3 uid="uid://04n80bs6cnb4"]
 
 [ext_resource type="PackedScene" uid="uid://cty2bqglqapon" path="res://scenes/units/small_unit.tscn" id="1_0kfqa"]
+[ext_resource type="Script" path="res://scripts/units/units_group.gd" id="1_itvbk"]
 
 [node name="LargeArmy" type="Node2D"]
+script = ExtResource("1_itvbk")
 
 [node name="SmallUnit" parent="." instance=ExtResource("1_0kfqa")]
 position = Vector2(0, 320)

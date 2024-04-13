@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="2_ejwlw"]
 [ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="3_txksb"]
-[ext_resource type="PackedScene" uid="uid://dyf3q846qhsaq" path="res://scenes/ai.tscn" id="4_qxuq2"]
+[ext_resource type="PackedScene" uid="uid://be5pfuv1jak6f" path="res://scenes/ai.tscn" id="4_qxuq2"]
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="6_20aj5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2tpki"]
@@ -33,4 +33,3 @@ zoom = Vector2(0.5, 0.5)
 [node name="Level1" type="Node2D" parent="Level"]
 
 [node name="ControlPoint" parent="Level/Level1" instance=ExtResource("3_txksb")]
-position = Vector2(925, 75)

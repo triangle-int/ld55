@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyd324f78t40d"
-path="res://.godot/imported/white_flag.png-d5f9eabffbe9424a4a7a89f765ed89bd.ctex"
+uid="uid://dsd3bxnefcnfc"
+path="res://.godot/imported/flag_white.png-62c019dbd64864321aaa62c6ff60410f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/flag/white_flag.png"
-dest_files=["res://.godot/imported/white_flag.png-d5f9eabffbe9424a4a7a89f765ed89bd.ctex"]
+source_file="res://sprites/flag/flag_white.png"
+dest_files=["res://.godot/imported/flag_white.png-62c019dbd64864321aaa62c6ff60410f.ctex"]
 
 [params]
 

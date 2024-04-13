@@ -27,6 +27,9 @@ func switch_side():
 @export var damage = 10.0
 @export var attack_cooldown = 3.0
 
+@onready var playerState = $StateChart/UnitState/Side/Player
+@onready var aiState = $StateChart/UnitState/Side/AI
+
 func _ready():
 	health.set_max_health(start_health)
 	movement.set_movement_speed(movement_speed)
@@ -34,6 +37,13 @@ func _ready():
 	attack.set_attack_cooldown(attack_cooldown)
 	
 	Battle.point_owner_updated.connect(func(_p): _update_target())
+
+func set_side(s: Unit.Side):
+	await playerState.state_entered
+	if s == Unit.Side.AI:
+		$StateChart.send_event("set_ai_side")
+	elif s == Unit.Side.PLAYER:
+		$StateChart.send_event("set_player_side")
 
 func _on_player_state_entered():
 	side = Side.PLAYER

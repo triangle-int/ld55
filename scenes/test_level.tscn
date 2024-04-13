@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgfuqyehlrpwj"]
 
-[ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/unit.tscn" id="1_1c51y"]
+[ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/units/unit.tscn" id="1_1c51y"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_3x0gc"]
 [ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="3_2r6ee"]
 

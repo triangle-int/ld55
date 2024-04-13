@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyf3q846qhsaq"]
+[gd_scene load_steps=6 format=3 uid="uid://be5pfuv1jak6f"]
 
 [ext_resource type="Script" path="res://scripts/ai.gd" id="1_ybe6t"]
 [ext_resource type="Resource" uid="uid://c716xti31ow7o" path="res://stratagems/armys/large.tres" id="2_28um5"]
