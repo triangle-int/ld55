@@ -4,8 +4,8 @@ extends Control
 @export var stratagem_info: PackedScene
 
 func _ready():
-	stratagems_updated(Summon.get_stratagems())
-	Summon.stratagems_updated.connect(stratagems_updated)
+	stratagems_updated(PlayerSummon.get_stratagems())
+	PlayerSummon.stratagems_updated.connect(stratagems_updated)
 
 func stratagems_updated(stratagems: Array[Stratagem]):
 	for child in get_children():

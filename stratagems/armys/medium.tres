@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Army" load_steps=3 format=3 uid="uid://dfqqsyvthsnx7"]
+[gd_resource type="Resource" script_class="Army" load_steps=4 format=3 uid="uid://dfqqsyvthsnx7"]
 
 [ext_resource type="Texture2D" uid="uid://bbdi0kg8j7mxx" path="res://ui/sprites/stratagems/medium.tres" id="1_ly02l"]
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/army.gd" id="1_qlxq6"]
+[ext_resource type="PackedScene" uid="uid://bthsk4516gcyn" path="res://scenes/armys/medium_army.tscn" id="3_o4l7m"]
 
 [resource]
 script = ExtResource("1_qlxq6")
 unit_health = 60
 unit_count = 7
+unit_scene = ExtResource("3_o4l7m")
 name = "Medium Army"
 call_path = Array[int]([3, 3])
 icon = ExtResource("1_ly02l")

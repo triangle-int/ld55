@@ -1,7 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0n1jhunflhnj"]
+[gd_scene load_steps=5 format=3 uid="uid://c0n1jhunflhnj"]
 
+[ext_resource type="Script" path="res://scripts/player_units.gd" id="2_ejwlw"]
+[ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="3_txksb"]
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="6_20aj5"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2tpki"]
+vertices = PackedVector2Array(2038, 1206, -54, 1206, -54, -54, 2038, -54)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 2048, -64, 2048, 1216, -64, 1216)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Game" type="Node2D"]
 
 [node name="GameUI" parent="." instance=ExtResource("6_20aj5")]
+
+[node name="PlayerUnits" type="Node2D" parent="."]
+script = ExtResource("2_ejwlw")
+
+[node name="AIUnits" type="Node2D" parent="."]
+
+[node name="ControlPoint" parent="." instance=ExtResource("3_txksb")]
+position = Vector2(925, 75)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_2tpki")

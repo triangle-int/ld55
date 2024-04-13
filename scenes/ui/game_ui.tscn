@@ -1,13 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdk0kbjb8exv0"]
+[gd_scene load_steps=12 format=3 uid="uid://cdk0kbjb8exv0"]
 
 [ext_resource type="Script" path="res://scripts/ui/stratagems_view.gd" id="1_bb3qg"]
+[ext_resource type="Script" path="res://scripts/ui/summon_area_input.gd" id="1_g44e8"]
 [ext_resource type="PackedScene" uid="uid://pa2kech3qylp" path="res://scenes/ui/stratagem_info.tscn" id="1_y5d8v"]
 [ext_resource type="Script" path="res://scripts/ui/stratagem_input_panel.gd" id="3_2fyuu"]
 [ext_resource type="PackedScene" uid="uid://cyei2kuujtgwl" path="res://scenes/ui/stratagem_input_arrow.tscn" id="3_ibe4d"]
 [ext_resource type="Script" path="res://scripts/ui/combination_view.gd" id="5_4jtk7"]
 [ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="5_u7ceq"]
+[ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="7_gdasf"]
+[ext_resource type="Script" path="res://scripts/ui/spawn_label.gd" id="8_qyw2r"]
 
 [sub_resource type="Theme" id="Theme_p6hul"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r22ak"]
+font_size = 35
 
 [node name="GameUI" type="CanvasLayer"]
 
@@ -61,3 +67,31 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 script = ExtResource("5_4jtk7")
 arrow = ExtResource("3_ibe4d")
+
+[node name="SpawnLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -434.0
+offset_top = -337.0
+offset_right = 434.0
+offset_bottom = -239.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_gdasf")
+text = "Click on map to spawn an army"
+label_settings = SubResource("LabelSettings_r22ak")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_qyw2r")
+
+[node name="SummonArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g44e8")

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Army" load_steps=3 format=3 uid="uid://c716xti31ow7o"]
+[gd_resource type="Resource" script_class="Army" load_steps=4 format=3 uid="uid://c716xti31ow7o"]
 
 [ext_resource type="Texture2D" uid="uid://1ym3x8238fep" path="res://ui/sprites/stratagems/large.tres" id="1_re02i"]
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/army.gd" id="1_wgdu2"]
+[ext_resource type="PackedScene" uid="uid://04n80bs6cnb4" path="res://scenes/armys/large_army.tscn" id="3_j878l"]
 
 [resource]
 script = ExtResource("1_wgdu2")
 unit_health = 150
 unit_count = 3
+unit_scene = ExtResource("3_j878l")
 name = "Large Army"
 call_path = Array[int]([1, 1])
 icon = ExtResource("1_re02i")

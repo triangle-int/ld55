@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3qi3vcybta6l"]
+
+[ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/unit.tscn" id="1_jcfyf"]
+
+[node name="MediumUnit" instance=ExtResource("1_jcfyf")]
+start_health = 60.0
