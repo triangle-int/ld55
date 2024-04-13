@@ -1,6 +1,6 @@
 extends Buff
 
-func _modify_damage(_unit: Unit, damage: int) -> int:
+func _modify_damage(_unit: Unit, damage: float) -> float:
 	if damage <= 0:
 		return damage
 

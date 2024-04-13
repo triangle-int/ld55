@@ -3,16 +3,20 @@ class_name HealthComponent
 extends Node
 
 @export var unit: Unit
-@export var start_health: int = 100
-@onready var health: int = start_health
+var health: float
+var max_health: float
 
-func heal(amount: int):
+func set_max_health(amount: float):
+	health = amount
+	max_health = amount
+
+func heal(amount: float):
 	health += amount
 
-	if health > start_health:
-		health = start_health
+	if health > max_health:
+		health = max_health
 
-func deal_damage(damage: int):
+func deal_damage(damage: float):
 	damage = unit.buff.modify_damage(damage)
 	health -= damage
 

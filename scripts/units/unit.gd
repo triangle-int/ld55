@@ -10,14 +10,29 @@ var side: Unit.Side
 
 @export var movement: MovementComponent
 @export var health: HealthComponent
+@export var attack: AttackComponent
 @export var sight: SightRangeComponent
 @export var buff: BuffContainer
-@export var attack: AttackComponent
 
 func switch_side():
 	$StateChart.send_event("switch_side")
 
+@export_group("Health")
+@export var start_health = 100.0
+
+@export_group("Movement")
+@export var movement_speed = 200.0
+
+@export_group("Attack")
+@export var damage = 10.0
+@export var attack_cooldown = 3.0
+
 func _ready():
+	health.set_max_health(start_health)
+	movement.set_movement_speed(movement_speed)
+	attack.set_damage(damage)
+	attack.set_attack_cooldown(attack_cooldown)
+	
 	Battle.point_owner_updated.connect(func(_p): _update_target())
 
 func _on_player_state_entered():
