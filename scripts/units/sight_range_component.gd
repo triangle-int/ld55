@@ -22,7 +22,10 @@ func _on_body_entered(body: Node2D):
 	$"../StateChart".send_event("enemy_in_sight")
 
 func _on_body_exited(body: Node2D):
-	enemies_in_range.erase(body)
+	remove_enemy(body)
+
+func remove_enemy(enemy: Unit):
+	enemies_in_range.erase(enemy)
 
 	if enemies_in_range.is_empty():
 		$"../StateChart".send_event("enemy_lost")

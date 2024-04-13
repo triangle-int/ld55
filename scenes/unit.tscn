@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=16 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_cyour"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="1_ilnqg"]
 [ext_resource type="Script" path="res://scripts/units/movement_component.gd" id="2_g5k8q"]
 [ext_resource type="Texture2D" uid="uid://dxoh4n4gamcqv" path="res://icon.svg" id="2_njeh4"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_2wns5"]
+[ext_resource type="Script" path="res://scripts/units/buff_container.gd" id="3_7cs2r"]
 [ext_resource type="Script" path="res://scripts/units/attack_component.gd" id="3_otypj"]
 [ext_resource type="Script" path="res://scripts/units/sight_range_component.gd" id="4_2avhl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_8t6ly"]
@@ -21,15 +22,22 @@ radius = 459.213
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health", "sight")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health", "sight", "buff", "attack")]
 motion_mode = 1
 script = ExtResource("1_cyour")
 movement = NodePath("MovementComponent")
 health = NodePath("HealthComponent")
 sight = NodePath("SightRangeComponent")
+buff = NodePath("BuffContainer")
+attack = NodePath("AttackComponent")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("1_ilnqg")
+unit = NodePath("..")
+
+[node name="BuffContainer" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("3_7cs2r")
+unit = NodePath("..")
 
 [node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character_body", "navigation_agent")]
 script = ExtResource("2_g5k8q")
