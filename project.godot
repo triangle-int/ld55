@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 StratagemInput="*res://scenes/stratagem_input.tscn"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [input]
 
 stratagem_up={
