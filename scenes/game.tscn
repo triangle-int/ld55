@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://c0n1jhunflhnj"]
+[gd_scene load_steps=2 format=3 uid="uid://c0n1jhunflhnj"]
+
+[ext_resource type="Script" path="res://scripts/stratagems/stratagem.gd" id="1_pyg02"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Bomb" type="Node" parent="."]
+script = ExtResource("1_pyg02")
+call_path = Array[int]([0, 3, 1, 1, 1])
