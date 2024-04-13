@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 StratagemInput="*res://scenes/autoloads/stratagem_input.tscn"
 Battle="*res://scenes/autoloads/battle.tscn"
-Summon="*res://scenes/autoloads/summon.tscn"
+PlayerSummon="*res://scenes/autoloads/player_summon.tscn"
 
 [display]
 

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Army" load_steps=3 format=3 uid="uid://byosfoh5hh4ew"]
+[gd_resource type="Resource" script_class="Army" load_steps=4 format=3 uid="uid://byosfoh5hh4ew"]
 
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/army.gd" id="1_a4575"]
 [ext_resource type="Texture2D" uid="uid://bvytwa5dirjx0" path="res://ui/sprites/stratagems/small.tres" id="1_vsoyd"]
+[ext_resource type="PackedScene" uid="uid://d21mtfcmviuas" path="res://scenes/armys/small_army.tscn" id="3_7wlgq"]
 
 [resource]
 script = ExtResource("1_a4575")
 unit_health = 25
 unit_count = 13
+unit_scene = ExtResource("3_7wlgq")
 name = "Small Army"
 call_path = Array[int]([0, 0])
 icon = ExtResource("1_vsoyd")
