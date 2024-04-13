@@ -6,9 +6,9 @@
 [ext_resource type="Resource" uid="uid://byosfoh5hh4ew" path="res://stratagems/armys/small.tres" id="4_nw4xt"]
 [ext_resource type="Resource" uid="uid://cw4f35di3mqrs" path="res://stratagems/buffs/empty.tres" id="5_cws37"]
 
-[node name="AI" type="Node"]
+[node name="AI" type="Node2D"]
 script = ExtResource("1_ybe6t")
-min_cooldown = 3.0
-max_cooldown = 5.0
+min_cooldown = 5.0
+max_cooldown = 8.0
 armys = Array[Resource("res://scripts/stratagem/stratagems/army.gd")]([ExtResource("2_28um5"), ExtResource("3_esw38"), ExtResource("4_nw4xt")])
 buffs = Array[Resource("res://scripts/stratagem/stratagems/buff.gd")]([ExtResource("5_cws37")])

@@ -1,9 +1,10 @@
-extends Node
+extends Node2D
 
 @export var min_cooldown: float
 @export var max_cooldown: float
 @export var armys: Array[Army]
 @export var buffs: Array[Buff]
+@export var spawner: UnitSpawner
 
 var cooldown: float = 0
 
@@ -16,9 +17,7 @@ func _process(delta):
 	cooldown = randf_range(min_cooldown, max_cooldown)
 	var army = pick_army()
 	var selected_buffs = pick_buffs()
-	print('TODO: Actual summon')
-	print('Summoning army %s with buffs:' % army.name)
-	print(' '.join(selected_buffs.map(func(b): return b.name)))
+	spawner.summon_army(army, selected_buffs, global_position)
 
 func pick_army() -> Army:
 	return armys.pick_random()
