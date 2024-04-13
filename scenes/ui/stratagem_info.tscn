@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://pa2kech3qylp"]
+
+[ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="1_xujau"]
+[ext_resource type="Script" path="res://scripts/ui/stratagem_info_slot.gd" id="2_7wapw"]
+[ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="2_db7wa"]
+[ext_resource type="PackedScene" uid="uid://bsfc67ou7bmtc" path="res://scenes/ui/stratagem_info_arrow.tscn" id="3_3gkip"]
+[ext_resource type="Texture2D" uid="uid://1ym3x8238fep" path="res://ui/sprites/stratagems/large.tres" id="3_f3p1m"]
+[ext_resource type="Script" path="res://scripts/ui/combination_view.gd" id="5_g07pr"]
+
+[node name="StratagemInfo" type="NinePatchRect" node_paths=PackedStringArray("icon", "label", "combination_view")]
+texture_filter = 1
+custom_minimum_size = Vector2(2.08165e-12, 100)
+offset_right = 443.0
+offset_bottom = 100.0
+texture = ExtResource("1_xujau")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+script = ExtResource("2_7wapw")
+icon = NodePath("MarginContainer/HBoxContainer/StatagemIcon")
+label = NodePath("MarginContainer/HBoxContainer/VBoxContainer/StratagemName")
+combination_view = NodePath("MarginContainer/HBoxContainer/VBoxContainer/ArrowContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_db7wa")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="StatagemIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("3_f3p1m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StratagemName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_db7wa")
+text = "Stratagem 1"
+
+[node name="ArrowContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("5_g07pr")
+arrow = ExtResource("3_3gkip")
+
+[node name="StratagemArrow" parent="MarginContainer/HBoxContainer/VBoxContainer/ArrowContainer" instance=ExtResource("3_3gkip")]
+layout_mode = 2

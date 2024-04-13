@@ -1,5 +1,7 @@
 extends Node
 
+signal stratagems_updated(stratagems: Array[Stratagem])
+
 enum State {ARMY, BUFFS}
 
 var state: State = State.ARMY
@@ -32,8 +34,15 @@ func _on_wrong_combination():
 
 func _set_state(new_state: State):
 	state = new_state
+	
+	var stratagems = get_stratagems()
+	
+	stratagems_updated.emit(stratagems)
+	StratagemInput.set_stratagems(stratagems)
 
+func get_stratagems() -> Array[Stratagem]:
 	if state == State.ARMY:
-		StratagemInput.set_stratagems(armys)
+		return armys
 	elif state == State.BUFFS:
-		StratagemInput.set_stratagems(buffs)
+		return buffs
+	return []
