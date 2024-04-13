@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="6_20aj5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2tpki"]
-vertices = PackedVector2Array(2038, 1206, -54, 1206, -54, -54, 2038, -54)
+vertices = PackedVector2Array(2038, 1206, -2038, 1206, -2038, -1334, 2038, -1334)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 2048, -64, 2048, 1216, -64, 1216)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2048, -1344, 2048, -1344, 2048, 1216, -2048, 1216)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Game" type="Node2D"]
@@ -19,8 +19,15 @@ script = ExtResource("2_ejwlw")
 
 [node name="AIUnits" type="Node2D" parent="."]
 
-[node name="ControlPoint" parent="." instance=ExtResource("3_txksb")]
-position = Vector2(925, 75)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_2tpki")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Level1" type="Node2D" parent="Level"]
+
+[node name="ControlPoint" parent="Level/Level1" instance=ExtResource("3_txksb")]
+position = Vector2(925, 75)

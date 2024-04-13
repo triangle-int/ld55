@@ -22,7 +22,7 @@ radius = 459.213
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health", "sight", "buff", "attack")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health", "attack", "sight", "buff")]
 motion_mode = 1
 script = ExtResource("1_cyour")
 movement = NodePath("MovementComponent")
@@ -30,7 +30,6 @@ health = NodePath("HealthComponent")
 attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
-attack = NodePath("AttackComponent")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("1_ilnqg")
@@ -67,6 +66,7 @@ texture = ExtResource("2_njeh4")
 shape = SubResource("CircleShape2D_8pmd4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 radius = 64.0
 
 [node name="StateChart" type="Node" parent="."]
