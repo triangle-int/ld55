@@ -53,6 +53,4 @@ func _check_combination():
 	var called = to_call.back()
 	_combination.clear()
 	combination_updated.emit(_combination)
-
-	called.call_stratagem()
 	stratagem_called.emit(called)

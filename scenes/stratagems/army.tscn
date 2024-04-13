@@ -4,4 +4,6 @@
 
 [node name="Army" type="Node"]
 script = ExtResource("1_cpdry")
+unit_health = 150
+unit_count = 3
 call_path = Array[int]([0, 3, 1, 3])

@@ -1,4 +1,15 @@
+class_name Army
+
 extends Stratagem
 
-func _on_call():
-	print('Calling army!')
+var units: Array
+
+@export var unit_health: int
+@export var unit_count: int
+
+func prepare_units():
+	units.resize(unit_count)
+	print('TODO: Prepare units')
+
+func start_units():
+	print('TODO: Start units')
