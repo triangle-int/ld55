@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4oobs5vkgglr"]
+
+[ext_resource type="Script" path="res://scripts/stratagem/stratagems/blank_buff.gd" id="1_540d0"]
+
+[node name="BlankBuff" type="Node"]
+script = ExtResource("1_540d0")
+call_path = Array[int]([0, 3, 1, 1, 1])

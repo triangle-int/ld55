@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dayca3kjg8cvw"]
+
+[ext_resource type="Script" path="res://scripts/stratagem/stratagems/army.gd" id="1_cpdry"]
+
+[node name="Army" type="Node"]
+script = ExtResource("1_cpdry")
+call_path = Array[int]([0, 3, 1, 3])
