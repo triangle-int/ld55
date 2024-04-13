@@ -31,11 +31,13 @@ sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
 attack = NodePath("AttackComponent")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("1_ilnqg")
+unit = NodePath("..")
 
-[node name="BuffContainer" type="Node" parent="."]
+[node name="BuffContainer" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("3_7cs2r")
+unit = NodePath("..")
 
 [node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character_body", "navigation_agent")]
 script = ExtResource("2_g5k8q")
