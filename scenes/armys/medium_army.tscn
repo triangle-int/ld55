@@ -5,22 +5,22 @@
 [node name="MediumArmy" type="Node2D"]
 
 [node name="MediumUnit" parent="." instance=ExtResource("1_dd3k7")]
-position = Vector2(0, -82)
+position = Vector2(0, -243)
 
 [node name="MediumUnit2" parent="." instance=ExtResource("1_dd3k7")]
-position = Vector2(160, 78)
+position = Vector2(160, -83)
 
 [node name="MediumUnit3" parent="." instance=ExtResource("1_dd3k7")]
-position = Vector2(-160, 78)
+position = Vector2(-160, -83)
 
 [node name="MediumUnit4" parent="." instance=ExtResource("1_dd3k7")]
-position = Vector2(0, 253)
+position = Vector2(0, 92)
 
 [node name="MediumUnit5" parent="." instance=ExtResource("1_dd3k7")]
-position = Vector2(-320, 253)
+position = Vector2(-320, 92)
 
 [node name="MediumUnit6" parent="." instance=ExtResource("1_dd3k7")]
-position = Vector2(320, 253)
+position = Vector2(320, 92)
 
 [node name="MediumUnit7" parent="." instance=ExtResource("1_dd3k7")]
-position = Vector2(0, 461)
+position = Vector2(0, 300)
