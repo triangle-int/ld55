@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bthsk4516gcyn"]
+[gd_scene load_steps=3 format=3 uid="uid://bthsk4516gcyn"]
 
 [ext_resource type="PackedScene" uid="uid://d3qi3vcybta6l" path="res://scenes/units/medium_unit.tscn" id="1_dd3k7"]
+[ext_resource type="Script" path="res://scripts/units/units_group.gd" id="1_la10t"]
 
 [node name="MediumArmy" type="Node2D"]
+script = ExtResource("1_la10t")
 
 [node name="MediumUnit" parent="." instance=ExtResource("1_dd3k7")]
 position = Vector2(0, -243)

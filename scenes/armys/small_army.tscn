@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d21mtfcmviuas"]
+[gd_scene load_steps=3 format=3 uid="uid://d21mtfcmviuas"]
 
+[ext_resource type="Script" path="res://scripts/units/units_group.gd" id="1_f3mni"]
 [ext_resource type="PackedScene" uid="uid://cxcryb3hmkdkg" path="res://scenes/units/large_unit.tscn" id="2_cnqpp"]
 
 [node name="SmallArmy" type="Node2D"]
+script = ExtResource("1_f3mni")
 
 [node name="LargeUnit" parent="." instance=ExtResource("2_cnqpp")]
 position = Vector2(2.08165e-12, -82)

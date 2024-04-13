@@ -17,7 +17,7 @@ func _process(delta):
 	cooldown = randf_range(min_cooldown, max_cooldown)
 	var army = pick_army()
 	var selected_buffs = pick_buffs()
-	spawner.summon_army(army, selected_buffs, global_position)
+	spawner.summon_army(army, selected_buffs, global_position, Unit.Side.AI)
 
 func pick_army() -> Army:
 	return armys.pick_random()

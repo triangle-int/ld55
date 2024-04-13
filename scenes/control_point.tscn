@@ -17,27 +17,28 @@ speed = 0.5
 [node name="FlagColor" type="Node2D" parent="." node_paths=PackedStringArray("control_point")]
 script = ExtResource("2_u2lkr")
 control_point = NodePath("..")
+start_position = Vector2(2.08165e-12, 80)
 
 [node name="WhiteSprite" type="Sprite2D" parent="FlagColor"]
 texture_filter = 1
 position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 texture = ExtResource("2_icvst")
 
 [node name="BlueSprite" type="Sprite2D" parent="FlagColor"]
 texture_filter = 1
 position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 texture = ExtResource("3_3gxgk")
 
 [node name="RedSprite" type="Sprite2D" parent="FlagColor"]
 texture_filter = 1
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 texture = ExtResource("4_ijmdu")
 
 [node name="FlagBaseSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 texture = ExtResource("2_kbei0")
 
 [node name="Area2D" type="Area2D" parent="."]
