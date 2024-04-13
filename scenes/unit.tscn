@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=13 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="1_ilnqg"]
 [ext_resource type="Script" path="res://scripts/units/movement_component.gd" id="2_g5k8q"]
@@ -8,9 +8,13 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_8t6ly"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_5c3yn"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_6vo2k"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="9_2dxhy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tvqax"]
 radius = 86.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5c4o"]
+radius = 459.213
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
@@ -34,6 +38,11 @@ script = ExtResource("3_otypj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
 shape = SubResource("CircleShape2D_tvqax")
 
+[node name="SightRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SightRange"]
+shape = SubResource("CircleShape2D_f5c4o")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_njeh4")
 
@@ -49,22 +58,6 @@ script = ExtResource("3_2wns5")
 [node name="UnitState" type="Node" parent="StateChart"]
 script = ExtResource("4_8t6ly")
 
-[node name="Action" type="Node" parent="StateChart/UnitState"]
-script = ExtResource("5_5c3yn")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateChart/UnitState/Action"]
-script = ExtResource("6_6vo2k")
-
-[node name="MovingToEnemy" type="Node" parent="StateChart/UnitState/Action"]
-script = ExtResource("6_6vo2k")
-
-[node name="Attack" type="Node" parent="StateChart/UnitState/Action"]
-script = ExtResource("6_6vo2k")
-
-[node name="Fleeing" type="Node" parent="StateChart/UnitState/Action"]
-script = ExtResource("6_6vo2k")
-
 [node name="Side" type="Node" parent="StateChart/UnitState"]
 script = ExtResource("5_5c3yn")
 initial_state = NodePath("Player")
@@ -72,8 +65,55 @@ initial_state = NodePath("Player")
 [node name="Player" type="Node" parent="StateChart/UnitState/Side"]
 script = ExtResource("6_6vo2k")
 
+[node name="ToAI" type="Node" parent="StateChart/UnitState/Side/Player"]
+script = ExtResource("9_2dxhy")
+to = NodePath("../../AI")
+event = &"switch_side"
+
 [node name="AI" type="Node" parent="StateChart/UnitState/Side"]
 script = ExtResource("6_6vo2k")
+
+[node name="ToPlayer" type="Node" parent="StateChart/UnitState/Side/AI"]
+script = ExtResource("9_2dxhy")
+to = NodePath("../../Player")
+event = &"switch_side"
+
+[node name="Action" type="Node" parent="StateChart/UnitState"]
+script = ExtResource("5_5c3yn")
+initial_state = NodePath("EnemyInSight")
+
+[node name="EnemyInSight" type="Node" parent="StateChart/UnitState/Action"]
+script = ExtResource("5_5c3yn")
+initial_state = NodePath("Attack")
+
+[node name="Attack" type="Node" parent="StateChart/UnitState/Action/EnemyInSight"]
+script = ExtResource("6_6vo2k")
+
+[node name="OnFleeing" type="Node" parent="StateChart/UnitState/Action/EnemyInSight/Attack"]
+script = ExtResource("9_2dxhy")
+to = NodePath("../../Fleeing")
+event = &"to_fleeing"
+
+[node name="Fleeing" type="Node" parent="StateChart/UnitState/Action/EnemyInSight"]
+script = ExtResource("6_6vo2k")
+
+[node name="OnAttack" type="Node" parent="StateChart/UnitState/Action/EnemyInSight/Fleeing"]
+script = ExtResource("9_2dxhy")
+to = NodePath("../../Attack")
+event = &"to_attack"
+
+[node name="OnEnemyLost" type="Node" parent="StateChart/UnitState/Action/EnemyInSight"]
+script = ExtResource("9_2dxhy")
+to = NodePath("../../Capturing")
+event = &"enemy_lost"
+
+[node name="Capturing" type="Node" parent="StateChart/UnitState/Action"]
+script = ExtResource("6_6vo2k")
+
+[node name="OnEnemyInSight" type="Node" parent="StateChart/UnitState/Action/Capturing"]
+script = ExtResource("9_2dxhy")
+to = NodePath("../../EnemyInSight")
+event = &"enemy_in_sight"
 
 [connection signal="body_entered" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_exited"]
