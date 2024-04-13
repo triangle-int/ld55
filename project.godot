@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 StratagemInput="*res://scenes/stratagem_input.tscn"
+Battle="*res://scenes/battle.tscn"
 
 [editor_plugins]
 

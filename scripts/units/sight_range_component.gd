@@ -22,9 +22,6 @@ func _on_body_entered(body: Node2D):
 	$"../StateChart".send_event("enemy_in_sight")
 
 func _on_body_exited(body: Node2D):
-	if not enemies_in_range.has(body):
-		return
-
 	enemies_in_range.erase(body)
 
 	if enemies_in_range.is_empty():

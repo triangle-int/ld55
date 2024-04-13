@@ -134,3 +134,5 @@ event = &"enemy_in_sight"
 [connection signal="state_entered" from="StateChart/UnitState/Side/AI" to="." method="_on_ai_state_entered"]
 [connection signal="state_processing" from="StateChart/UnitState/Action/EnemyInSight" to="SightRangeComponent" method="_on_enemy_in_sight_state_processing"]
 [connection signal="state_processing" from="StateChart/UnitState/Action/EnemyInSight/Attack" to="AttackComponent" method="_on_attack_state_processing"]
+[connection signal="state_entered" from="StateChart/UnitState/Action/Capturing" to="." method="_on_capturing_state_entered"]
+[connection signal="state_exited" from="StateChart/UnitState/Action/Capturing" to="." method="_on_capturing_state_exited"]

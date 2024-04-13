@@ -16,12 +16,9 @@ func _on_attack_area_body_entered(body: Node2D):
 	_enemies_in_attack_range.push_back(body as Unit)
 
 func _on_attack_area_body_exited(body: Node2D):
-	if not _enemies_in_attack_range.has(body):
-		return
-
 	_enemies_in_attack_range.erase(body)
 
-func _on_attack_state_processing(delta: float):
+func _on_attack_state_processing(_delta: float):
 	if _current_cooldown > 0:
 		return
 
