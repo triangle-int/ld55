@@ -14,6 +14,9 @@ var side: Unit.Side
 @export var buff: BuffContainer
 @export var attack: AttackComponent
 
+func switch_side():
+	$StateChart.send_event("switch_side")
+
 func _ready():
 	Battle.point_owner_updated.connect(func(_p): _update_target())
 

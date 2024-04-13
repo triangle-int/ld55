@@ -29,6 +29,15 @@ func _on_attack_state_processing(_delta: float):
 
 	_current_cooldown = attack_cooldown
 	var target = _enemies_in_attack_range.front()
+
+	while target != null and target.side == unit.side:
+		_enemies_in_attack_range.pop_front()
+		unit.sight.remove_enemy(target)
+		target = _enemies_in_attack_range.front()
+
+	if target == null:
+		return
+
 	target.health.deal_damage(damage)
 	on_attack.emit(target)
 
