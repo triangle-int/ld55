@@ -66,6 +66,7 @@ texture = ExtResource("2_njeh4")
 shape = SubResource("CircleShape2D_8pmd4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 radius = 64.0
 
 [node name="StateChart" type="Node" parent="."]
