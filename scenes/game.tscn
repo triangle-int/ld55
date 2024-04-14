@@ -1,15 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0n1jhunflhnj"]
+[gd_scene load_steps=7 format=3 uid="uid://c0n1jhunflhnj"]
 
 [ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="2_ejwlw"]
 [ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="3_txksb"]
 [ext_resource type="PackedScene" uid="uid://be5pfuv1jak6f" path="res://scenes/ai.tscn" id="4_qxuq2"]
+[ext_resource type="Script" path="res://scripts/spawn_area.gd" id="5_dunml"]
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="6_20aj5"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_2tpki"]
-vertices = PackedVector2Array(2038, 1206, -2038, 1206, -2038, -1334, 2038, -1334)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-2048, -1344, 2048, -1344, 2048, 1216, -2048, 1216)])
-source_geometry_group_name = &"navigation_polygon_source_group"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrrxu"]
+size = Vector2(576, 1088)
 
 [node name="Game" type="Node2D"]
 
@@ -22,9 +20,6 @@ script = ExtResource("2_ejwlw")
 position = Vector2(960, 2.08165e-12)
 spawner = NodePath("../UnitSpawner")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_2tpki")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Level" type="Node2D" parent="."]
@@ -32,3 +27,11 @@ navigation_polygon = SubResource("NavigationPolygon_2tpki")
 [node name="Level1" type="Node2D" parent="Level"]
 
 [node name="ControlPoint" parent="Level/Level1" instance=ExtResource("3_txksb")]
+
+[node name="SpawnArea" type="Area2D" parent="Level/Level1"]
+script = ExtResource("5_dunml")
+
+[node name="InitialShape" type="CollisionShape2D" parent="Level/Level1/SpawnArea"]
+position = Vector2(-672, 0)
+shape = SubResource("RectangleShape2D_hrrxu")
+debug_color = Color(1, 0.00784314, 0.0470588, 0.419608)

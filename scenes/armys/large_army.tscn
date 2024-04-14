@@ -7,45 +7,94 @@
 script = ExtResource("1_itvbk")
 
 [node name="SmallUnit" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(0, 320)
+position = Vector2(2.08165e-12, 256)
 
 [node name="SmallUnit2" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(200, 320)
+position = Vector2(128, 256)
 
 [node name="SmallUnit3" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-200, 320)
+position = Vector2(-128, 256)
 
-[node name="SmallUnit4" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(0, 160)
+[node name="SmallUnit4" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(2.08165e-12, 128)
+health = NodePath("../SmallUnit/HealthComponent")
+attack = NodePath("../SmallUnit/AttackComponent")
+sight = NodePath("../SmallUnit/SightRangeComponent")
+buff = NodePath("../SmallUnit/BuffContainer")
 
-[node name="SmallUnit5" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(200, 160)
+[node name="SmallUnit5" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(128, 128)
+health = NodePath("../SmallUnit2/HealthComponent")
+attack = NodePath("../SmallUnit2/AttackComponent")
+sight = NodePath("../SmallUnit2/SightRangeComponent")
+buff = NodePath("../SmallUnit2/BuffContainer")
 
-[node name="SmallUnit6" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-200, 160)
+[node name="SmallUnit6" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(-128, 128)
+health = NodePath("../SmallUnit3/HealthComponent")
+attack = NodePath("../SmallUnit3/AttackComponent")
+sight = NodePath("../SmallUnit3/SightRangeComponent")
+buff = NodePath("../SmallUnit3/BuffContainer")
 
-[node name="SmallUnit7" parent="." instance=ExtResource("1_0kfqa")]
+[node name="SmallUnit7" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(2.08165e-12, 0)
+health = NodePath("../SmallUnit/HealthComponent")
+attack = NodePath("../SmallUnit/AttackComponent")
+sight = NodePath("../SmallUnit/SightRangeComponent")
+buff = NodePath("../SmallUnit/BuffContainer")
 
-[node name="SmallUnit8" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(200, 0)
+[node name="SmallUnit8" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(128, 0)
+health = NodePath("../SmallUnit2/HealthComponent")
+attack = NodePath("../SmallUnit2/AttackComponent")
+sight = NodePath("../SmallUnit2/SightRangeComponent")
+buff = NodePath("../SmallUnit2/BuffContainer")
 
-[node name="SmallUnit9" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-200, 0)
+[node name="SmallUnit9" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(-128, 0)
+health = NodePath("../SmallUnit3/HealthComponent")
+attack = NodePath("../SmallUnit3/AttackComponent")
+sight = NodePath("../SmallUnit3/SightRangeComponent")
+buff = NodePath("../SmallUnit3/BuffContainer")
 
-[node name="SmallUnit10" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(0, -160)
+[node name="SmallUnit10" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(2.08165e-12, -128)
+health = NodePath("../SmallUnit/HealthComponent")
+attack = NodePath("../SmallUnit/AttackComponent")
+sight = NodePath("../SmallUnit/SightRangeComponent")
+buff = NodePath("../SmallUnit/BuffContainer")
 
-[node name="SmallUnit11" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(200, -160)
+[node name="SmallUnit11" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(128, -128)
+health = NodePath("../SmallUnit2/HealthComponent")
+attack = NodePath("../SmallUnit2/AttackComponent")
+sight = NodePath("../SmallUnit2/SightRangeComponent")
+buff = NodePath("../SmallUnit2/BuffContainer")
 
-[node name="SmallUnit12" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-200, -160)
+[node name="SmallUnit12" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(-128, -128)
+health = NodePath("../SmallUnit3/HealthComponent")
+attack = NodePath("../SmallUnit3/AttackComponent")
+sight = NodePath("../SmallUnit3/SightRangeComponent")
+buff = NodePath("../SmallUnit3/BuffContainer")
 
-[node name="SmallUnit13" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(0, -322)
+[node name="SmallUnit13" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(2.08165e-12, -256)
+health = NodePath("../SmallUnit/HealthComponent")
+attack = NodePath("../SmallUnit/AttackComponent")
+sight = NodePath("../SmallUnit/SightRangeComponent")
+buff = NodePath("../SmallUnit/BuffContainer")
 
-[node name="SmallUnit14" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(200, -320)
+[node name="SmallUnit14" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(128, -256)
+health = NodePath("../SmallUnit2/HealthComponent")
+attack = NodePath("../SmallUnit2/AttackComponent")
+sight = NodePath("../SmallUnit2/SightRangeComponent")
+buff = NodePath("../SmallUnit2/BuffContainer")
 
-[node name="SmallUnit15" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-200, -320)
+[node name="SmallUnit15" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_0kfqa")]
+position = Vector2(-128, -256)
+health = NodePath("../SmallUnit3/HealthComponent")
+attack = NodePath("../SmallUnit3/AttackComponent")
+sight = NodePath("../SmallUnit3/SightRangeComponent")
+buff = NodePath("../SmallUnit3/BuffContainer")

@@ -7,10 +7,17 @@
 script = ExtResource("1_f3mni")
 
 [node name="LargeUnit" parent="." instance=ExtResource("2_cnqpp")]
-position = Vector2(2.08165e-12, -82)
 
-[node name="LargeUnit2" parent="." instance=ExtResource("2_cnqpp")]
-position = Vector2(160, 78)
+[node name="LargeUnit2" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("2_cnqpp")]
+position = Vector2(128, 128)
+health = NodePath("../LargeUnit/HealthComponent")
+attack = NodePath("../LargeUnit/AttackComponent")
+sight = NodePath("../LargeUnit/SightRangeComponent")
+buff = NodePath("../LargeUnit/BuffContainer")
 
-[node name="LargeUnit3" parent="." instance=ExtResource("2_cnqpp")]
-position = Vector2(-160, 78)
+[node name="LargeUnit3" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("2_cnqpp")]
+position = Vector2(-128, 128)
+health = NodePath("../LargeUnit/HealthComponent")
+attack = NodePath("../LargeUnit/AttackComponent")
+sight = NodePath("../LargeUnit/SightRangeComponent")
+buff = NodePath("../LargeUnit/BuffContainer")
