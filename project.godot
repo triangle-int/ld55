@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LD55"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/level_selector.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ Battle="*res://scenes/autoloads/battle.tscn"
 PlayerSummon="*res://scenes/autoloads/player_summon.tscn"
 PathFinding="*res://scenes/path_finding.tscn"
 UnitsSelector="*res://scenes/units_selector.tscn"
+LevelLoder="*res://scenes/autoloads/level_loder.tscn"
 
 [display]
 
