@@ -28,11 +28,17 @@ func _process(_delta: float):
 			_check_combination()
 			return
 
+func _is_combination_prefix(call_path: Array[Stratagem.PathPart]) -> bool:
+	if len(call_path) < len(_combination):
+		return false
+	
+	for i in range(len(_combination)):
+		if call_path[i] != _combination[i]:
+			return false
+	return true
+
 func _check_combination():
-	var available = _stratagems.filter(func(s): return (
-		len(s.call_path) >= len(_combination) and
-		_combination.back() == s.call_path[len(_combination) - 1]
-	))
+	var available = _stratagems.filter(func(s): return _is_combination_prefix(s.call_path))
 
 	if len(available) == 0:
 		_combination.clear()
