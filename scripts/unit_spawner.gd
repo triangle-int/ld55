@@ -12,5 +12,5 @@ func summon_army(army: Army, buffs: Array, pos: Vector2, side: Unit.Side):
 	var instance = army.unit_scene.instantiate()
 	instance.set_side(side)
 	# TODO: Apply buffs
-	add_child(instance)
 	instance.global_position = pos
+	add_child(instance)

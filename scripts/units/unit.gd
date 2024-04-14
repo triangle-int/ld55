@@ -30,13 +30,16 @@ var position_point: Vector2i
 @export var max_delay: float
 @export var min_delay: float
 
-@onready var playerState := $StateChart/UnitState/Side/Player
-@onready var aiState := $StateChart/UnitState/Side/AI
-@onready var capturingState := $StateChart/UnitState/Action/Capturing
+@onready var player_state := $StateChart/Side/Player
+@onready var capturing_state := $StateChart/Side/AI/Capturing
 @onready var timer := $WalkingTimer
 @onready var state_chart := $StateChart
 
 func _ready():
+	position_point = PathFinding.to_id(global_position)
+	target_point = position_point
+	global_position = PathFinding.to_pos(position_point)
+
 	health.set_max_health(start_health)
 	attack.damage = damage
 	attack.attack_cooldown = attack_cooldown
@@ -52,7 +55,8 @@ func switch_side():
 	state_chart.send_event("switch_side")
 
 func set_side(s: Unit.Side):
-	await playerState.state_entered
+	await player_state.state_entered
+
 	if s == Unit.Side.AI:
 		state_chart.send_event("set_ai_side")
 	elif s == Unit.Side.PLAYER:
@@ -68,7 +72,7 @@ func _on_capturing_state_entered():
 	_update_target()
 
 func _update_target():
-	if not capturingState.active:
+	if not capturing_state.active:
 		return
 
 	target_point = PathFinding.to_id(
@@ -108,9 +112,6 @@ func _on_path_found(id: int, next_point: Vector2i):
 func _on_walking_timer_timeout():
 	if _path_id != -1:
 		return
-
-	if position_point == Vector2i.ZERO:
-		position_point = PathFinding.to_id(global_position)
 
 	_path_id = PathFinding.enqueue_path(
 		position_point,

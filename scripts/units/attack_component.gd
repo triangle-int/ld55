@@ -11,7 +11,11 @@ signal on_attack(target: Unit, direction: Vector2i)
 
 @export var unit: Unit
 
-func _on_enemy_in_sight_state_processing(_delta: float):
+func _process(delta: float):
+	if _current_cooldown > 0:
+		_current_cooldown -= delta
+
+func _on_attacking_state_processing(delta):
 	if _current_cooldown > 0:
 		return
 
@@ -28,7 +32,3 @@ func _on_enemy_in_sight_state_processing(_delta: float):
 	target.health.deal_damage(damage)
 	var direction = (target.global_position - global_position).normalized()
 	on_attack.emit(target, Vector2i(direction))
-
-func _process(delta: float):
-	if _current_cooldown > 0:
-		_current_cooldown -= delta
