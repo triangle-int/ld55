@@ -73,7 +73,7 @@ func occupy(point: Vector2i):
 	_occupied[point] += 1
 	_pathfinder.set_point_weight_scale(point, 1e6)
 
-func deoccopy(point: Vector2i):
+func deoccupy(point: Vector2i):
 	if not (point in _occupied):
 		return
 

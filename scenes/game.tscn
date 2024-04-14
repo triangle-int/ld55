@@ -17,7 +17,7 @@ position = Vector2(960, 2.08165e-12)
 spawner = NodePath("../UnitSpawner")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(0.4, 0.4)
 
 [node name="Level" type="Node2D" parent="."]
 

@@ -92,7 +92,7 @@ func _on_path_found(id: int, next_point: Vector2i):
 	var direction = next_point - position_point
 	movement_started.emit(direction)
 
-	PathFinding.deoccopy(position_point)
+	PathFinding.deoccupy(position_point)
 	position_point = next_point
 	PathFinding.occupy(position_point)
 

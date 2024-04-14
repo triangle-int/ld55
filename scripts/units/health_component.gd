@@ -25,4 +25,5 @@ func deal_damage(damage: float):
 		death()
 
 func death():
+	PathFinding.deoccupy(unit.position_point)
 	unit.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=34 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_jynxj"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="2_bao07"]
@@ -28,7 +28,7 @@ size = Vector2(256, 64)
 size = Vector2(64, 256)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f5c4o"]
-radius = 459.213
+radius = 350.0
 
 [sub_resource type="Animation" id="Animation_20njk"]
 length = 0.001
@@ -176,9 +176,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_4y7wh"]
-font_size = 100
-
 [node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("health", "attack", "sight", "buff")]
 collision_mask = 2
 motion_mode = 1
@@ -187,6 +184,7 @@ health = NodePath("HealthComponent")
 attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
+attack_cooldown = 0.7
 tween_time = 0.5
 max_delay = 0.65
 min_delay = 0.75
@@ -300,14 +298,6 @@ script = ExtResource("11_po7dp")
 script = ExtResource("12_1v4ui")
 to = NodePath("../../Capturing")
 event = &"enemy_lost"
-
-[node name="Label" type="Label" parent="."]
-offset_left = -64.0
-offset_top = -88.0
-offset_right = 64.0
-offset_bottom = -65.0
-text = "asdasdasdasd"
-label_settings = SubResource("LabelSettings_4y7wh")
 
 [connection signal="movement_ended" from="." to="Sprite2D" method="_on_unit_movement_ended"]
 [connection signal="movement_started" from="." to="Sprite2D" method="_on_unit_movement_started"]
