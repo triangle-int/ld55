@@ -1,20 +1,24 @@
-[gd_scene load_steps=18 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=23 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_jynxj"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="2_bao07"]
 [ext_resource type="Script" path="res://scripts/units/buff_container.gd" id="3_afjfs"]
 [ext_resource type="Script" path="res://scripts/units/attack_component.gd" id="5_7khpw"]
 [ext_resource type="Script" path="res://scripts/units/sight_range_component.gd" id="6_2h2jo"]
-[ext_resource type="Texture2D" uid="uid://btmseddrf6mqb" path="res://sprites/small_unit_red.png" id="7_7b8rv"]
+[ext_resource type="Texture2D" uid="uid://cvrhutn1a1wpj" path="res://sprites/small_red_down.png" id="6_r2xpq"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="8_djbfk"]
+[ext_resource type="Texture2D" uid="uid://bax33uyr3s7qi" path="res://sprites/small_blue_down.png" id="8_gor1s"]
 [ext_resource type="Script" path="res://scripts/units/animation_component.gd" id="8_l4t0m"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="9_5m7t7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="10_ecls6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="11_po7dp"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="12_1v4ui"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tvqax"]
-radius = 86.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0emb4"]
+size = Vector2(256, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1a0eo"]
+size = Vector2(64, 256)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f5c4o"]
 radius = 459.213
@@ -22,10 +26,74 @@ radius = 459.213
 [sub_resource type="Animation" id="Animation_ij2lv"]
 resource_name = "idle"
 length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_20njk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_aw1x0"]
+resource_name = "attack_small"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 5, 6, 7, 8, 9, 0]
+}
+
+[sub_resource type="Animation" id="Animation_eil12"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wpp85"]
 _data = {
-"idle": SubResource("Animation_ij2lv")
+"RESET": SubResource("Animation_20njk"),
+"idle": SubResource("Animation_ij2lv"),
+"small_attack": SubResource("Animation_aw1x0"),
+"small_walk": SubResource("Animation_eil12")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
@@ -39,11 +107,12 @@ health = NodePath("HealthComponent")
 attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
-tween_time = 0.1
+tween_time = 0.5
+max_delay = 0.65
+min_delay = 0.75
 
 [node name="WalkingTimer" type="Timer" parent="."]
-wait_time = 0.25
-autostart = true
+wait_time = 0.7
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("2_bao07")
@@ -59,7 +128,12 @@ script = ExtResource("5_7khpw")
 unit = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
-shape = SubResource("CircleShape2D_tvqax")
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_0emb4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AttackComponent"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_1a0eo")
 
 [node name="SightRangeComponent" type="Area2D" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("6_2h2jo")
@@ -71,11 +145,11 @@ shape = SubResource("CircleShape2D_f5c4o")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(4, 4)
-texture = ExtResource("7_7b8rv")
+texture = ExtResource("6_r2xpq")
 hframes = 10
-vframes = 4
-frame = 1
 script = ExtResource("8_l4t0m")
+blue_texture = ExtResource("8_gor1s")
+red_texture = ExtResource("6_r2xpq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
@@ -158,6 +232,8 @@ script = ExtResource("12_1v4ui")
 to = NodePath("../../EnemyInSight")
 event = &"enemy_in_sight"
 
+[connection signal="movement_ended" from="." to="Sprite2D" method="_on_unit_movement_ended"]
+[connection signal="movement_started" from="." to="Sprite2D" method="_on_unit_movement_started"]
 [connection signal="body_entered" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_exited"]
 [connection signal="on_attack" from="AttackComponent" to="Sprite2D" method="_on_attack"]

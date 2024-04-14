@@ -12,4 +12,10 @@ func _on_ai_state_entered():
 	texture = red_texture
 
 func _on_attack(target):
-	pass
+	animation_player.play("small_attack")
+
+func _on_unit_movement_ended():
+	animation_player.play("idle")
+
+func _on_unit_movement_started():
+	animation_player.play("small_walk")

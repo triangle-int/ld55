@@ -18,6 +18,7 @@ var _pathfinder: AStarGrid2D
 
 @export var region: Rect2i
 @export var cell_size: Vector2
+@export var paths_in_frame: float
 
 signal path_found(id: int, next_point: Vector2)
 
@@ -37,10 +38,12 @@ func _ready():
 func _process(_delta: float):
 	if _queue.is_empty():
 		return
-
-	var curr = _queue.pop_front()
-	var next_point = _find_path(curr)
-	path_found.emit(curr.id, next_point)
+	
+	var size = mini(paths_in_frame, _queue.size())
+	for i in range(size):
+		var curr = _queue.pop_front()
+		var next_point = _find_path(curr)
+		path_found.emit(curr.id, next_point)
 
 func _find_path(path: Path) -> Vector2i:
 	var was_occupied = _pathfinder.get_point_weight_scale(path.source) > 1

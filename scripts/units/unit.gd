@@ -4,6 +4,9 @@ extends Node2D
 
 enum Side {PLAYER, AI}
 
+signal movement_started
+signal movement_ended
+
 var _path_id: int = -1
 
 var side: Unit.Side
@@ -24,6 +27,8 @@ var position_point: Vector2i
 
 @export_group("Movement")
 @export var tween_time: float
+@export var max_delay: float
+@export var min_delay: float
 
 @onready var playerState = $StateChart/UnitState/Side/Player
 @onready var aiState = $StateChart/UnitState/Side/AI
@@ -40,7 +45,9 @@ func _ready():
 
 	Battle.point_owner_updated.connect(func(_p): _update_target())
 	PathFinding.path_found.connect(_on_path_found)
+	timer.wait_time = randf_range(min_delay, max_delay)
 	timer.timeout.connect(_on_walking_timer_timeout)
+	timer.start()
 
 func set_side(s: Unit.Side):
 	await playerState.state_entered
@@ -74,10 +81,16 @@ func _on_path_found(id: int, next_point: Vector2i):
 		return
 
 	_path_id = -1
+	
+	if next_point == position_point:
+		return
+	
 	PathFinding.deoccopy(position_point)
 	position_point = next_point
 	PathFinding.occupy(position_point)
-
+	
+	movement_started.emit()
+	
 	var tween = create_tween()
 	tween.tween_property(
 		self,
@@ -85,6 +98,7 @@ func _on_path_found(id: int, next_point: Vector2i):
 		PathFinding.to_pos(position_point),
 		tween_time,
 	)
+	tween.chain().tween_callback(func(): movement_ended.emit())
 
 func _on_walking_timer_timeout():
 	if _path_id != -1:

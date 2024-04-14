@@ -19,14 +19,13 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 script = ExtResource("2_ejwlw")
 
 [node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("4_qxuq2")]
-position = Vector2(1952, 1052)
+position = Vector2(960, 2.08165e-12)
 spawner = NodePath("../UnitSpawner")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_2tpki")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 
 [node name="Level" type="Node2D" parent="."]
 

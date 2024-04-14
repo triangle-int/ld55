@@ -4,4 +4,3 @@
 
 [node name="LargeUnit" instance=ExtResource("1_i8dsf")]
 start_health = 130.0
-movement_speed = 150.0
