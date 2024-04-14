@@ -77,6 +77,7 @@ func _on_target_selected(target: Vector2i):
 
 func _on_rect_selected(rect: Rect2):
 	if side != Side.PLAYER or not rect.has_point(global_position):
+		_selected = false
 		return
 
 	_selected = true
