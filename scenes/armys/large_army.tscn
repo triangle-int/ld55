@@ -1,52 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://04n80bs6cnb4"]
+[gd_scene load_steps=4 format=3 uid="uid://04n80bs6cnb4"]
 
 [ext_resource type="PackedScene" uid="uid://cty2bqglqapon" path="res://scenes/units/small_unit.tscn" id="1_0kfqa"]
 [ext_resource type="Script" path="res://scripts/units/units_group.gd" id="1_itvbk"]
+[ext_resource type="PackedScene" uid="uid://bsuh7lhwdth3a" path="res://scenes/units/small_unit_preview.tscn" id="3_pj21i"]
 
 [node name="LargeArmy" type="Node2D"]
 script = ExtResource("1_itvbk")
+unit_scene = ExtResource("1_0kfqa")
+unit_preview = ExtResource("3_pj21i")
 
-[node name="SmallUnit" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(2.08165e-12, 256)
+[node name="UnitPosition" type="Marker2D" parent="."]
 
-[node name="SmallUnit2" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(128, 256)
+[node name="UnitPosition2" type="Marker2D" parent="."]
+position = Vector2(128, 2.08165e-12)
 
-[node name="SmallUnit3" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-128, 256)
+[node name="UnitPosition3" type="Marker2D" parent="."]
+position = Vector2(-128, 2.08165e-12)
 
-[node name="SmallUnit4" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(2.08165e-12, 128)
+[node name="UnitPosition4" type="Marker2D" parent="."]
+position = Vector2(0, 128)
 
-[node name="SmallUnit5" parent="." instance=ExtResource("1_0kfqa")]
+[node name="UnitPosition5" type="Marker2D" parent="."]
 position = Vector2(128, 128)
 
-[node name="SmallUnit6" parent="." instance=ExtResource("1_0kfqa")]
+[node name="UnitPosition6" type="Marker2D" parent="."]
 position = Vector2(-128, 128)
 
-[node name="SmallUnit7" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(2.08165e-12, 0)
+[node name="UnitPosition7" type="Marker2D" parent="."]
+position = Vector2(0, 256)
 
-[node name="SmallUnit8" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(128, 0)
+[node name="UnitPosition8" type="Marker2D" parent="."]
+position = Vector2(128, 256)
 
-[node name="SmallUnit9" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-128, 0)
+[node name="UnitPosition9" type="Marker2D" parent="."]
+position = Vector2(-128, 256)
 
-[node name="SmallUnit10" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(2.08165e-12, -128)
+[node name="UnitPosition10" type="Marker2D" parent="."]
+position = Vector2(0, -256)
 
-[node name="SmallUnit11" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(128, -128)
-
-[node name="SmallUnit12" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(-128, -128)
-
-[node name="SmallUnit13" parent="." instance=ExtResource("1_0kfqa")]
-position = Vector2(2.08165e-12, -256)
-
-[node name="SmallUnit14" parent="." instance=ExtResource("1_0kfqa")]
+[node name="UnitPosition11" type="Marker2D" parent="."]
 position = Vector2(128, -256)
 
-[node name="SmallUnit15" parent="." instance=ExtResource("1_0kfqa")]
+[node name="UnitPosition12" type="Marker2D" parent="."]
 position = Vector2(-128, -256)
+
+[node name="UnitPosition13" type="Marker2D" parent="."]
+position = Vector2(0, -128)
+
+[node name="UnitPosition14" type="Marker2D" parent="."]
+position = Vector2(128, -128)
+
+[node name="UnitPosition15" type="Marker2D" parent="."]
+position = Vector2(-128, -128)

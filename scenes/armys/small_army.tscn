@@ -1,15 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d21mtfcmviuas"]
+[gd_scene load_steps=4 format=3 uid="uid://d21mtfcmviuas"]
 
 [ext_resource type="Script" path="res://scripts/units/units_group.gd" id="1_f3mni"]
 [ext_resource type="PackedScene" uid="uid://cxcryb3hmkdkg" path="res://scenes/units/large_unit.tscn" id="2_cnqpp"]
+[ext_resource type="PackedScene" uid="uid://de5dis40hy6s6" path="res://scenes/units/large_unit_preview.tscn" id="3_midsu"]
 
 [node name="SmallArmy" type="Node2D"]
 script = ExtResource("1_f3mni")
+unit_scene = ExtResource("2_cnqpp")
+unit_preview = ExtResource("3_midsu")
 
-[node name="LargeUnit" parent="." instance=ExtResource("2_cnqpp")]
+[node name="UnitPosition" type="Marker2D" parent="."]
 
-[node name="LargeUnit2" parent="." instance=ExtResource("2_cnqpp")]
+[node name="UnitPosition2" type="Marker2D" parent="."]
 position = Vector2(128, 128)
 
-[node name="LargeUnit3" parent="." instance=ExtResource("2_cnqpp")]
+[node name="UnitPosition3" type="Marker2D" parent="."]
 position = Vector2(-128, 128)

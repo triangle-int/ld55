@@ -84,3 +84,6 @@ func deoccupy(point: Vector2i):
 
 	_occupied.erase(point)
 	_pathfinder.set_point_weight_scale(point, 1)
+
+func is_occupied(point: Vector2i):
+	return point in _occupied
