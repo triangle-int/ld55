@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0n1jhunflhnj"]
+[gd_scene load_steps=8 format=3 uid="uid://c0n1jhunflhnj"]
 
 [ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="2_ejwlw"]
 [ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="3_txksb"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrrxu"]
 size = Vector2(576, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7vq1"]
+size = Vector2(1040, 554)
 
 [node name="Game" type="Node2D"]
 
@@ -26,7 +29,9 @@ spawner = NodePath("../UnitSpawner")
 
 [node name="Level1" type="Node2D" parent="Level"]
 
-[node name="ControlPoint" parent="Level/Level1" instance=ExtResource("3_txksb")]
+[node name="ControlPoint" parent="Level/Level1" node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("3_txksb")]
+position = Vector2(0, -280)
+area_to_unlock = NodePath("../SpawnArea/FlagShape")
 
 [node name="SpawnArea" type="Area2D" parent="Level/Level1"]
 script = ExtResource("5_dunml")
@@ -35,3 +40,8 @@ script = ExtResource("5_dunml")
 position = Vector2(-672, 0)
 shape = SubResource("RectangleShape2D_hrrxu")
 debug_color = Color(1, 0.00784314, 0.0470588, 0.419608)
+
+[node name="FlagShape" type="CollisionShape2D" parent="Level/Level1/SpawnArea"]
+position = Vector2(136, -267)
+shape = SubResource("RectangleShape2D_h7vq1")
+debug_color = Color(0.843137, 0.380392, 0, 0.419608)
