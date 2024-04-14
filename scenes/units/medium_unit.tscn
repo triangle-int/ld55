@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3qi3vcybta6l"]
+[gd_scene load_steps=10 format=3 uid="uid://d3qi3vcybta6l"]
 
 [ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/units/unit.tscn" id="1_jcfyf"]
+[ext_resource type="Texture2D" uid="uid://dd5133ys4rpxo" path="res://sprites/medium_blue_up.png" id="2_2l0w8"]
+[ext_resource type="Texture2D" uid="uid://b7ptt6egmr15y" path="res://sprites/medium_blue_down.png" id="3_77ndi"]
+[ext_resource type="Texture2D" uid="uid://dew35vunwpup7" path="res://sprites/medium_blue_left.png" id="3_uu4dw"]
+[ext_resource type="Texture2D" uid="uid://cg164630prggq" path="res://sprites/medium_blue_right.png" id="4_6j2d0"]
+[ext_resource type="Texture2D" uid="uid://bo2lmum6id37y" path="res://sprites/medium_red_up.png" id="5_blo0i"]
+[ext_resource type="Texture2D" uid="uid://57h1dgkarmpx" path="res://sprites/medium_red_left.png" id="6_5ilwk"]
+[ext_resource type="Texture2D" uid="uid://lg1tdou2om5s" path="res://sprites/medium_red_right.png" id="7_87ns7"]
+[ext_resource type="Texture2D" uid="uid://im8rlnx3otrb" path="res://sprites/medium_red_down.png" id="7_hpebe"]
 
 [node name="MediumUnit" instance=ExtResource("1_jcfyf")]
 start_health = 60.0
+
+[node name="Sprite2D" parent="." index="5"]
+unit_type = 1
+blue_texture_up = ExtResource("2_2l0w8")
+blue_texture_down = ExtResource("3_77ndi")
+blue_texture_left = ExtResource("3_uu4dw")
+blue_texture_right = ExtResource("4_6j2d0")
+red_texture_up = ExtResource("5_blo0i")
+red_texture_down = ExtResource("7_hpebe")
+red_texture_left = ExtResource("6_5ilwk")
+red_texture_right = ExtResource("7_87ns7")

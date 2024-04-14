@@ -22,6 +22,6 @@ func modify_damage(damage: float) -> float:
 
 	return damage
 
-func _on_attack(target: Unit):
+func _on_attack(target: Unit, direction: Vector2i):
 	for buff in _buffs.duplicate():
 		buff.on_attack(unit, target)
