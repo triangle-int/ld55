@@ -8,6 +8,7 @@ signal movement_started(direction: Vector2i)
 signal movement_ended
 
 var _path_id: int = -1
+var _selected: bool = false
 
 var side: Unit.Side
 var target_point: Vector2i
@@ -51,8 +52,14 @@ func _ready():
 	timer.timeout.connect(_on_walking_timer_timeout)
 	timer.start()
 
+	UnitsSelector.rect_selected.connect(_on_rect_selected)
+	UnitsSelector.unit_target.connect(_on_target_selected)
+
 func switch_side():
-	state_chart.send_event("switch_side")
+	if side == Unit.Side.PLAYER:
+		state_chart.send_event("set_ai_side")
+	elif side == Unit.Side.AI:
+		state_chart.send_event("set_player_side")
 
 func set_side(s: Unit.Side):
 	await player_state.state_entered
@@ -61,6 +68,19 @@ func set_side(s: Unit.Side):
 		state_chart.send_event("set_ai_side")
 	elif s == Unit.Side.PLAYER:
 		state_chart.send_event("set_player_side")
+
+func _on_target_selected(target: Vector2i):
+	if !_selected:
+		return
+
+	target_point = target
+
+func _on_rect_selected(rect: Rect2):
+	if side != Side.PLAYER or not rect.has_point(global_position):
+		return
+
+	_selected = true
+	state_chart.send_event("target_set")
 
 func _on_player_state_entered():
 	side = Side.PLAYER
@@ -91,6 +111,7 @@ func _on_path_found(id: int, next_point: Vector2i):
 	_path_id = -1
 
 	if next_point == position_point:
+		state_chart.send_event("target_reached")
 		return
 
 	var direction = next_point - position_point
