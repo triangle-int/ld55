@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://6ocg04v2hbh1"]
+
+[ext_resource type="Script" path="res://scripts/paths.gd" id="1_f0g0u"]
+
+[node name="PathFinding" type="Node"]
+script = ExtResource("1_f0g0u")
+region = Rect2i(-50, -25, 100, 50)
+cell_size = Vector2(128, 128)

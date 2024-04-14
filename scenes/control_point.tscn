@@ -1,18 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd4ss3filn5ub"]
+[gd_scene load_steps=8 format=3 uid="uid://dd4ss3filn5ub"]
 
-[ext_resource type="Script" path="res://scripts/battle/control_point.gd" id="1_g0tkx"]
-[ext_resource type="Texture2D" uid="uid://dxoh4n4gamcqv" path="res://icon.svg" id="1_m4mdj"]
+[ext_resource type="Script" path="res://scripts/battle/control_point/control_point.gd" id="1_myyjw"]
+[ext_resource type="Texture2D" uid="uid://dyd324f78t40d" path="res://sprites/flag/white_flag.png" id="2_icvst"]
+[ext_resource type="Texture2D" uid="uid://bcpxrf31o4i6u" path="res://sprites/flag/flag_base.png" id="2_kbei0"]
+[ext_resource type="Script" path="res://scripts/battle/control_point/control_point_color.gd" id="2_u2lkr"]
+[ext_resource type="Texture2D" uid="uid://cab4403yg3xwa" path="res://sprites/flag/blue_flag.png" id="3_3gxgk"]
+[ext_resource type="Texture2D" uid="uid://cdakpn8nrsdtn" path="res://sprites/flag/red_flag.png" id="4_ijmdu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fxvdt"]
 radius = 200.0
 
 [node name="ControlPoint" type="Node2D"]
-script = ExtResource("1_g0tkx")
+script = ExtResource("1_myyjw")
 speed = 0.5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 0.5)
-texture = ExtResource("1_m4mdj")
+[node name="FlagColor" type="Node2D" parent="." node_paths=PackedStringArray("control_point")]
+script = ExtResource("2_u2lkr")
+control_point = NodePath("..")
+start_position = Vector2(2.08165e-12, 80)
+
+[node name="WhiteSprite" type="Sprite2D" parent="FlagColor"]
+texture_filter = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(8, 8)
+texture = ExtResource("2_icvst")
+hframes = 10
+
+[node name="BlueSprite" type="Sprite2D" parent="FlagColor"]
+texture_filter = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(8, 8)
+texture = ExtResource("3_3gxgk")
+hframes = 10
+
+[node name="RedSprite" type="Sprite2D" parent="FlagColor"]
+texture_filter = 1
+scale = Vector2(8, 8)
+texture = ExtResource("4_ijmdu")
+hframes = 10
+
+[node name="FlagBaseSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(8, 8)
+texture = ExtResource("2_kbei0")
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -7,7 +7,7 @@ var enemies_in_range: Array[Unit] = []
 @export var unit: Unit
 
 func _on_enemy_in_sight_state_processing(_delta: float):
-	unit.movement.set_target(enemies_in_range.front().global_position)
+	unit.target_point = enemies_in_range.front().global_position
 
 func _on_body_entered(body: Node2D):
 	if not (body is Unit) or body == $"..":

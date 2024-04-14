@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cty2bqglqapon"]
 
-[ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/unit.tscn" id="1_d2n5u"]
+[ext_resource type="PackedScene" uid="uid://bififdd5ntyix" path="res://scenes/units/unit.tscn" id="1_d2n5u"]
 
 [node name="SmallUnit" instance=ExtResource("1_d2n5u")]
 start_health = 25.0

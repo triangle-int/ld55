@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_nq8s6")
-name = ""
+name = "empy_buff"
 call_path = Array[int]([2, 2])
