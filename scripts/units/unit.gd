@@ -10,7 +10,7 @@ signal movement_ended
 var _path_id: int = -1
 
 var side: Unit.Side
-var target_point: Vector2
+var target_point: Vector2i
 var position_point: Vector2i
 
 @export var health: HealthComponent
@@ -30,31 +30,33 @@ var position_point: Vector2i
 @export var max_delay: float
 @export var min_delay: float
 
-@onready var playerState = $StateChart/UnitState/Side/Player
-@onready var aiState = $StateChart/UnitState/Side/AI
-@onready var capturingState = $StateChart/UnitState/Action/Capturing
-@onready var timer = $WalkingTimer
-
-func switch_side():
-	$StateChart.send_event("switch_side")
+@onready var playerState := $StateChart/UnitState/Side/Player
+@onready var aiState := $StateChart/UnitState/Side/AI
+@onready var capturingState := $StateChart/UnitState/Action/Capturing
+@onready var timer := $WalkingTimer
+@onready var state_chart := $StateChart
 
 func _ready():
 	health.set_max_health(start_health)
-	attack.set_damage(damage)
-	attack.set_attack_cooldown(attack_cooldown)
+	attack.damage = damage
+	attack.attack_cooldown = attack_cooldown
 
 	Battle.point_owner_updated.connect(func(_p): _update_target())
 	PathFinding.path_found.connect(_on_path_found)
+
 	timer.wait_time = randf_range(min_delay, max_delay)
 	timer.timeout.connect(_on_walking_timer_timeout)
 	timer.start()
 
+func switch_side():
+	state_chart.send_event("switch_side")
+
 func set_side(s: Unit.Side):
 	await playerState.state_entered
 	if s == Unit.Side.AI:
-		$StateChart.send_event("set_ai_side")
+		state_chart.send_event("set_ai_side")
 	elif s == Unit.Side.PLAYER:
-		$StateChart.send_event("set_player_side")
+		state_chart.send_event("set_player_side")
 
 func _on_player_state_entered():
 	side = Side.PLAYER
@@ -69,30 +71,31 @@ func _update_target():
 	if not capturingState.active:
 		return
 
-	target_point = Battle.find_nearest_point(
-		global_position,
-		ControlPoint.Owner.PLAYER
-		if side == Side.PLAYER
-		else ControlPoint.Owner.AI
-	).global_position
+	target_point = PathFinding.to_id(
+		Battle.find_nearest_point(
+			global_position,
+			ControlPoint.Owner.PLAYER
+			if side == Side.PLAYER
+			else ControlPoint.Owner.AI,
+		).global_position
+	)
 
 func _on_path_found(id: int, next_point: Vector2i):
 	if id != _path_id:
 		return
 
 	_path_id = -1
-	
+
 	if next_point == position_point:
 		return
-	
+
 	var direction = next_point - position_point
-	
+	movement_started.emit(direction)
+
 	PathFinding.deoccopy(position_point)
 	position_point = next_point
 	PathFinding.occupy(position_point)
-	
-	movement_started.emit(direction)
-	
+
 	var tween = create_tween()
 	tween.tween_property(
 		self,
@@ -111,5 +114,5 @@ func _on_walking_timer_timeout():
 
 	_path_id = PathFinding.enqueue_path(
 		position_point,
-		PathFinding.to_id(target_point),
+		target_point,
 	)

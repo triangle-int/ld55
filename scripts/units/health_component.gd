@@ -2,9 +2,10 @@ class_name HealthComponent
 
 extends Node
 
-@export var unit: Unit
-var health: float
 var max_health: float
+var health: float
+
+@export var unit: Unit
 
 func set_max_health(amount: float):
 	health = amount
@@ -24,4 +25,4 @@ func deal_damage(damage: float):
 		death()
 
 func death():
-	$"..".queue_free()
+	unit.queue_free()

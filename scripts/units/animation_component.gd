@@ -38,10 +38,10 @@ func _on_ai_state_entered():
 	side = Unit.Side.AI
 	update_texture()
 
-func _on_attack(target: Unit, d: Vector2i):
-	print(d)
+func _on_attack(_target: Unit, d: Vector2i):
 	update_direction(d)
 	update_texture()
+
 	if unit_type == UnitType.SMALL:
 		animation_player.play("small_attack")
 	elif unit_type == UnitType.MEDIUM:

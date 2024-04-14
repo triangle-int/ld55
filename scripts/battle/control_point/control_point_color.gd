@@ -24,15 +24,16 @@ func owner_updated():
 	white_sprite.visible = false
 	blue_sprite.visible = false
 	red_sprite.visible = false
-	
-	var owner = control_point.curr_owner
-	if owner == ControlPoint.Owner.NONE:
+
+	var point_owner = control_point.curr_owner
+
+	if point_owner == ControlPoint.Owner.NONE:
 		current_sprite = white_sprite
-	elif owner == ControlPoint.Owner.PLAYER:
+	elif point_owner == ControlPoint.Owner.PLAYER:
 		current_sprite = blue_sprite
-	elif owner == ControlPoint.Owner.AI:
+	elif point_owner == ControlPoint.Owner.AI:
 		current_sprite = red_sprite
-	
+
 	current_sprite.visible = true
 	animation_player.play("start")
 	await animation_player.animation_finished

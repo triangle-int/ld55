@@ -6,8 +6,6 @@
 
 [resource]
 script = ExtResource("1_wgdu2")
-unit_health = 150
-unit_count = 3
 unit_scene = ExtResource("3_j878l")
 name = "Large Army"
 call_path = Array[int]([1, 1])
