@@ -14,9 +14,6 @@ var target_point: Vector2
 @export var sight: SightRangeComponent
 @export var buff: BuffContainer
 
-func switch_side():
-	$StateChart.send_event("switch_side")
-
 @export_group("Health")
 @export var start_health = 100.0
 
@@ -28,6 +25,9 @@ func switch_side():
 @onready var aiState = $StateChart/UnitState/Side/AI
 @onready var capturingState = $StateChart/UnitState/Action/Capturing
 @onready var timer = $WalkingTimer
+
+func switch_side():
+	$StateChart.send_event("switch_side")
 
 func _ready():
 	health.set_max_health(start_health)
@@ -70,7 +70,9 @@ func _on_path_found(id: int, next_point: Vector2):
 		return
 
 	_path_id = -1
+	PathFinding.deoccopy(global_position)
 	global_position = next_point
+	PathFinding.occupy(global_position)
 
 func _on_walking_timer_timeout():
 	if _path_id != -1:
