@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0n1jhunflhnj"]
+
+[ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="1_7n7pa"]
+[ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="2_nqpwh"]
+[ext_resource type="PackedScene" uid="uid://be5pfuv1jak6f" path="res://scenes/ai.tscn" id="3_yiqft"]
+[ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="4_ptcka"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="4_q0o3s"]
+
+[node name="Template" type="Node2D" node_paths=PackedStringArray("update_timer")]
+script = ExtResource("4_q0o3s")
+initial_points = 10
+update_timer = NodePath("Timer")
+
+[node name="GameUI" parent="." instance=ExtResource("1_7n7pa")]
+
+[node name="UnitSpawner" type="Node2D" parent="."]
+script = ExtResource("2_nqpwh")
+
+[node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("3_yiqft")]
+position = Vector2(960, 2.08165e-12)
+spawner = NodePath("../UnitSpawner")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ControlPoint" parent="." instance=ExtResource("4_ptcka")]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

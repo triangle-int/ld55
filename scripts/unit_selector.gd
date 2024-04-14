@@ -12,7 +12,7 @@ signal unit_target(point: Vector2i)
 
 func _process(_delta: float):
 	if Input.is_action_just_pressed("unit_order"):
-		var mouse_pos = get_viewport().get_camera_2d().get_global_mouse_position()
+		var mouse_pos = _get_mouse_position()
 		unit_target.emit(PathFinding.to_id(mouse_pos))
 
 	if Input.is_action_just_pressed("unit_select_start"):
@@ -30,7 +30,7 @@ func _process(_delta: float):
 
 func start_selecting():
 	_is_selecting = true
-	_start_pos = get_viewport().get_camera_2d().get_global_mouse_position()
+	_start_pos = _get_mouse_position()
 
 	selection_panel.position = _start_pos
 	selection_panel.size = Vector2.ZERO
@@ -47,7 +47,7 @@ func _draw_selection():
 	selection_panel.size = rect.size
 
 func _get_current_rect() -> Rect2:
-	var current_pos = get_viewport().get_camera_2d().get_global_mouse_position()
+	var current_pos = _get_mouse_position()
 	var top_left = Vector2(
 		min(current_pos.x, _start_pos.x),
 		min(current_pos.y, _start_pos.y),
@@ -57,3 +57,11 @@ func _get_current_rect() -> Rect2:
 		abs(current_pos.y - _start_pos.y),
 	)
 	return Rect2(top_left, size)
+
+func _get_mouse_position() -> Vector2:
+	var camera = get_viewport().get_camera_2d()
+
+	if camera == null:
+		return Vector2.ZERO
+
+	return camera.get_global_mouse_position()

@@ -3,6 +3,7 @@ extends Node
 var _points: Array[ControlPoint] = []
 
 signal point_owner_updated(point: ControlPoint)
+signal battle_ended(winner: Unit.Side)
 
 func find_nearest_point(pos: Vector2, side: ControlPoint.Owner) -> ControlPoint:
 	var to_select = _points.filter(func(p): return p.curr_owner != side)
