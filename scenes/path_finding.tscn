@@ -6,4 +6,4 @@
 script = ExtResource("1_f0g0u")
 region = Rect2i(-50, -25, 100, 50)
 cell_size = Vector2(128, 128)
-paths_in_frame = 5.0
+paths_in_frame = 3
