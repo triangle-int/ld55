@@ -4,7 +4,7 @@ extends Node2D
 
 enum Side {PLAYER, AI}
 
-signal movement_started
+signal movement_started(direction: Vector2i)
 signal movement_ended
 
 var _path_id: int = -1
@@ -85,11 +85,13 @@ func _on_path_found(id: int, next_point: Vector2i):
 	if next_point == position_point:
 		return
 	
+	var direction = next_point - position_point
+	
 	PathFinding.deoccopy(position_point)
 	position_point = next_point
 	PathFinding.occupy(position_point)
 	
-	movement_started.emit()
+	movement_started.emit(direction)
 	
 	var tween = create_tween()
 	tween.tween_property(

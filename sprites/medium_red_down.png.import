@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://im8rlnx3otrb"
-path="res://.godot/imported/meidum_red_down.png-bd8387532477c87e307ef88e6e3c89e9.ctex"
+path="res://.godot/imported/medium_red_down.png-722f5c5ccaa219fa730a96d334f0ee9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/meidum_red_down.png"
-dest_files=["res://.godot/imported/meidum_red_down.png-bd8387532477c87e307ef88e6e3c89e9.ctex"]
+source_file="res://sprites/medium_red_down.png"
+dest_files=["res://.godot/imported/medium_red_down.png-722f5c5ccaa219fa730a96d334f0ee9f.ctex"]
 
 [params]
 
