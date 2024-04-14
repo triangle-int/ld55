@@ -8,6 +8,7 @@ var _path_id: int = -1
 
 var side: Unit.Side
 var target_point: Vector2
+var position_point: Vector2i
 
 @export var health: HealthComponent
 @export var attack: AttackComponent
@@ -20,6 +21,9 @@ var target_point: Vector2
 @export_group("Attack")
 @export var damage = 10.0
 @export var attack_cooldown = 3.0
+
+@export_group("Movement")
+@export var tween_time: float
 
 @onready var playerState = $StateChart/UnitState/Side/Player
 @onready var aiState = $StateChart/UnitState/Side/AI
@@ -65,17 +69,31 @@ func _update_target():
 		else ControlPoint.Owner.AI
 	).global_position
 
-func _on_path_found(id: int, next_point: Vector2):
+func _on_path_found(id: int, next_point: Vector2i):
 	if id != _path_id:
 		return
 
 	_path_id = -1
-	PathFinding.deoccopy(global_position)
-	global_position = next_point
-	PathFinding.occupy(global_position)
+	PathFinding.deoccopy(position_point)
+	position_point = next_point
+	PathFinding.occupy(position_point)
+
+	var tween = create_tween()
+	tween.tween_property(
+		self,
+		"global_position",
+		PathFinding.to_pos(position_point),
+		tween_time,
+	)
 
 func _on_walking_timer_timeout():
 	if _path_id != -1:
 		return
 
-	_path_id = PathFinding.enqueue_path(global_position, target_point)
+	if position_point == Vector2i.ZERO:
+		position_point = PathFinding.to_id(global_position)
+
+	_path_id = PathFinding.enqueue_path(
+		position_point,
+		PathFinding.to_id(target_point),
+	)

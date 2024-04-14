@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://6ocg04v2hbh1"]
+[gd_scene load_steps=2 format=3 uid="uid://6ocg04v2hbh1"]
 
 [ext_resource type="Script" path="res://scripts/paths.gd" id="1_f0g0u"]
-[ext_resource type="PackedScene" uid="uid://ee6ocbb8iyvo" path="res://scenes/blyadskiy_gdscript.tscn" id="2_gcmvf"]
 
 [node name="PathFinding" type="Node"]
 script = ExtResource("1_f0g0u")
 region = Rect2i(-50, -25, 100, 50)
 cell_size = Vector2(128, 128)
-bebra = ExtResource("2_gcmvf")

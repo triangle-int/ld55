@@ -29,6 +29,7 @@ health = NodePath("HealthComponent")
 attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
+tween_time = 0.1
 
 [node name="WalkingTimer" type="Timer" parent="."]
 wait_time = 0.25
