@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=33 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_jynxj"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="2_bao07"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bax33uyr3s7qi" path="res://sprites/small_blue_down.png" id="8_gor1s"]
 [ext_resource type="Script" path="res://scripts/units/animation_component.gd" id="8_l4t0m"]
 [ext_resource type="Texture2D" uid="uid://nhbvq8raw8x4" path="res://sprites/small_blue_up.png" id="8_r45uy"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="9_5m7t7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="10_ecls6"]
 [ext_resource type="Texture2D" uid="uid://bvx4kp3t33u4i" path="res://sprites/small_blue_left.png" id="10_fs3lv"]
 [ext_resource type="Texture2D" uid="uid://desd0ar2wxhlp" path="res://sprites/small_blue_right.png" id="11_bh81w"]
@@ -214,6 +213,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_1a0eo")
 
 [node name="SightRangeComponent" type="Area2D" parent="." node_paths=PackedStringArray("unit")]
+monitorable = false
 script = ExtResource("6_2h2jo")
 unit = NodePath("..")
 
@@ -246,66 +246,87 @@ shape = SubResource("CircleShape2D_8pmd4")
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("8_djbfk")
 
-[node name="UnitState" type="Node" parent="StateChart"]
-script = ExtResource("9_5m7t7")
-
-[node name="Side" type="Node" parent="StateChart/UnitState"]
+[node name="Side" type="Node" parent="StateChart"]
 script = ExtResource("10_ecls6")
 initial_state = NodePath("Player")
 
-[node name="Player" type="Node" parent="StateChart/UnitState/Side"]
-script = ExtResource("11_po7dp")
-
-[node name="SwitchSide" type="Node" parent="StateChart/UnitState/Side/Player"]
-script = ExtResource("12_1v4ui")
-to = NodePath("../../AI")
-event = &"switch_side"
-
-[node name="ToAI" type="Node" parent="StateChart/UnitState/Side/Player"]
-script = ExtResource("12_1v4ui")
-to = NodePath("../../AI")
-event = &"set_ai_side"
-
-[node name="AI" type="Node" parent="StateChart/UnitState/Side"]
-script = ExtResource("11_po7dp")
-
-[node name="SwitchSide" type="Node" parent="StateChart/UnitState/Side/AI"]
-script = ExtResource("12_1v4ui")
-to = NodePath("../../Player")
-event = &"switch_side"
-
-[node name="ToPlayer" type="Node" parent="StateChart/UnitState/Side/AI"]
-script = ExtResource("12_1v4ui")
-to = NodePath("../../Player")
-event = &"set_player_side"
-
-[node name="Action" type="Node" parent="StateChart/UnitState"]
+[node name="AI" type="Node" parent="StateChart/Side"]
 script = ExtResource("10_ecls6")
 initial_state = NodePath("Capturing")
 
-[node name="Capturing" type="Node" parent="StateChart/UnitState/Action"]
+[node name="Capturing" type="Node" parent="StateChart/Side/AI"]
 script = ExtResource("11_po7dp")
 
-[node name="OnEnemyInSight" type="Node" parent="StateChart/UnitState/Action/Capturing"]
+[node name="OnEnemyDetected" type="Node" parent="StateChart/Side/AI/Capturing"]
 script = ExtResource("12_1v4ui")
-to = NodePath("../../EnemyInSight")
-event = &"enemy_in_sight"
+to = NodePath("../../Attacking")
+event = &"enemy_detected"
 
-[node name="EnemyInSight" type="Node" parent="StateChart/UnitState/Action"]
+[node name="Attacking" type="Node" parent="StateChart/Side/AI"]
 script = ExtResource("11_po7dp")
 
-[node name="OnEnemyLost" type="Node" parent="StateChart/UnitState/Action/EnemyInSight"]
+[node name="OnEnemyLost" type="Node" parent="StateChart/Side/AI/Attacking"]
 script = ExtResource("12_1v4ui")
 to = NodePath("../../Capturing")
 event = &"enemy_lost"
 
+[node name="OnSetPlayerSide" type="Node" parent="StateChart/Side/AI"]
+script = ExtResource("12_1v4ui")
+to = NodePath("../../Player")
+event = &"set_player_side"
+
+[node name="Player" type="Node" parent="StateChart/Side"]
+script = ExtResource("10_ecls6")
+initial_state = NodePath("Scouting")
+
+[node name="Following" type="Node" parent="StateChart/Side/Player"]
+script = ExtResource("11_po7dp")
+
+[node name="OnTargetReached" type="Node" parent="StateChart/Side/Player/Following"]
+script = ExtResource("12_1v4ui")
+to = NodePath("../../Scouting")
+event = &"target_reached"
+
+[node name="Scouting" type="Node" parent="StateChart/Side/Player"]
+script = ExtResource("11_po7dp")
+
+[node name="OnEnemyDetected" type="Node" parent="StateChart/Side/Player/Scouting"]
+script = ExtResource("12_1v4ui")
+to = NodePath("../../Attacking")
+event = &"enemy_detected"
+
+[node name="OnTargetSet" type="Node" parent="StateChart/Side/Player/Scouting"]
+script = ExtResource("12_1v4ui")
+to = NodePath("../../Following")
+event = &"target_set"
+
+[node name="Attacking" type="Node" parent="StateChart/Side/Player"]
+script = ExtResource("11_po7dp")
+
+[node name="OnEnemyLost" type="Node" parent="StateChart/Side/Player/Attacking"]
+script = ExtResource("12_1v4ui")
+to = NodePath("../../Scouting")
+event = &"enemy_lost"
+
+[node name="OnTargetSet" type="Node" parent="StateChart/Side/Player/Attacking"]
+script = ExtResource("12_1v4ui")
+to = NodePath("../../Following")
+event = &"target_set"
+
+[node name="OnSetAISide" type="Node" parent="StateChart/Side/Player"]
+script = ExtResource("12_1v4ui")
+to = NodePath("../../AI")
+event = &"set_ai_side"
+
 [connection signal="movement_ended" from="." to="Sprite2D" method="_on_unit_movement_ended"]
 [connection signal="movement_started" from="." to="Sprite2D" method="_on_unit_movement_started"]
 [connection signal="on_attack" from="AttackComponent" to="Sprite2D" method="_on_attack"]
-[connection signal="state_entered" from="StateChart/UnitState/Side/Player" to="." method="_on_player_state_entered"]
-[connection signal="state_entered" from="StateChart/UnitState/Side/Player" to="Sprite2D" method="_on_player_state_entered"]
-[connection signal="state_entered" from="StateChart/UnitState/Side/AI" to="." method="_on_ai_state_entered"]
-[connection signal="state_entered" from="StateChart/UnitState/Side/AI" to="Sprite2D" method="_on_ai_state_entered"]
-[connection signal="state_entered" from="StateChart/UnitState/Action/Capturing" to="." method="_on_capturing_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/UnitState/Action/EnemyInSight" to="SightRangeComponent" method="_on_enemy_in_sight_state_physics_processing"]
-[connection signal="state_processing" from="StateChart/UnitState/Action/EnemyInSight" to="AttackComponent" method="_on_enemy_in_sight_state_processing"]
+[connection signal="state_entered" from="StateChart/Side/AI" to="." method="_on_ai_state_entered"]
+[connection signal="state_entered" from="StateChart/Side/AI" to="Sprite2D" method="_on_ai_state_entered"]
+[connection signal="state_entered" from="StateChart/Side/AI/Capturing" to="." method="_on_capturing_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Side/AI/Attacking" to="SightRangeComponent" method="_on_attacking_state_physics_processing"]
+[connection signal="state_processing" from="StateChart/Side/AI/Attacking" to="AttackComponent" method="_on_attacking_state_processing"]
+[connection signal="state_entered" from="StateChart/Side/Player" to="." method="_on_player_state_entered"]
+[connection signal="state_entered" from="StateChart/Side/Player" to="Sprite2D" method="_on_player_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Side/Player/Attacking" to="SightRangeComponent" method="_on_attacking_state_physics_processing"]
+[connection signal="state_processing" from="StateChart/Side/Player/Attacking" to="AttackComponent" method="_on_attacking_state_processing"]
