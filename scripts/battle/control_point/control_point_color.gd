@@ -7,6 +7,7 @@ extends Node2D
 @onready var white_sprite = $WhiteSprite
 @onready var blue_sprite = $BlueSprite
 @onready var red_sprite = $RedSprite
+@onready var animation_player = $AnimationPlayer
 
 var current_sprite: Node2D
 
@@ -33,3 +34,6 @@ func owner_updated():
 		current_sprite = red_sprite
 	
 	current_sprite.visible = true
+	animation_player.play("start")
+	await animation_player.animation_finished
+	animation_player.play("idle")

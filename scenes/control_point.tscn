@@ -1,11 +1,138 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd4ss3filn5ub"]
+[gd_scene load_steps=12 format=3 uid="uid://dd4ss3filn5ub"]
 
 [ext_resource type="Script" path="res://scripts/battle/control_point/control_point.gd" id="1_myyjw"]
 [ext_resource type="Texture2D" uid="uid://dyd324f78t40d" path="res://sprites/flag/white_flag.png" id="2_icvst"]
-[ext_resource type="Texture2D" uid="uid://bcpxrf31o4i6u" path="res://sprites/flag/flag_base.png" id="2_kbei0"]
+[ext_resource type="Texture2D" uid="uid://bbyp4ix48kelv" path="res://sprites/flag/flag_base.png" id="2_kbei0"]
 [ext_resource type="Script" path="res://scripts/battle/control_point/control_point_color.gd" id="2_u2lkr"]
 [ext_resource type="Texture2D" uid="uid://cab4403yg3xwa" path="res://sprites/flag/blue_flag.png" id="3_3gxgk"]
 [ext_resource type="Texture2D" uid="uid://cdakpn8nrsdtn" path="res://sprites/flag/red_flag.png" id="4_ijmdu"]
+
+[sub_resource type="Animation" id="Animation_kyp03"]
+resource_name = "idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BlueSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RedSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_wxr6s"]
+resource_name = "start"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BlueSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_chi6b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BlueSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jgscm"]
+_data = {
+"RESET": SubResource("Animation_chi6b"),
+"idle": SubResource("Animation_kyp03"),
+"start": SubResource("Animation_wxr6s")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fxvdt"]
 radius = 200.0
@@ -28,7 +155,7 @@ hframes = 10
 
 [node name="BlueSprite" type="Sprite2D" parent="FlagColor"]
 texture_filter = 1
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(0, 2.08165e-12)
 scale = Vector2(8, 8)
 texture = ExtResource("3_3gxgk")
 hframes = 10
@@ -38,6 +165,12 @@ texture_filter = 1
 scale = Vector2(8, 8)
 texture = ExtResource("4_ijmdu")
 hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlagColor"]
+root_node = NodePath("../WhiteSprite")
+libraries = {
+"": SubResource("AnimationLibrary_jgscm")
+}
 
 [node name="FlagBaseSprite" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=19 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_jynxj"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="2_bao07"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" path="res://scripts/units/movement_component.gd" id="4_ra75r"]
 [ext_resource type="Script" path="res://scripts/units/attack_component.gd" id="5_7khpw"]
 [ext_resource type="Script" path="res://scripts/units/sight_range_component.gd" id="6_2h2jo"]
-[ext_resource type="Texture2D" uid="uid://dxoh4n4gamcqv" path="res://icon.svg" id="7_ld8bi"]
+[ext_resource type="Texture2D" uid="uid://btmseddrf6mqb" path="res://sprites/small_unit_red.png" id="7_7b8rv"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="8_djbfk"]
+[ext_resource type="Script" path="res://scripts/units/animation_component.gd" id="8_l4t0m"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="9_5m7t7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="10_ecls6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="11_po7dp"]
@@ -18,6 +19,15 @@ radius = 86.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f5c4o"]
 radius = 459.213
+
+[sub_resource type="Animation" id="Animation_ij2lv"]
+resource_name = "idle"
+length = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpp85"]
+_data = {
+"idle": SubResource("Animation_ij2lv")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
@@ -60,7 +70,18 @@ unit = NodePath("..")
 shape = SubResource("CircleShape2D_f5c4o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("7_ld8bi")
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("7_7b8rv")
+hframes = 10
+vframes = 4
+frame = 1
+script = ExtResource("8_l4t0m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_wpp85")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8pmd4")
@@ -145,11 +166,14 @@ event = &"enemy_in_sight"
 
 [connection signal="body_entered" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_exited"]
+[connection signal="on_attack" from="AttackComponent" to="Sprite2D" method="_on_attack"]
 [connection signal="body_entered" from="SightRangeComponent" to="SightRangeComponent" method="_on_body_entered"]
 [connection signal="body_exited" from="SightRangeComponent" to="SightRangeComponent" method="_on_body_exited"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="MovementComponent" method="_on_velocity_computed"]
 [connection signal="state_entered" from="StateChart/UnitState/Side/Player" to="." method="_on_player_state_entered"]
+[connection signal="state_entered" from="StateChart/UnitState/Side/Player" to="Sprite2D" method="_on_player_state_entered"]
 [connection signal="state_entered" from="StateChart/UnitState/Side/AI" to="." method="_on_ai_state_entered"]
+[connection signal="state_entered" from="StateChart/UnitState/Side/AI" to="Sprite2D" method="_on_ai_state_entered"]
 [connection signal="state_processing" from="StateChart/UnitState/Action/EnemyInSight" to="SightRangeComponent" method="_on_enemy_in_sight_state_processing"]
 [connection signal="state_processing" from="StateChart/UnitState/Action/EnemyInSight/Attack" to="AttackComponent" method="_on_attack_state_processing"]
 [connection signal="state_entered" from="StateChart/UnitState/Action/Capturing" to="." method="_on_capturing_state_entered"]
