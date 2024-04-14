@@ -16,7 +16,7 @@ func attach_buff(buff: Buff):
 func remove_buff(buff: Buff):
 	_buffs.erase(buff)
 
-func modify_damage(damage: int) -> int:
+func modify_damage(damage: float) -> float:
 	for buff in _buffs.duplicate():
 		damage = buff.modify_damage(damage)
 

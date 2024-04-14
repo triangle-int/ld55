@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=15 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_jynxj"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="2_bao07"]
 [ext_resource type="Script" path="res://scripts/units/buff_container.gd" id="3_afjfs"]
-[ext_resource type="Script" path="res://scripts/units/movement_component.gd" id="4_ra75r"]
 [ext_resource type="Script" path="res://scripts/units/attack_component.gd" id="5_7khpw"]
 [ext_resource type="Script" path="res://scripts/units/sight_range_component.gd" id="6_2h2jo"]
 [ext_resource type="Texture2D" uid="uid://dxoh4n4gamcqv" path="res://icon.svg" id="7_ld8bi"]
@@ -22,14 +21,19 @@ radius = 459.213
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("movement", "health", "attack", "sight", "buff")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("health", "attack", "sight", "buff")]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_jynxj")
-movement = NodePath("MovementComponent")
 health = NodePath("HealthComponent")
 attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
+tween_time = 0.1
+
+[node name="WalkingTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("2_bao07")
@@ -38,11 +42,6 @@ unit = NodePath("..")
 [node name="BuffContainer" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("3_afjfs")
 unit = NodePath("..")
-
-[node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character_body", "navigation_agent")]
-script = ExtResource("4_ra75r")
-character_body = NodePath("..")
-navigation_agent = NodePath("../NavigationAgent2D")
 
 [node name="AttackComponent" type="Area2D" parent="." node_paths=PackedStringArray("unit")]
 monitorable = false
@@ -64,11 +63,6 @@ texture = ExtResource("7_ld8bi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8pmd4")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-radius = 64.0
-max_speed = 500.0
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("8_djbfk")
@@ -147,10 +141,8 @@ event = &"enemy_in_sight"
 [connection signal="body_exited" from="AttackComponent" to="AttackComponent" method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="SightRangeComponent" to="SightRangeComponent" method="_on_body_entered"]
 [connection signal="body_exited" from="SightRangeComponent" to="SightRangeComponent" method="_on_body_exited"]
-[connection signal="velocity_computed" from="NavigationAgent2D" to="MovementComponent" method="_on_velocity_computed"]
 [connection signal="state_entered" from="StateChart/UnitState/Side/Player" to="." method="_on_player_state_entered"]
 [connection signal="state_entered" from="StateChart/UnitState/Side/AI" to="." method="_on_ai_state_entered"]
 [connection signal="state_processing" from="StateChart/UnitState/Action/EnemyInSight" to="SightRangeComponent" method="_on_enemy_in_sight_state_processing"]
 [connection signal="state_processing" from="StateChart/UnitState/Action/EnemyInSight/Attack" to="AttackComponent" method="_on_attack_state_processing"]
 [connection signal="state_entered" from="StateChart/UnitState/Action/Capturing" to="." method="_on_capturing_state_entered"]
-[connection signal="state_exited" from="StateChart/UnitState/Action/Capturing" to="." method="_on_capturing_state_exited"]
