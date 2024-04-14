@@ -22,8 +22,21 @@ func find_nearest_point(pos: Vector2, side: ControlPoint.Owner) -> ControlPoint:
 
 	return result
 
+func get_controlled_points() -> Dictionary:
+	var result = {}
+	result[ControlPoint.Owner.PLAYER] = len(_points.filter(
+		func(p: ControlPoint): return p.curr_owner == ControlPoint.Owner.PLAYER
+	))
+	result[ControlPoint.Owner.AI] = len(_points.filter(
+		func(p: ControlPoint): return p.curr_owner == ControlPoint.Owner.AI
+	))
+	return result
+
 func attach_control_point(point: ControlPoint):
 	_points.push_back(point)
 	point.owner_updated.connect(func():
 		point_owner_updated.emit(point)
 	)
+
+func detach_control_point(point: ControlPoint):
+	_points.erase(point)

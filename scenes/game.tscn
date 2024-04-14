@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0n1jhunflhnj"]
 
 [ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="2_ejwlw"]
-[ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="3_txksb"]
+[ext_resource type="PackedScene" uid="uid://0xs8kvjvvjpk" path="res://scenes/levels/template_level.tscn" id="4_8h6iy"]
 [ext_resource type="PackedScene" uid="uid://be5pfuv1jak6f" path="res://scenes/ai.tscn" id="4_qxuq2"]
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="6_20aj5"]
 
@@ -18,8 +18,4 @@ spawner = NodePath("../UnitSpawner")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Level" type="Node2D" parent="."]
-
-[node name="Level1" type="Node2D" parent="Level"]
-
-[node name="ControlPoint" parent="Level/Level1" instance=ExtResource("3_txksb")]
+[node name="Level" parent="." instance=ExtResource("4_8h6iy")]
