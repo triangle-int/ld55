@@ -14,7 +14,7 @@ func _ready():
 	owner_updated()
 	control_point.owner_updated.connect(owner_updated)
 
-func _process(delta):
+func _process(_delta: float):
 	var weight = absf(control_point.balance)
 	var new_position = start_position.lerp(end_position, weight)
 	current_sprite.position = new_position
