@@ -8,44 +8,20 @@ script = ExtResource("1_la10t")
 
 [node name="MediumUnit" parent="." instance=ExtResource("1_dd3k7")]
 
-[node name="MediumUnit2" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_dd3k7")]
+[node name="MediumUnit2" parent="." instance=ExtResource("1_dd3k7")]
 position = Vector2(128, 0)
-health = NodePath("../MediumUnit/HealthComponent")
-attack = NodePath("../MediumUnit/AttackComponent")
-sight = NodePath("../MediumUnit/SightRangeComponent")
-buff = NodePath("../MediumUnit/BuffContainer")
 
-[node name="MediumUnit3" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_dd3k7")]
+[node name="MediumUnit3" parent="." instance=ExtResource("1_dd3k7")]
 position = Vector2(-128, 2.08165e-12)
-health = NodePath("../MediumUnit/HealthComponent")
-attack = NodePath("../MediumUnit/AttackComponent")
-sight = NodePath("../MediumUnit/SightRangeComponent")
-buff = NodePath("../MediumUnit/BuffContainer")
 
-[node name="MediumUnit4" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_dd3k7")]
+[node name="MediumUnit4" parent="." instance=ExtResource("1_dd3k7")]
 position = Vector2(2.08165e-12, 128)
-health = NodePath("../MediumUnit/HealthComponent")
-attack = NodePath("../MediumUnit/AttackComponent")
-sight = NodePath("../MediumUnit/SightRangeComponent")
-buff = NodePath("../MediumUnit/BuffContainer")
 
-[node name="MediumUnit5" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_dd3k7")]
+[node name="MediumUnit5" parent="." instance=ExtResource("1_dd3k7")]
 position = Vector2(128, 128)
-health = NodePath("../MediumUnit/HealthComponent")
-attack = NodePath("../MediumUnit/AttackComponent")
-sight = NodePath("../MediumUnit/SightRangeComponent")
-buff = NodePath("../MediumUnit/BuffContainer")
 
-[node name="MediumUnit6" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_dd3k7")]
+[node name="MediumUnit6" parent="." instance=ExtResource("1_dd3k7")]
 position = Vector2(-128, 128)
-health = NodePath("../MediumUnit/HealthComponent")
-attack = NodePath("../MediumUnit/AttackComponent")
-sight = NodePath("../MediumUnit/SightRangeComponent")
-buff = NodePath("../MediumUnit/BuffContainer")
 
-[node name="MediumUnit7" parent="." node_paths=PackedStringArray("health", "attack", "sight", "buff") instance=ExtResource("1_dd3k7")]
+[node name="MediumUnit7" parent="." instance=ExtResource("1_dd3k7")]
 position = Vector2(2.08165e-12, -128)
-health = NodePath("../MediumUnit/HealthComponent")
-attack = NodePath("../MediumUnit/AttackComponent")
-sight = NodePath("../MediumUnit/SightRangeComponent")
-buff = NodePath("../MediumUnit/BuffContainer")
