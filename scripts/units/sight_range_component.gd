@@ -2,30 +2,39 @@ class_name SightRangeComponent
 
 extends Area2D
 
-var enemies_in_range: Array[Unit] = []
-
 @export var unit: Unit
+@onready var state_chart := $"../StateChart"
+@onready var enemy_in_sight := $"../StateChart/UnitState/Action/EnemyInSight"
 
-func _on_enemy_in_sight_state_processing(_delta: float):
-	unit.target_point = enemies_in_range.front().global_position
+func _on_enemy_in_sight_state_physics_processing(_delta: float):
+	var enemies = get_enemies_in_range()
+	var min_dist := INF
+	var closest: Unit = null
 
-func _on_body_entered(body: Node2D):
-	if not (body is Unit) or body == $"..":
-		return
+	for enemy in enemies:
+		var dist = Vector2(enemy.position_point).distance_squared_to(
+			Vector2(unit.position_point)
+		)
 
-	var enemy = body as Unit
+		if dist < min_dist or closest == null:
+			closest = enemy
+			min_dist = dist
 
-	if enemy.side == unit.side:
-		return
+	unit.target_point = closest.position_point
 
-	enemies_in_range.push_back(body as Unit)
-	$"../StateChart".send_event("enemy_in_sight")
+func _physics_process(_delta: float):
+	var enemies = get_enemies_in_range()
 
-func _on_body_exited(body: Node2D):
-	remove_enemy(body)
+	if enemies.is_empty():
+		state_chart.send_event("enemy_lost")
+	elif not enemies.is_empty():
+		state_chart.send_event("enemy_in_sight")
 
-func remove_enemy(enemy: Unit):
-	enemies_in_range.erase(enemy)
-
-	if enemies_in_range.is_empty():
-		$"../StateChart".send_event("enemy_lost")
+func get_enemies_in_range() -> Array:
+	return get_overlapping_bodies().filter(
+		func(b: Node2D): return b is Unit
+	).map(
+		func(b: Node2D): return b as Unit
+	).filter(
+		func(u: Unit): return u.side != unit.side
+	)
