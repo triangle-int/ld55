@@ -20,9 +20,9 @@ config/icon="res://icon.svg"
 StratagemInput="*res://scenes/autoloads/stratagem_input.tscn"
 Battle="*res://scenes/autoloads/battle.tscn"
 PlayerSummon="*res://scenes/autoloads/player_summon.tscn"
-PathFinding="*res://scenes/path_finding.tscn"
+PathFinding="*res://scenes/autoloads/path_finding.tscn"
 SpawnAreas="*res://scenes/autoloads/spawn_areas.tscn"
-UnitsSelector="*res://scenes/units_selector.tscn"
+UnitsSelector="*res://scenes/autoloads/units_selector.tscn"
 LevelLoder="*res://scenes/autoloads/level_loder.tscn"
 
 [display]

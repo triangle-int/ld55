@@ -7,13 +7,18 @@ signal rect_selected(rect: Rect2)
 signal unit_target(point: Vector2i)
 
 @export var selection_panel: Panel
-@export var area: Area2D
-@export var shape: CollisionShape2D
+@export var cursor: Sprite2D
 
 func _process(_delta: float):
+	if not Battle.get_battle_started():
+		return
+
 	if Input.is_action_just_pressed("unit_order"):
 		var mouse_pos = _get_mouse_position()
-		unit_target.emit(PathFinding.to_id(mouse_pos))
+		var target_id = PathFinding.to_id(mouse_pos)
+		unit_target.emit(target_id)
+		cursor.global_position = PathFinding.to_pos(target_id)
+		cursor.visible = true
 
 	if Input.is_action_just_pressed("unit_select_start"):
 		start_selecting()
@@ -39,6 +44,7 @@ func start_selecting():
 func stop_selecting():
 	_is_selecting = false
 	selection_panel.visible = false
+	cursor.visible = false
 	rect_selected.emit(_get_current_rect())
 
 func _draw_selection():
