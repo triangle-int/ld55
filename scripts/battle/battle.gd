@@ -51,6 +51,9 @@ func start_battle():
 	battle_started.emit()
 
 func end_battle(side: Unit.Side):
+	if not _battle_started:
+		return
+
 	_battle_started = false
 
 	if side == Unit.Side.PLAYER:
