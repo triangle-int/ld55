@@ -13,6 +13,7 @@ func _ready():
 	_update_points()
 	update_timer.timeout.connect(_update_points)
 	Battle.start_battle()
+	PathFinding.clear_occupied()
 
 	for w in range(PathFinding.region.size.x):
 		for h in range(PathFinding.region.size.y):
