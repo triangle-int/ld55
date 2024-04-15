@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdk0kbjb8exv0"]
+[gd_scene load_steps=17 format=3 uid="uid://cdk0kbjb8exv0"]
 
 [ext_resource type="Script" path="res://scripts/ui/stratagems_view.gd" id="1_bb3qg"]
 [ext_resource type="Script" path="res://scripts/ui/summon_area_input.gd" id="1_g44e8"]
 [ext_resource type="Script" path="res://scripts/ui/points_view.gd" id="1_sgnru"]
 [ext_resource type="PackedScene" uid="uid://pa2kech3qylp" path="res://scenes/ui/stratagem_info.tscn" id="1_y5d8v"]
+[ext_resource type="PackedScene" uid="uid://bsi6wis841cwd" path="res://scenes/ui/tutorial_box.tscn" id="2_jq17u"]
 [ext_resource type="Script" path="res://scripts/ui/stratagem_input_panel.gd" id="3_2fyuu"]
 [ext_resource type="PackedScene" uid="uid://cyei2kuujtgwl" path="res://scenes/ui/stratagem_input_arrow.tscn" id="3_ibe4d"]
 [ext_resource type="Script" path="res://scripts/ui/combination_view.gd" id="5_4jtk7"]
@@ -106,6 +107,8 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g44e8")
+
+[node name="TutorialBox" parent="." instance=ExtResource("2_jq17u")]
 
 [node name="GameOverPopup" type="NinePatchRect" parent="." node_paths=PackedStringArray("label", "next_level_button")]
 texture_filter = 1

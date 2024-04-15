@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxuchlsf1wi3x"]
+
+[ext_resource type="Script" path="res://scripts/totorial_tips.gd" id="1_sbav7"]
+
+[node name="TotorialTips" type="Node"]
+script = ExtResource("1_sbav7")
+tips = Array[String](["Use your WASD keys to enter combination for an army you want to summon.", "Before calling an army, use your WASD keys to enter combination for a buff you want to apply to your army.", "Wrong combination will apply debuffs to your army, so be careful.", "Drag with LMB pressed to select your units.", "Use RMB button to mark location you want your units to go to.", "By standing near the flag your units will captuire it. But enemies can capture flags too.", "The more flags you have captured the faster your enemies' score will be decreasing."])
