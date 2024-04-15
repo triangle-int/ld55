@@ -4,4 +4,4 @@
 
 [node name="ProgressManager" type="Node"]
 script = ExtResource("1_ueyg0")
-levels = Array[String](["level_template", "empty_level"])
+levels = Array[String](["level_1", "level_2", "level_3", "level_4"])

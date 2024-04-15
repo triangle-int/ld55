@@ -26,7 +26,7 @@ offset_bottom = 800.0
 texture = ExtResource("1_bsn0y")
 stretch_mode = 5
 script = ExtResource("3_6gybq")
-buttons = [NodePath("LevelSelectButton1"), NodePath("LevelSelectButton2"), NodePath("LevelSelectButton3")]
+buttons = [NodePath("LevelSelectButton1"), NodePath("LevelSelectButton2"), NodePath("LevelSelectButton3"), NodePath("LevelSelectButton4")]
 
 [node name="LevelSelectButton1" parent="CanvasLayer/LevelSelectPanel" instance=ExtResource("1_xoq1v")]
 layout_mode = 1
@@ -40,6 +40,7 @@ offset_bottom = 310.0
 grow_vertical = 1
 theme_override_font_sizes/font_size = 36
 text = "First Level"
+level_key = "level_1"
 
 [node name="LevelSelectButton2" parent="CanvasLayer/LevelSelectPanel" instance=ExtResource("1_xoq1v")]
 layout_mode = 1
@@ -53,7 +54,7 @@ offset_bottom = 470.0
 grow_vertical = 1
 theme_override_font_sizes/font_size = 36
 text = "Second Level"
-level_key = "empty_level"
+level_key = "level_2"
 
 [node name="LevelSelectButton3" parent="CanvasLayer/LevelSelectPanel" instance=ExtResource("1_xoq1v")]
 layout_mode = 1
@@ -67,4 +68,18 @@ offset_bottom = 620.0
 grow_vertical = 1
 theme_override_font_sizes/font_size = 36
 text = "Third Level"
-level_key = ""
+level_key = "level_3"
+
+[node name="LevelSelectButton4" parent="CanvasLayer/LevelSelectPanel" instance=ExtResource("1_xoq1v")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_top = 619.0
+offset_right = 200.0
+offset_bottom = 759.0
+grow_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "Fourth Level"
+level_key = "level_4"
