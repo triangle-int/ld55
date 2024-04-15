@@ -188,6 +188,8 @@ tween_time = 0.5
 max_delay = 0.65
 min_delay = 0.75
 
+[node name="Selection" type="Sprite2D" parent="."]
+
 [node name="WalkingTimer" type="Timer" parent="."]
 wait_time = 0.7
 
