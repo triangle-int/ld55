@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HandcuffsBuff" load_steps=4 format=3 uid="uid://dlkcixtehyajp"]
+[gd_resource type="Resource" script_class="HandcuffsBuff" load_steps=4 format=3 uid="uid://b2rg11msgdxc3"]
 
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/handcuffs.gd" id="1_0akmf"]
 [ext_resource type="Texture2D" uid="uid://dpo02p4hv83nq" path="res://ui/sprites/stratagems/buff_stratagems.png" id="1_xw6lb"]

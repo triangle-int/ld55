@@ -4,11 +4,11 @@
 [ext_resource type="Resource" uid="uid://c716xti31ow7o" path="res://stratagems/armys/large.tres" id="2_0gijg"]
 [ext_resource type="Resource" uid="uid://dfqqsyvthsnx7" path="res://stratagems/armys/medium.tres" id="3_1hetq"]
 [ext_resource type="Resource" uid="uid://byosfoh5hh4ew" path="res://stratagems/armys/small.tres" id="4_saosi"]
-[ext_resource type="Resource" uid="uid://dkd2tjacjt2a2" path="res://stratagems/buffs/anti_tank.tres" id="5_2ojp2"]
-[ext_resource type="Resource" uid="uid://drr5s7trnfigb" path="res://stratagems/buffs/backgammon.tres" id="6_nah6y"]
-[ext_resource type="Resource" uid="uid://bmij4jua33m13" path="res://stratagems/buffs/shield.tres" id="7_iagoa"]
-[ext_resource type="Resource" uid="uid://caf3u1q104wix" path="res://stratagems/buffs/checkers.tres" id="8_6lbpq"]
-[ext_resource type="Resource" uid="uid://dlkcixtehyajp" path="res://stratagems/buffs/handcuffs.tres" id="9_b6hsf"]
+[ext_resource type="Resource" uid="uid://br0ah6orb6sbo" path="res://stratagems/buffs/anti_tank.tres" id="5_2ojp2"]
+[ext_resource type="Resource" uid="uid://bs7gxw1843nn3" path="res://stratagems/buffs/backgammon.tres" id="6_nah6y"]
+[ext_resource type="Resource" uid="uid://gmoynsxxvh6t" path="res://stratagems/buffs/shield.tres" id="7_iagoa"]
+[ext_resource type="Resource" uid="uid://big0e4erp8y66" path="res://stratagems/buffs/checkers.tres" id="8_6lbpq"]
+[ext_resource type="Resource" uid="uid://b2rg11msgdxc3" path="res://stratagems/buffs/handcuffs.tres" id="9_b6hsf"]
 
 [node name="Summon" type="Node"]
 script = ExtResource("1_1b252")
