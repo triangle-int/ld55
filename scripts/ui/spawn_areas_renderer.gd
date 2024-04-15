@@ -3,7 +3,7 @@ extends Control
 @export var rect_scene: PackedScene
 
 
-func _process(delta):
+func _process(_delta: float):
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -16,5 +16,4 @@ func _process(delta):
 		var instance = rect_scene.instantiate() as Panel
 		instance.position = area.position
 		instance.size = area.size
-		print(instance.size)
 		add_child(instance)

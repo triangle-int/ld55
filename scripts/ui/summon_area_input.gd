@@ -11,7 +11,7 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	PlayerSummon.hide_army()
 
-func _process(delta):
+func _process(_delta: float):
 	if PlayerSummon.army_visible:
 		var camera = get_viewport().get_camera_2d()
 		PlayerSummon.update_army_position(camera.get_global_mouse_position())

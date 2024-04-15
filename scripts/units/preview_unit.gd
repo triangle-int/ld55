@@ -1,7 +1,7 @@
 extends Node2D
 
 
-func _process(delta):
+func _process(_delta: float):
 	var parent_pos = get_parent().global_position
 	var id = PathFinding.to_id(parent_pos)
 	global_position = PathFinding.to_pos(id)
