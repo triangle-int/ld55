@@ -10,5 +10,5 @@ region = Rect2(32, 0, 16, 16)
 [resource]
 script = ExtResource("1_tprpp")
 name = "Backgammon"
-call_path = Array[int]([3])
+call_path = Array[int]([2, 0, 0, 3, 1, 1])
 icon = SubResource("AtlasTexture_lx3l8")

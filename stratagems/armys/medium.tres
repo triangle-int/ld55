@@ -8,5 +8,5 @@
 script = ExtResource("1_qlxq6")
 unit_scene = ExtResource("3_o4l7m")
 name = "Medium Army"
-call_path = Array[int]([3, 3])
+call_path = Array[int]([0, 1, 2, 2, 2])
 icon = ExtResource("1_ly02l")

@@ -10,5 +10,5 @@ region = Rect2(0, 0, 16, 16)
 [resource]
 script = ExtResource("1_2i0kw")
 name = "Shield"
-call_path = Array[int]([1])
+call_path = Array[int]([1, 1, 3])
 icon = SubResource("AtlasTexture_sq41g")

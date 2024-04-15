@@ -10,5 +10,5 @@ region = Rect2(16, 0, 16, 16)
 [resource]
 script = ExtResource("1_b702a")
 name = "AntiTank"
-call_path = Array[int]([0])
+call_path = Array[int]([1, 1, 2, 0, 3])
 icon = SubResource("AtlasTexture_a0k8r")
