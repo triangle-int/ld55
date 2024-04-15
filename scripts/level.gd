@@ -10,6 +10,7 @@ var _ai_points: int
 func _ready():
 	_player_points = initial_points
 	_ai_points = initial_points
+	_update_points()
 	update_timer.timeout.connect(_update_points)
 	Battle.start_battle()
 
@@ -28,6 +29,7 @@ func _update_points():
 	var counts = Battle.get_controlled_points()
 	_ai_points -= counts[ControlPoint.Owner.PLAYER]
 	_player_points -= counts[ControlPoint.Owner.AI]
+	_points_updated()
 
 	if _ai_points <= 0:
 		Battle.end_battle(Unit.Side.PLAYER)
@@ -35,3 +37,10 @@ func _update_points():
 
 	if _player_points <= 0:
 		Battle.end_battle(Unit.Side.AI)
+
+func _points_updated():
+	if not Battle.get_battle_started():
+		return
+
+	Battle.player_points_updated.emit(_player_points)
+	Battle.ai_points_updated.emit(_ai_points)
