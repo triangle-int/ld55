@@ -145,12 +145,10 @@ layout_mode = 1
 anchors_preset = 7
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
 offset_top = -85.0
-offset_right = 100.0
 offset_bottom = -35.0
 grow_vertical = 0
-text = "Back To Level Selector"
+text = "Back To Menu"
 level_key = "level_selector"
 
 [connection signal="mouse_entered" from="SummonArea" to="SummonArea" method="_on_mouse_entered"]
