@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://deg86ldqjyf0h"]
+
+[ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="1_vv0vq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_66roe"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DamageNumber" type="Label"]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+pivot_offset = Vector2(25, 25)
+theme = ExtResource("1_vv0vq")
+text = "-0"
+label_settings = SubResource("LabelSettings_66roe")
+horizontal_alignment = 1
+vertical_alignment = 1
