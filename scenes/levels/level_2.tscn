@@ -201,6 +201,7 @@ script = ExtResource("4_svhpm")
 
 [node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("5_n2vnq")]
 position = Vector2(1600, 0)
+initial_cooldown = 2.0
 max_cooldown = 10.0
 armys = Array[Resource("res://scripts/stratagem/stratagems/army.gd")]([ExtResource("6_bknng"), ExtResource("7_kel5r")])
 buffs = Array[Resource("res://scripts/stratagem/stratagems/buff.gd")]([ExtResource("6_pua3p"), ExtResource("7_da8lr")])

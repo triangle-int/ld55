@@ -1,12 +1,13 @@
 extends Node2D
 
+@export var initial_cooldown: float
 @export var min_cooldown: float
 @export var max_cooldown: float
 @export var armys: Array[Army]
 @export var buffs: Array[Buff]
 @export var spawner: UnitSpawner
 
-var cooldown: float = 0
+@onready var cooldown: float = initial_cooldown
 
 func _process(delta):
 	cooldown -= delta
