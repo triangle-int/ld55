@@ -2,6 +2,8 @@ class_name HealthComponent
 
 extends Node
 
+signal damage_recieved(damage: float)
+
 var max_health: float
 var health: float
 
@@ -21,6 +23,7 @@ func heal(amount: float):
 func deal_damage(damage: float):
 	state_chart.send_event("target_reached")
 	damage = unit.buff.modify_damage(damage)
+	damage_recieved.emit(damage)
 	health -= damage
 
 	if health <= 0:

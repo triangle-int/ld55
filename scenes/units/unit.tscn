@@ -242,6 +242,8 @@ red_texture_up = ExtResource("12_gjarh")
 red_texture_down = ExtResource("6_r2xpq")
 red_texture_left = ExtResource("13_26dlb")
 red_texture_right = ExtResource("14_ev1lk")
+attack_distance = 64.0
+attack_duration = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {

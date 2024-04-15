@@ -25,6 +25,9 @@ enum UnitType {
 @export var red_texture_left: Texture2D
 @export var red_texture_right: Texture2D
 
+@export var attack_distance: float
+@export var attack_duration: float
+
 @onready var animation_player = $AnimationPlayer
 
 var direction: Direction
@@ -48,6 +51,11 @@ func _on_attack(_target: Unit, d: Vector2i):
 		animation_player.play("medium_attack")
 	elif unit_type == UnitType.LARGE:
 		animation_player.play("large_attack")
+	
+	var tween = create_tween()
+	var attack_direction = Vector2(d.x, d.y) * attack_distance
+	tween.tween_property(self, "position", attack_direction, attack_duration / 2)
+	tween.chain().tween_property(self, "position", Vector2.ZERO, attack_duration / 2)
 
 func _on_unit_movement_ended():
 	animation_player.play("idle")
