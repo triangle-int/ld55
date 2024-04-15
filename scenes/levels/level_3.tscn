@@ -207,7 +207,7 @@ spawner = NodePath("../UnitSpawner")
 zoom = Vector2(0.5, 0.5)
 
 [node name="ControlPoint" parent="." node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("6_p7x32")]
-position = Vector2(-877, -664)
+position = Vector2(-634, -650)
 area_to_unlock = NodePath("../SpawnArea/FlagShape")
 
 [node name="SpawnArea" type="Area2D" parent="."]
@@ -254,13 +254,13 @@ rect_scene = ExtResource("9_ilkpp")
 autostart = true
 
 [node name="ControlPoint3" parent="." node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("6_p7x32")]
-position = Vector2(-927, 627)
+position = Vector2(-650, 607)
 area_to_unlock = NodePath("../SpawnArea/FlagShape3")
 
 [node name="ControlPoint4" parent="." node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("6_p7x32")]
-position = Vector2(976, -686)
+position = Vector2(1212, -574)
 area_to_unlock = NodePath("../SpawnArea/FlagShape2")
 
 [node name="ControlPoint5" parent="." node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("6_p7x32")]
-position = Vector2(1000, 602)
+position = Vector2(1225, 485)
 area_to_unlock = NodePath("../SpawnArea/FlagShape4")
