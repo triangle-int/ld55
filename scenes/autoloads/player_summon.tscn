@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch2nb86jf5r5j"]
+[gd_scene load_steps=8 format=3 uid="uid://ch2nb86jf5r5j"]
 
 [ext_resource type="Script" path="res://scripts/player_summon.gd" id="1_1b252"]
 [ext_resource type="Resource" uid="uid://c716xti31ow7o" path="res://stratagems/armys/large.tres" id="2_0gijg"]
 [ext_resource type="Resource" uid="uid://dfqqsyvthsnx7" path="res://stratagems/armys/medium.tres" id="3_1hetq"]
 [ext_resource type="Resource" uid="uid://byosfoh5hh4ew" path="res://stratagems/armys/small.tres" id="4_saosi"]
-[ext_resource type="Resource" uid="uid://cw4f35di3mqrs" path="res://stratagems/buffs/empty.tres" id="5_vkb6l"]
+[ext_resource type="Resource" uid="uid://dkd2tjacjt2a2" path="res://stratagems/buffs/anti_tank.tres" id="5_2ojp2"]
+[ext_resource type="Resource" uid="uid://drr5s7trnfigb" path="res://stratagems/buffs/backgammon.tres" id="6_nah6y"]
+[ext_resource type="Resource" uid="uid://bmij4jua33m13" path="res://stratagems/buffs/shield.tres" id="7_iagoa"]
 
 [node name="Summon" type="Node"]
 script = ExtResource("1_1b252")
 armys = Array[Resource("res://scripts/stratagem/stratagem.gd")]([ExtResource("2_0gijg"), ExtResource("3_1hetq"), ExtResource("4_saosi")])
-buffs = Array[Resource("res://scripts/stratagem/stratagem.gd")]([ExtResource("5_vkb6l")])
+buffs = Array[Resource("res://scripts/stratagem/stratagem.gd")]([ExtResource("5_2ojp2"), ExtResource("6_nah6y"), ExtResource("7_iagoa")])

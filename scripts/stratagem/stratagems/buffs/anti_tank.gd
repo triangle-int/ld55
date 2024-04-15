@@ -1,3 +1,5 @@
+class_name AntiTankBuff
+
 extends Buff
 
 func _on_attack(unit: Unit, target: Unit):

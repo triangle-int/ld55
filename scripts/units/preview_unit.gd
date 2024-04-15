@@ -17,7 +17,7 @@ func can_spawn():
 	var id = PathFinding.to_id(parent_pos)
 	if PathFinding.is_occupied(id):
 		return false
-	
+
 	for area in SpawnAreas.areas:
 		if area.has_point(global_position):
 			return true
