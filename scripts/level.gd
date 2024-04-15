@@ -28,8 +28,8 @@ func _ready():
 
 func _update_points():
 	var counts = Battle.get_controlled_points()
-	_ai_points -= counts[ControlPoint.Owner.PLAYER]
-	_player_points -= counts[ControlPoint.Owner.AI]
+	_ai_points = max(0, _ai_points - counts[ControlPoint.Owner.PLAYER])
+	_player_points = max(0, _player_points - counts[ControlPoint.Owner.AI])
 	_points_updated()
 
 	if _ai_points <= 0:

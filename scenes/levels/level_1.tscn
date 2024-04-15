@@ -1,12 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5hnoy1i457db"]
+[gd_scene load_steps=17 format=3 uid="uid://b5hnoy1i457db"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_u00b7"]
 [ext_resource type="Texture2D" uid="uid://bi6esoxx5irsw" path="res://sprites/tiles/tile_map.png" id="2_1ldrw"]
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="3_b0bq6"]
 [ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="4_svhpm"]
 [ext_resource type="PackedScene" uid="uid://be5pfuv1jak6f" path="res://scenes/ai.tscn" id="5_n2vnq"]
+[ext_resource type="Resource" uid="uid://dfqqsyvthsnx7" path="res://stratagems/armys/medium.tres" id="6_uunl4"]
 [ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="6_x50gr"]
+[ext_resource type="Resource" uid="uid://gmoynsxxvh6t" path="res://stratagems/buffs/shield.tres" id="7_b5kql"]
 [ext_resource type="Script" path="res://scripts/spawn_area.gd" id="7_svjox"]
+[ext_resource type="Script" path="res://scripts/rts_camera.gd" id="8_koeva"]
 [ext_resource type="Script" path="res://scripts/ui/spawn_areas_renderer.gd" id="8_yfcmd"]
 [ext_resource type="PackedScene" uid="uid://b85fq0gsklm05" path="res://scenes/ui/spawn_area_panel.tscn" id="9_n6jx8"]
 
@@ -163,14 +166,14 @@ terrain_set_0/terrain_1/color = Color(0.243137, 0.462745, 0.639216, 1)
 sources/0 = SubResource("TileSetAtlasSource_iv2o2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrrxu"]
-size = Vector2(693, 1313)
+size = Vector2(768, 1408)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7vq1"]
-size = Vector2(966, 838.5)
+size = Vector2(896, 896)
 
 [node name="Template" type="Node2D" node_paths=PackedStringArray("update_timer", "tilemap")]
 script = ExtResource("1_u00b7")
-initial_points = 10
+initial_points = 20
 update_timer = NodePath("Timer")
 tilemap = NodePath("TileMap")
 
@@ -192,26 +195,32 @@ layer_1/tile_data = PackedInt32Array(-262153, 65536, 3, 262138, 262144, 5, -2621
 script = ExtResource("4_svhpm")
 
 [node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("5_n2vnq")]
-position = Vector2(963, 0)
+position = Vector2(960, 0)
+armys = Array[Resource("res://scripts/stratagem/stratagems/army.gd")]([ExtResource("6_uunl4")])
+buffs = Array[Resource("res://scripts/stratagem/stratagems/buff.gd")]([ExtResource("7_b5kql")])
 spawner = NodePath("../UnitSpawner")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
+limit_left = -1500
+limit_top = -1000
+limit_right = 1500
+limit_bottom = 1000
+editor_draw_limits = true
+script = ExtResource("8_koeva")
 
 [node name="ControlPoint" parent="." node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("6_x50gr")]
-position = Vector2(1, -3)
 area_to_unlock = NodePath("../SpawnArea/FlagShape")
 
 [node name="SpawnArea" type="Area2D" parent="."]
 script = ExtResource("7_svjox")
 
 [node name="InitialShape" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2(-821.5, -19.5)
+position = Vector2(-832, 0)
 shape = SubResource("RectangleShape2D_hrrxu")
 debug_color = Color(1, 0.00784314, 0.0470588, 0.419608)
 
 [node name="FlagShape" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2(7, -9.25)
 shape = SubResource("RectangleShape2D_h7vq1")
 debug_color = Color(0.843137, 0.380392, 0, 0.419608)
 

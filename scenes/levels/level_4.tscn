@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0n1jhunflhnj"]
+[gd_scene load_steps=17 format=3 uid="uid://c0n1jhunflhnj"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_u00b7"]
 [ext_resource type="Texture2D" uid="uid://bi6esoxx5irsw" path="res://sprites/tiles/tile_map.png" id="2_1ldrw"]
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="3_b0bq6"]
 [ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="4_svhpm"]
 [ext_resource type="PackedScene" uid="uid://be5pfuv1jak6f" path="res://scenes/ai.tscn" id="5_n2vnq"]
+[ext_resource type="Script" path="res://scripts/rts_camera.gd" id="6_lxwvl"]
 [ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="6_x50gr"]
 [ext_resource type="Script" path="res://scripts/spawn_area.gd" id="7_svjox"]
 [ext_resource type="Script" path="res://scripts/ui/spawn_areas_renderer.gd" id="8_yfcmd"]
@@ -196,20 +197,20 @@ terrain_set_0/terrain_1/color = Color(0.243137, 0.462745, 0.639216, 1)
 sources/0 = SubResource("TileSetAtlasSource_iv2o2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2rel"]
-size = Vector2(883.881, 505.823)
+size = Vector2(968.864, 528.319)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4ogt"]
-size = Vector2(915.88, 463.311)
+size = Vector2(968.864, 528.319)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfqwv"]
-size = Vector2(909.845, 942.279)
+size = Vector2(1005.89, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6axg"]
-size = Vector2(755.491, 596.267)
+size = Vector2(816.548, 681.448)
 
 [node name="Template" type="Node2D" node_paths=PackedStringArray("update_timer", "tilemap")]
 script = ExtResource("1_u00b7")
-initial_points = 10
+initial_points = 50
 update_timer = NodePath("Timer")
 tilemap = NodePath("TileMap")
 
@@ -231,34 +232,42 @@ layer_1/tile_data = PackedInt32Array(-65549, 131072, 4, -196619, 131072, 4, -458
 script = ExtResource("4_svhpm")
 
 [node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("5_n2vnq")]
-position = Vector2(1495, 583)
+position = Vector2(1500, 600)
+min_cooldown = 4.0
+max_cooldown = 6.0
 spawner = NodePath("../UnitSpawner")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.4, 0.4)
+limit_left = -2200
+limit_top = -1300
+limit_right = 2200
+limit_bottom = 1300
+editor_draw_limits = true
+script = ExtResource("6_lxwvl")
 
 [node name="SpawnArea" type="Area2D" parent="."]
 scale = Vector2(1.018, 1)
 script = ExtResource("7_svjox")
 
 [node name="FlagShape3" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2(-1419.45, 840.099)
+position = Vector2(-1445.97, 832)
 scale = Vector2(1.03822, 0.969112)
 shape = SubResource("RectangleShape2D_g2rel")
 debug_color = Color(0.843137, 0.380392, 0, 0.419608)
 
 [node name="FlagShape2" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2(1442.04, -860.5)
+position = Vector2(1445.97, -832)
 scale = Vector2(1.03822, 0.969112)
 shape = SubResource("RectangleShape2D_s4ogt")
 debug_color = Color(0.843137, 0.380392, 0, 0.419608)
 
 [node name="Shape" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2(-1430.36, -605.139)
+position = Vector2(-1445.97, -576)
 shape = SubResource("RectangleShape2D_wfqwv")
 
 [node name="FlagShape4" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2(-0.491156, -23)
+position = Vector2(3.37252e-05, 3.8147e-06)
 scale = Vector2(1.0779, 0.939177)
 shape = SubResource("RectangleShape2D_m6axg")
 debug_color = Color(0.843137, 0.380392, 0, 0.419608)
