@@ -1,3 +1,5 @@
+class_name ShieldBuff
+
 extends Buff
 
 func _modify_damage(_unit: Unit, damage: float) -> float:

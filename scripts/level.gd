@@ -5,12 +5,24 @@ var _ai_points: int
 
 @export var initial_points: int
 @export var update_timer: Timer
+@export var tilemap: TileMap
 
 func _ready():
 	_player_points = initial_points
 	_ai_points = initial_points
 	update_timer.timeout.connect(_update_points)
 	Battle.start_battle()
+
+	for w in range(PathFinding.region.size.x):
+		for h in range(PathFinding.region.size.y):
+			var x = PathFinding.region.position.x + w
+			var y = PathFinding.region.position.y + h
+			var cell = tilemap.get_cell_tile_data(0, Vector2i(x, y))
+
+			if cell == null or cell.terrain != 1:
+				continue
+
+			PathFinding.occupy(Vector2i(x, y))
 
 func _update_points():
 	var counts = Battle.get_controlled_points()

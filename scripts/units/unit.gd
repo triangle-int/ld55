@@ -13,6 +13,7 @@ var _selected: bool = false
 var side: Unit.Side
 var target_point: Vector2i
 var position_point: Vector2i
+var stunned: bool = false
 
 @export var health: HealthComponent
 @export var attack: AttackComponent
@@ -122,6 +123,9 @@ func _on_path_found(id: int, next_point: Vector2i):
 		return
 
 	_path_id = -1
+
+	if stunned:
+		return
 
 	if next_point == position_point:
 		state_chart.send_event("target_reached")
