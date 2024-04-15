@@ -24,6 +24,7 @@ PathFinding="*res://scenes/autoloads/path_finding.tscn"
 SpawnAreas="*res://scenes/autoloads/spawn_areas.tscn"
 UnitsSelector="*res://scenes/autoloads/units_selector.tscn"
 LevelLoder="*res://scenes/autoloads/level_loder.tscn"
+ProgressManager="*res://scenes/autoloads/progress_manager.tscn"
 
 [display]
 

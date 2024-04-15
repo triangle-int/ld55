@@ -52,6 +52,10 @@ func start_battle():
 
 func end_battle(side: Unit.Side):
 	_battle_started = false
+
+	if side == Unit.Side.PLAYER:
+		ProgressManager.save_level_beaten(LevelLoder.get_current_level())
+
 	battle_ended.emit(side)
 
 func get_battle_started() -> bool:
