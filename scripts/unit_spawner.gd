@@ -21,6 +21,9 @@ func summon_ai_army(army: Army, buffs: Array, pos: Vector2):
 	instance.summon_units(Unit.Side.AI, true)
 
 func _on_army_position_updated(pos: Vector2):
+	if current_player_army == null:
+		return
+
 	current_player_army.global_position = pos
 
 func _on_army_prepared(army: Army):
