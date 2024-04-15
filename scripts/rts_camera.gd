@@ -28,12 +28,9 @@ func _input(event):
 		var zoom_strength = event.delta.y
 		add_zoom_with_limits(zoom_speed * -zoom_strength)
 	if event is InputEventMouseButton:
-		print(event.button_index)
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			print("zoom in")
 			add_zoom_with_limits(zoom_speed)
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			print("zoom out")
 			add_zoom_with_limits(zoom_speed)
 
 func add_zoom_with_limits(z: float):	
