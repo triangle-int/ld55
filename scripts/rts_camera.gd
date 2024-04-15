@@ -8,8 +8,8 @@ extends Camera2D
 @export var min_zoom: float = 0.5
 
 func _process(delta):
-	var rect = get_viewport_rect()
-	var mouse_pos = get_local_mouse_position() + rect.size / 2
+	var rect = get_viewport().get_visible_rect()
+	var mouse_pos = get_viewport().get_mouse_position()
 	
 	var velocity = Vector2.ZERO
 	if rect.size.x - mouse_pos.x <= edge_detection_range:
