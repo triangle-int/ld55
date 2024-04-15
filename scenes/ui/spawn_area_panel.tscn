@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b85fq0gsklm05"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg5uh"]
+bg_color = Color(0.392157, 0.588235, 0.972549, 0.117647)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="SpawnAreaPanel" type="Panel"]
+z_index = -10
+texture_filter = 1
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mg5uh")

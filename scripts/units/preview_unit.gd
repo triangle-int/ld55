@@ -15,4 +15,11 @@ func _process(delta):
 func can_spawn():
 	var parent_pos = get_parent().global_position
 	var id = PathFinding.to_id(parent_pos)
-	return not PathFinding.is_occupied(id)
+	if PathFinding.is_occupied(id):
+		return false
+	
+	for area in SpawnAreas.areas:
+		if area.has_point(global_position):
+			return true
+	
+	return false
