@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=34 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_jynxj"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="2_bao07"]
+[ext_resource type="Texture2D" uid="uid://dyryfu1a0hig5" path="res://sprites/unit_selected.png" id="2_kxc8u"]
 [ext_resource type="Script" path="res://scripts/units/buff_container.gd" id="3_afjfs"]
 [ext_resource type="Script" path="res://scripts/units/attack_component.gd" id="5_7khpw"]
 [ext_resource type="Script" path="res://scripts/units/sight_range_component.gd" id="6_2h2jo"]
@@ -175,7 +176,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("health", "attack", "sight", "buff")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("health", "attack", "sight", "buff", "selection")]
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_jynxj")
@@ -183,12 +184,17 @@ health = NodePath("HealthComponent")
 attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
+selection = NodePath("Selection")
 attack_cooldown = 0.7
 tween_time = 0.5
 max_delay = 0.65
 min_delay = 0.75
 
 [node name="Selection" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_kxc8u")
 
 [node name="WalkingTimer" type="Timer" parent="."]
 wait_time = 0.7
