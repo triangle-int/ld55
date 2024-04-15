@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgdjqmn4aobh6"]
+[gd_scene load_steps=15 format=3 uid="uid://c0n1jhunflhnj"]
 
 [ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="1_7n7pa"]
 [ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="2_nqpwh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/level.gd" id="4_q0o3s"]
 [ext_resource type="Script" path="res://scripts/spawn_area.gd" id="5_dunml"]
 [ext_resource type="Script" path="res://scripts/ui/spawn_areas_renderer.gd" id="6_6oe57"]
+[ext_resource type="Script" path="res://scripts/rts_camera.gd" id="6_bacuh"]
 [ext_resource type="PackedScene" uid="uid://b85fq0gsklm05" path="res://scenes/ui/spawn_area_panel.tscn" id="7_54kds"]
 [ext_resource type="Texture2D" uid="uid://bi6esoxx5irsw" path="res://sprites/tiles/tile_map.png" id="9_80oq2"]
 
@@ -193,7 +194,12 @@ position = Vector2(960, 2.08165e-12)
 spawner = NodePath("../UnitSpawner")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.8, 0.8)
+limit_left = -2000
+limit_top = -2000
+limit_right = 2000
+limit_bottom = 2000
+editor_draw_limits = true
+script = ExtResource("6_bacuh")
 
 [node name="ControlPoint" parent="." node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("4_ptcka")]
 position = Vector2(0, -280)
