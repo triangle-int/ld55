@@ -42,7 +42,7 @@ func _on_called(stratagem: Stratagem):
 	_update_statagems()
 
 func _on_wrong_combination():
-	if state != State.Army:
+	if state != State.ARMY:
 		army_buff_applied.emit(debuffs.pick_random())
 
 	if army != null:
