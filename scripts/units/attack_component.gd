@@ -15,7 +15,7 @@ func _process(delta: float):
 	if _current_cooldown > 0:
 		_current_cooldown -= delta
 
-func _on_attacking_state_processing(delta):
+func _on_attacking_state_processing(_delta: float):
 	if _current_cooldown > 0:
 		return
 

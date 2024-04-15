@@ -10,7 +10,7 @@ func _ready():
 		var preview = unit_preview.instantiate()
 		child.add_child(preview)
 
-func _process(delta):
+func _process(_delta: float):
 	if summoned:
 		return
 	

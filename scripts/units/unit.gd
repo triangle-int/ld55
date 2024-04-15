@@ -40,6 +40,7 @@ func _ready():
 	position_point = PathFinding.to_id(global_position)
 	target_point = position_point
 	global_position = PathFinding.to_pos(position_point)
+	PathFinding.occupy(position_point)
 
 	health.set_max_health(start_health)
 	attack.damage = damage
@@ -139,3 +140,7 @@ func _on_walking_timer_timeout():
 		position_point,
 		target_point,
 	)
+
+func _exit_tree():
+	PathFinding.path_found.disconnect(_on_path_found)
+	PathFinding.deoccupy(position_point)
