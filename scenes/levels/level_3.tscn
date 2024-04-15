@@ -204,7 +204,8 @@ script = ExtResource("4_v2gj4")
 
 [node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("5_ud818")]
 position = Vector2(1600, 0)
-min_cooldown = 5.0
+initial_cooldown = 2.0
+max_cooldown = 10.0
 armys = Array[Resource("res://scripts/stratagem/stratagems/army.gd")]([ExtResource("6_711uq"), ExtResource("7_ghxks"), ExtResource("6_711uq")])
 spawner = NodePath("../UnitSpawner")
 
