@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsuh7lhwdth3a"]
+
+[ext_resource type="Texture2D" uid="uid://bax33uyr3s7qi" path="res://sprites/small_blue_down.png" id="1_0hlux"]
+[ext_resource type="Script" path="res://scripts/units/preview_unit.gd" id="1_ljewd"]
+
+[node name="SmallUnitPreview" type="Node2D"]
+script = ExtResource("1_ljewd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_0hlux")
+hframes = 10

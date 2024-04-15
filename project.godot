@@ -21,6 +21,7 @@ StratagemInput="*res://scenes/autoloads/stratagem_input.tscn"
 Battle="*res://scenes/autoloads/battle.tscn"
 PlayerSummon="*res://scenes/autoloads/player_summon.tscn"
 PathFinding="*res://scenes/path_finding.tscn"
+SpawnAreas="*res://scenes/autoloads/spawn_areas.tscn"
 UnitsSelector="*res://scenes/units_selector.tscn"
 LevelLoder="*res://scenes/autoloads/level_loder.tscn"
 

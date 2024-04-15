@@ -10,9 +10,11 @@ var curr_owner: ControlPoint.Owner = Owner.NONE
 
 signal owner_updated()
 
+@export var area_to_unlock: CollisionShape2D
 @export var speed: float
 
 func _ready():
+	area_to_unlock.disabled = true
 	Battle.attach_control_point(self)
 
 func _exit_tree():
@@ -37,6 +39,10 @@ func _process(delta: float):
 	
 	if new_owner != curr_owner:
 		curr_owner = new_owner
+		if curr_owner == Owner.PLAYER:
+			area_to_unlock.disabled = false
+		else:
+			area_to_unlock.disabled = true
 		owner_updated.emit()
 
 func _on_area_2d_body_entered(body: Node2D):

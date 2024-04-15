@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://de5dis40hy6s6"]
+
+[ext_resource type="Texture2D" uid="uid://c5lrbu23oifpx" path="res://sprites/large_blue_down.png" id="1_1omug"]
+[ext_resource type="Script" path="res://scripts/units/preview_unit.gd" id="1_jkvpe"]
+
+[node name="LargeUnitPreview" type="Node2D"]
+script = ExtResource("1_jkvpe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_1omug")
+hframes = 10

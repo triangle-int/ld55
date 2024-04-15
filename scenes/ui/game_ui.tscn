@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="5_u7ceq"]
 [ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="7_gdasf"]
 [ext_resource type="Script" path="res://scripts/ui/spawn_label.gd" id="8_qyw2r"]
-[ext_resource type="PackedScene" uid="uid://kqqbrtfkxk2m" path="res://scenes/ui/level_select_button.tscn" id="10_lw3sq"]
+[ext_resource type="PackedScene" path="res://scenes/ui/level_select_button.tscn" id="10_lw3sq"]
 [ext_resource type="Script" path="res://scripts/ui/game_over_popup.gd" id="10_te0c2"]
 
 [sub_resource type="Theme" id="Theme_p6hul"]
@@ -152,3 +152,6 @@ offset_bottom = -35.0
 grow_vertical = 0
 text = "Back To Level Selector"
 level_key = "level_selector"
+
+[connection signal="mouse_entered" from="SummonArea" to="SummonArea" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SummonArea" to="SummonArea" method="_on_mouse_exited"]
