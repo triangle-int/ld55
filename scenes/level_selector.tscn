@@ -7,7 +7,8 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LevelSelectButton" parent="CanvasLayer" instance=ExtResource("1_xoq1v")]
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
+offset_left = -34.0
+offset_top = -127.0
+offset_right = 66.0
+offset_bottom = -27.0
+level_key = "level_4"
