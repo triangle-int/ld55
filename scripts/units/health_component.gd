@@ -6,6 +6,7 @@ var max_health: float
 var health: float
 
 @export var unit: Unit
+@onready var state_chart := $"../StateChart"
 
 func set_max_health(amount: float):
 	health = amount
@@ -18,6 +19,7 @@ func heal(amount: float):
 		health = max_health
 
 func deal_damage(damage: float):
+	state_chart.send_event("target_reached")
 	damage = unit.buff.modify_damage(damage)
 	health -= damage
 
