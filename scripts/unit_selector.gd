@@ -9,6 +9,12 @@ signal unit_target(point: Vector2i)
 @export var selection_panel: Panel
 @export var cursor: Sprite2D
 
+func _ready():
+	Battle.battle_ended.connect(func(_s):
+		cursor.visible = false
+		selection_panel.visible = false
+	)
+
 func _process(_delta: float):
 	if not Battle.get_battle_started():
 		return
