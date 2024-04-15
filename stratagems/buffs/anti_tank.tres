@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="AntiTankBuff" load_steps=2 format=3 uid="uid://dkd2tjacjt2a2"]
+[gd_resource type="Resource" script_class="AntiTankBuff" load_steps=4 format=3 uid="uid://dkd2tjacjt2a2"]
 
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/anti_tank.gd" id="1_b702a"]
+[ext_resource type="Texture2D" uid="uid://dpo02p4hv83nq" path="res://ui/sprites/stratagems/buff_stratagems.png" id="1_pysbx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0k8r"]
+atlas = ExtResource("1_pysbx")
+region = Rect2(16, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_b702a")
 name = "AntiTank"
 call_path = Array[int]([0])
+icon = SubResource("AtlasTexture_a0k8r")

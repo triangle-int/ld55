@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="BackgammonBuff" load_steps=2 format=3 uid="uid://drr5s7trnfigb"]
+[gd_resource type="Resource" script_class="BackgammonBuff" load_steps=4 format=3 uid="uid://drr5s7trnfigb"]
 
+[ext_resource type="Texture2D" uid="uid://dpo02p4hv83nq" path="res://ui/sprites/stratagems/buff_stratagems.png" id="1_av8rk"]
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/backgammon.gd" id="1_tprpp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx3l8"]
+atlas = ExtResource("1_av8rk")
+region = Rect2(32, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_tprpp")
 name = "Backgammon"
 call_path = Array[int]([3])
+icon = SubResource("AtlasTexture_lx3l8")

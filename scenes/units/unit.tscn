@@ -203,10 +203,6 @@ wait_time = 0.7
 script = ExtResource("2_bao07")
 unit = NodePath("..")
 
-[node name="BuffContainer" type="Node" parent="." node_paths=PackedStringArray("unit")]
-script = ExtResource("3_afjfs")
-unit = NodePath("..")
-
 [node name="AttackComponent" type="Area2D" parent="." node_paths=PackedStringArray("unit")]
 monitorable = false
 script = ExtResource("5_7khpw")
@@ -250,6 +246,31 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8pmd4")
+
+[node name="BuffContainer" type="Node2D" parent="." node_paths=PackedStringArray("unit", "views")]
+script = ExtResource("3_afjfs")
+unit = NodePath("..")
+views = [NodePath("Buff1"), NodePath("Buff2"), NodePath("Buff3"), NodePath("Buff4")]
+
+[node name="Buff1" type="Sprite2D" parent="BuffContainer"]
+texture_filter = 1
+position = Vector2(-36, 40)
+scale = Vector2(1.5, 1.5)
+
+[node name="Buff2" type="Sprite2D" parent="BuffContainer"]
+texture_filter = 1
+position = Vector2(-12, 40)
+scale = Vector2(1.5, 1.5)
+
+[node name="Buff3" type="Sprite2D" parent="BuffContainer"]
+texture_filter = 1
+position = Vector2(12, 40)
+scale = Vector2(1.5, 1.5)
+
+[node name="Buff4" type="Sprite2D" parent="BuffContainer"]
+texture_filter = 1
+position = Vector2(36, 40)
+scale = Vector2(1.5, 1.5)
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("8_djbfk")
