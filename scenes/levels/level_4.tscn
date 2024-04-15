@@ -233,8 +233,7 @@ script = ExtResource("4_svhpm")
 
 [node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("5_n2vnq")]
 position = Vector2(1500, 600)
-min_cooldown = 4.0
-max_cooldown = 6.0
+min_cooldown = 6.0
 spawner = NodePath("../UnitSpawner")
 
 [node name="Camera2D" type="Camera2D" parent="."]
