@@ -1,20 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://kqqbrtfkxk2m"]
+[gd_scene load_steps=3 format=3 uid="uid://kqqbrtfkxk2m"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_select_button.gd" id="1_7xysi"]
+[ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="1_i68xs"]
 
 [node name="LevelSelectButton" type="Button"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -52.0
-offset_right = -250.0
-offset_bottom = 48.0
+offset_left = -100.0
+offset_top = -27.0
+offset_right = 100.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "template"
+theme = ExtResource("1_i68xs")
+text = "Template"
+flat = true
 script = ExtResource("1_7xysi")
 level_key = "level_template"
 
