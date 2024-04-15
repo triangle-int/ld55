@@ -9,8 +9,10 @@ selection_panel = NodePath("Panel")
 cursor = NodePath("Cursor")
 
 [node name="Cursor" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("2_5xid8")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
