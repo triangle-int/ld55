@@ -25,6 +25,7 @@ SpawnAreas="*res://scenes/autoloads/spawn_areas.tscn"
 UnitsSelector="*res://scenes/autoloads/units_selector.tscn"
 LevelLoder="*res://scenes/autoloads/level_loder.tscn"
 ProgressManager="*res://scenes/autoloads/progress_manager.tscn"
+TutorialTips="*res://scenes/autoloads/tutorial_tips.tscn"
 
 [display]
 
