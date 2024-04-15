@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdk0kbjb8exv0"]
+[gd_scene load_steps=15 format=3 uid="uid://cdk0kbjb8exv0"]
 
 [ext_resource type="Script" path="res://scripts/ui/stratagems_view.gd" id="1_bb3qg"]
 [ext_resource type="Script" path="res://scripts/ui/summon_area_input.gd" id="1_g44e8"]
@@ -9,11 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="5_u7ceq"]
 [ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="7_gdasf"]
 [ext_resource type="Script" path="res://scripts/ui/spawn_label.gd" id="8_qyw2r"]
+[ext_resource type="PackedScene" uid="uid://kqqbrtfkxk2m" path="res://scenes/ui/level_select_button.tscn" id="10_lw3sq"]
+[ext_resource type="Script" path="res://scripts/ui/game_over_popup.gd" id="10_te0c2"]
 
 [sub_resource type="Theme" id="Theme_p6hul"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r22ak"]
 font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ueim"]
+font_size = 32
 
 [node name="GameUI" type="CanvasLayer"]
 
@@ -92,9 +97,61 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g44e8")
+
+[node name="GameOverPopup" type="NinePatchRect" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_u7ceq")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+script = ExtResource("10_te0c2")
+
+[node name="GameOverLabel" type="Label" parent="GameOverPopup"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.0
+offset_right = 157.0
+offset_bottom = 95.0
+grow_horizontal = 2
+theme = ExtResource("7_gdasf")
+text = "Game Over"
+label_settings = SubResource("LabelSettings_3ueim")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelSelectButton" parent="GameOverPopup" instance=ExtResource("10_lw3sq")]
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -85.0
+offset_right = 100.0
+offset_bottom = -35.0
+grow_vertical = 0
+text = "Back To Level Selector"
+level_key = "level_selector"
 
 [connection signal="mouse_entered" from="SummonArea" to="SummonArea" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SummonArea" to="SummonArea" method="_on_mouse_exited"]

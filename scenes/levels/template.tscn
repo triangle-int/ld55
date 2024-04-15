@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0n1jhunflhnj"]
+
+[ext_resource type="PackedScene" uid="uid://cdk0kbjb8exv0" path="res://scenes/ui/game_ui.tscn" id="1_7n7pa"]
+[ext_resource type="Script" path="res://scripts/unit_spawner.gd" id="2_nqpwh"]
+[ext_resource type="PackedScene" uid="uid://be5pfuv1jak6f" path="res://scenes/ai.tscn" id="3_yiqft"]
+[ext_resource type="PackedScene" uid="uid://dd4ss3filn5ub" path="res://scenes/control_point.tscn" id="4_ptcka"]
+[ext_resource type="Script" path="res://scripts/spawn_area.gd" id="5_dunml"]
+[ext_resource type="Script" path="res://scripts/ui/spawn_areas_renderer.gd" id="6_6oe57"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="4_q0o3s"]
+[ext_resource type="PackedScene" uid="uid://b85fq0gsklm05" path="res://scenes/ui/spawn_area_panel.tscn" id="7_54kds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrrxu"]
+size = Vector2(576, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7vq1"]
+size = Vector2(1040, 554)
+
+[node name="Template" type="Node2D" node_paths=PackedStringArray("update_timer")]
+script = ExtResource("4_q0o3s")
+initial_points = 10
+update_timer = NodePath("Timer")
+
+[node name="GameUI" parent="." instance=ExtResource("1_7n7pa")]
+
+[node name="UnitSpawner" type="Node2D" parent="."]
+script = ExtResource("2_nqpwh")
+
+[node name="AI" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("3_yiqft")]
+position = Vector2(960, 2.08165e-12)
+spawner = NodePath("../UnitSpawner")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ControlPoint" parent="." node_paths=PackedStringArray("area_to_unlock") instance=ExtResource("3_txksb")]
+position = Vector2(0, -280)
+area_to_unlock = NodePath("../SpawnArea/FlagShape")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+script = ExtResource("5_dunml")
+
+[node name="InitialShape" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(-672, 0)
+shape = SubResource("RectangleShape2D_hrrxu")
+debug_color = Color(1, 0.00784314, 0.0470588, 0.419608)
+
+[node name="FlagShape" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(136, -267)
+shape = SubResource("RectangleShape2D_h7vq1")
+debug_color = Color(0.843137, 0.380392, 0, 0.419608)
+
+[node name="SpawnAreasPanels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_6oe57")
+rect_scene = ExtResource("7_54kds")
+
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

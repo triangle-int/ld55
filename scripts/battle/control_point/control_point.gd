@@ -17,6 +17,9 @@ func _ready():
 	area_to_unlock.disabled = true
 	Battle.attach_control_point(self)
 
+func _exit_tree():
+	Battle.detach_control_point(self)
+
 func _process(delta: float):
 	var player_count = len(units.filter(
 		func(u): return u.side == Unit.Side.PLAYER

@@ -4,9 +4,8 @@ extends Area2D
 
 @export var unit: Unit
 @onready var state_chart := $"../StateChart"
-@onready var enemy_in_sight := $"../StateChart/UnitState/Action/EnemyInSight"
 
-func _on_enemy_in_sight_state_physics_processing(_delta: float):
+func _on_attacking_state_physics_processing(_delta: float):
 	var enemies = get_enemies_in_range()
 	var min_dist := INF
 	var closest: Unit = null
@@ -28,7 +27,7 @@ func _physics_process(_delta: float):
 	if enemies.is_empty():
 		state_chart.send_event("enemy_lost")
 	elif not enemies.is_empty():
-		state_chart.send_event("enemy_in_sight")
+		state_chart.send_event("enemy_detected")
 
 func get_enemies_in_range() -> Array:
 	return get_overlapping_bodies().filter(
