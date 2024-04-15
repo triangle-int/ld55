@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4tmpmouc4s1k"]
+[gd_scene load_steps=9 format=3 uid="uid://b4tmpmouc4s1k"]
 
 [ext_resource type="Script" path="res://scripts/load_manager.gd" id="1_hft64"]
 [ext_resource type="PackedScene" uid="uid://c0n1jhunflhnj" path="res://scenes/levels/template.tscn" id="2_0ex5k"]
 [ext_resource type="Script" path="res://scripts/level_resource.gd" id="2_1bkw7"]
 [ext_resource type="PackedScene" uid="uid://dq7oyqa4ojebs" path="res://scenes/level_selector.tscn" id="4_sg2vs"]
+[ext_resource type="PackedScene" uid="uid://xxj3ju8v1lut" path="res://scenes/levels/empty_level.tscn" id="5_nxbm4"]
 
 [sub_resource type="Resource" id="Resource_wpgp0"]
 script = ExtResource("2_1bkw7")
@@ -15,6 +16,11 @@ script = ExtResource("2_1bkw7")
 key = "level_selector"
 scene = ExtResource("4_sg2vs")
 
+[sub_resource type="Resource" id="Resource_dtvae"]
+script = ExtResource("2_1bkw7")
+key = "empty_level"
+scene = ExtResource("5_nxbm4")
+
 [node name="LevelLoder" type="Node"]
 script = ExtResource("1_hft64")
-levels = Array[ExtResource("2_1bkw7")]([SubResource("Resource_wpgp0"), SubResource("Resource_bxcj4")])
+levels = Array[ExtResource("2_1bkw7")]([SubResource("Resource_wpgp0"), SubResource("Resource_bxcj4"), SubResource("Resource_dtvae")])

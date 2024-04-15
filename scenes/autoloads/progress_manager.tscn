@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvey2ana4jl7p"]
+
+[ext_resource type="Script" path="res://scripts/progress/progress_manager.gd" id="1_ueyg0"]
+
+[node name="ProgressManager" type="Node"]
+script = ExtResource("1_ueyg0")
+levels = Array[String](["level_template", "empty_level"])
