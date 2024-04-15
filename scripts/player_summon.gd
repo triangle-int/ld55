@@ -22,6 +22,7 @@ var applied_buffs: Array[Stratagem]
 
 @export var armys: Array[Stratagem]
 @export var buffs: Array[Stratagem]
+@export var debuffs: Array[Stratagem]
 
 func _ready():
 	StratagemInput.set_stratagems(armys)
@@ -44,8 +45,8 @@ func _on_wrong_combination():
 	if state == State.ARMY:
 		print("TODO: Spawn bad army")
 	else:
-		print("TODO: Add bad debuff")
-	
+		army_buff_applied.emit(debuffs.pick_random())
+
 	if army != null:
 		_set_state(State.AWAIT_POSITION)
 	else:
@@ -68,7 +69,7 @@ func _set_state(new_state: State):
 
 func _update_statagems():
 	var stratagems = get_stratagems()
-	
+
 	stratagems_updated.emit(stratagems)
 	StratagemInput.set_stratagems(stratagems)
 
