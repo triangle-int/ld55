@@ -11,8 +11,6 @@ func _process(delta):
 	var rect = get_viewport().get_visible_rect()
 	var mouse_pos = get_viewport().get_mouse_position()
 	
-	print(rect.size, mouse_pos)
-	
 	var velocity = Vector2.ZERO
 	if rect.size.x - mouse_pos.x <= edge_detection_range:
 		velocity.x += 1
