@@ -31,7 +31,7 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			add_zoom_with_limits(zoom_speed)
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			add_zoom_with_limits(zoom_speed)
+			add_zoom_with_limits(-zoom_speed)
 
 func add_zoom_with_limits(z: float):	
 	zoom.x += z

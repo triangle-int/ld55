@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq7oyqa4ojebs"]
+[gd_scene load_steps=6 format=3 uid="uid://dq7oyqa4ojebs"]
 
 [ext_resource type="Texture2D" uid="uid://c1beq3n0l8frc" path="res://ui/sprites/menu.png" id="1_bsn0y"]
 [ext_resource type="Texture2D" uid="uid://d3aadkj4yx6bg" path="res://ui/sprites/main_menu.png" id="1_ppuj1"]
 [ext_resource type="PackedScene" uid="uid://kqqbrtfkxk2m" path="res://scenes/ui/level_select_button.tscn" id="1_xoq1v"]
+[ext_resource type="Texture2D" uid="uid://ssrh3p2k4uyk" path="res://ui/title.png" id="2_d7ql8"]
 [ext_resource type="Script" path="res://scripts/ui/level_select_buttons.gd" id="3_6gybq"]
 
 [node name="LevelSelector" type="Node2D"]
@@ -18,6 +19,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ppuj1")
 stretch_mode = 6
+
+[node name="Title" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1324.0
+offset_right = -59.0
+offset_bottom = 256.0
+grow_horizontal = 0
+texture = ExtResource("2_d7ql8")
+stretch_mode = 5
 
 [node name="LevelSelectPanel" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("buttons")]
 texture_filter = 1
