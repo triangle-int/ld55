@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BackgammonBuff" load_steps=2 format=3 uid="uid://drr5s7trnfigb"]
+
+[ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/backgammon.gd" id="1_tprpp"]
+
+[resource]
+script = ExtResource("1_tprpp")
+name = "Backgammon"
+call_path = Array[int]([3])

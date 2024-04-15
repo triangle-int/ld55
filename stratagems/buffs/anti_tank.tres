@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AntiTankBuff" load_steps=2 format=3 uid="uid://dkd2tjacjt2a2"]
+
+[ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/anti_tank.gd" id="1_b702a"]
+
+[resource]
+script = ExtResource("1_b702a")
+name = "AntiTank"
+call_path = Array[int]([0])

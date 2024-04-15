@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShieldBuff" load_steps=2 format=3 uid="uid://bmij4jua33m13"]
+
+[ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/shield.gd" id="1_2i0kw"]
+
+[resource]
+script = ExtResource("1_2i0kw")
+name = "Shield"
+call_path = Array[int]([1])

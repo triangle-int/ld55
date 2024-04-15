@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://cw4f35di3mqrs"]
-
-[ext_resource type="Script" path="res://scripts/stratagem/stratagems/buff.gd" id="1_nq8s6"]
-
-[resource]
-script = ExtResource("1_nq8s6")
-name = "empy_buff"
-call_path = Array[int]([2, 2])

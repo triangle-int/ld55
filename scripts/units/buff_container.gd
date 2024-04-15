@@ -18,7 +18,7 @@ func remove_buff(buff: Buff):
 
 func modify_damage(damage: float) -> float:
 	for buff in _buffs.duplicate():
-		damage = buff.modify_damage(damage)
+		damage = buff.modify_damage(unit, damage)
 
 	return damage
 
