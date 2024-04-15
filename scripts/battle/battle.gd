@@ -1,9 +1,11 @@
 extends Node
 
 var _points: Array[ControlPoint] = []
+var _battle_started: bool = false
 
 signal point_owner_updated(point: ControlPoint)
 signal battle_ended(winner: Unit.Side)
+signal battle_started()
 
 func find_nearest_point(pos: Vector2, side: ControlPoint.Owner) -> ControlPoint:
 	var to_select = _points.filter(func(p): return p.curr_owner != side)
@@ -41,3 +43,14 @@ func attach_control_point(point: ControlPoint):
 
 func detach_control_point(point: ControlPoint):
 	_points.erase(point)
+
+func start_battle():
+	_battle_started = true
+	battle_started.emit()
+
+func end_battle(side: Unit.Side):
+	_battle_started = false
+	battle_ended.emit(side)
+
+func get_battle_started() -> bool:
+	return _battle_started

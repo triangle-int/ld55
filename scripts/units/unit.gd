@@ -18,6 +18,7 @@ var position_point: Vector2i
 @export var attack: AttackComponent
 @export var sight: SightRangeComponent
 @export var buff: BuffContainer
+@export var selection: Sprite2D
 
 @export_group("Health")
 @export var start_health = 100.0
@@ -56,7 +57,17 @@ func _ready():
 	UnitsSelector.rect_selected.connect(_on_rect_selected)
 	UnitsSelector.unit_target.connect(_on_target_selected)
 
+func _select():
+	_selected = true
+	selection.visible = true
+
+func _deselect():
+	_selected = false
+	selection.visible = false
+
 func switch_side():
+	_deselect()
+
 	if side == Unit.Side.PLAYER:
 		state_chart.send_event("set_ai_side")
 	elif side == Unit.Side.AI:
@@ -74,15 +85,15 @@ func _on_target_selected(target: Vector2i):
 	if !_selected:
 		return
 
+	state_chart.send_event("target_set")
 	target_point = target
 
 func _on_rect_selected(rect: Rect2):
 	if side != Side.PLAYER or not rect.has_point(global_position):
-		_selected = false
+		_deselect()
 		return
 
-	_selected = true
-	state_chart.send_event("target_set")
+	_select()
 
 func _on_player_state_entered():
 	side = Side.PLAYER
