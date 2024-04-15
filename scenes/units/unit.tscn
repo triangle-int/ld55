@@ -185,7 +185,7 @@ attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
 selection = NodePath("Selection")
-attack_cooldown = 0.7
+attack_cooldown = 0.9
 tween_time = 0.5
 max_delay = 0.65
 min_delay = 0.75
@@ -244,6 +244,8 @@ red_texture_left = ExtResource("13_26dlb")
 red_texture_right = ExtResource("14_ev1lk")
 attack_distance = 64.0
 attack_duration = 0.5
+damage_color = Color(1, 0.164706, 0.0941176, 1)
+damage_duration = 0.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
@@ -330,7 +332,8 @@ event = &"set_ai_side"
 
 [connection signal="movement_ended" from="." to="Sprite2D" method="_on_unit_movement_ended"]
 [connection signal="movement_started" from="." to="Sprite2D" method="_on_unit_movement_started"]
-[connection signal="on_attack" from="AttackComponent" to="Sprite2D" method="_on_attack"]
+[connection signal="damage_recieved" from="HealthComponent" to="Sprite2D" method="_on_damage_recieved"]
+[connection signal="attack_started" from="AttackComponent" to="Sprite2D" method="_on_attack"]
 [connection signal="state_entered" from="StateChart/Side/AI" to="." method="_on_ai_state_entered"]
 [connection signal="state_entered" from="StateChart/Side/AI" to="Sprite2D" method="_on_ai_state_entered"]
 [connection signal="state_entered" from="StateChart/Side/AI/Capturing" to="." method="_on_capturing_state_entered"]

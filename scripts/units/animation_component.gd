@@ -28,6 +28,9 @@ enum UnitType {
 @export var attack_distance: float
 @export var attack_duration: float
 
+@export var damage_color: Color
+@export var damage_duration: float
+
 @onready var animation_player = $AnimationPlayer
 
 var direction: Direction
@@ -99,3 +102,9 @@ func update_texture():
 			texture = red_texture_left
 		elif direction == Direction.RIGHT:
 			texture = red_texture_right
+
+
+func _on_damage_recieved(damage):
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", damage_color, damage_duration / 2)
+	tween.chain().tween_property(self, "modulate", Color.WHITE, damage_duration / 2)
