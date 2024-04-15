@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bififdd5ntyix"]
+[gd_scene load_steps=38 format=3 uid="uid://bififdd5ntyix"]
 
 [ext_resource type="Script" path="res://scripts/units/unit.gd" id="1_jynxj"]
 [ext_resource type="Script" path="res://scripts/units/health_component.gd" id="2_bao07"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://cr33rdm70ppj6" path="res://sprites/small_red_up.png" id="12_gjarh"]
 [ext_resource type="Texture2D" uid="uid://cs26i24g40cpp" path="res://sprites/small_red_left.png" id="13_26dlb"]
 [ext_resource type="Texture2D" uid="uid://7idm4r4c85va" path="res://sprites/small_red_right.png" id="14_ev1lk"]
+[ext_resource type="Script" path="res://scripts/units/health_numbers.gd" id="21_cr6b2"]
+[ext_resource type="PackedScene" uid="uid://deg86ldqjyf0h" path="res://scenes/ui/damage_number.tscn" id="22_bdxir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0emb4"]
 size = Vector2(256, 64)
@@ -176,6 +178,21 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pmd4"]
 radius = 64.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j132c"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsgme"]
+bg_color = Color(0.196078, 0.721569, 0, 1)
+
 [node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("health", "attack", "sight", "buff", "selection")]
 collision_mask = 2
 motion_mode = 1
@@ -185,7 +202,7 @@ attack = NodePath("AttackComponent")
 sight = NodePath("SightRangeComponent")
 buff = NodePath("BuffContainer")
 selection = NodePath("Selection")
-attack_cooldown = 0.7
+attack_cooldown = 0.9
 tween_time = 0.5
 max_delay = 0.65
 min_delay = 0.75
@@ -199,9 +216,10 @@ texture = ExtResource("2_kxc8u")
 [node name="WalkingTimer" type="Timer" parent="."]
 wait_time = 0.7
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("unit")]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("unit", "health_bar")]
 script = ExtResource("2_bao07")
 unit = NodePath("..")
+health_bar = NodePath("../ProgressBar")
 
 [node name="AttackComponent" type="Area2D" parent="." node_paths=PackedStringArray("unit")]
 monitorable = false
@@ -238,6 +256,10 @@ red_texture_up = ExtResource("12_gjarh")
 red_texture_down = ExtResource("6_r2xpq")
 red_texture_left = ExtResource("13_26dlb")
 red_texture_right = ExtResource("14_ev1lk")
+attack_distance = 64.0
+attack_duration = 0.5
+damage_color = Color(1, 0.164706, 0.0941176, 1)
+damage_duration = 0.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
@@ -347,9 +369,39 @@ script = ExtResource("12_1v4ui")
 to = NodePath("../../AI")
 event = &"set_ai_side"
 
+[node name="HealthNumbers" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("21_cr6b2")
+number_scene = ExtResource("22_bdxir")
+damage_color = Color(0.972549, 0.164706, 0, 1)
+heal_color = Color(0.196078, 0.721569, 0, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -79.0
+offset_right = 63.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_j132c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rsgme")
+max_value = 1.0
+value = 0.69
+show_percentage = false
+
 [connection signal="movement_ended" from="." to="Sprite2D" method="_on_unit_movement_ended"]
 [connection signal="movement_started" from="." to="Sprite2D" method="_on_unit_movement_started"]
-[connection signal="on_attack" from="AttackComponent" to="Sprite2D" method="_on_attack"]
+[connection signal="damage_recieved" from="HealthComponent" to="Sprite2D" method="_on_damage_recieved"]
+[connection signal="damage_recieved" from="HealthComponent" to="HealthNumbers" method="_on_damage_recieved"]
+[connection signal="heal_recieved" from="HealthComponent" to="HealthNumbers" method="_on_heal_recieved"]
+[connection signal="attack_started" from="AttackComponent" to="Sprite2D" method="_on_attack"]
 [connection signal="state_entered" from="StateChart/Side/AI" to="." method="_on_ai_state_entered"]
 [connection signal="state_entered" from="StateChart/Side/AI" to="Sprite2D" method="_on_ai_state_entered"]
 [connection signal="state_entered" from="StateChart/Side/AI/Capturing" to="." method="_on_capturing_state_entered"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BackgammonBuff" load_steps=4 format=3 uid="uid://drr5s7trnfigb"]
+[gd_resource type="Resource" script_class="BackgammonBuff" load_steps=4 format=3 uid="uid://bs7gxw1843nn3"]
 
 [ext_resource type="Texture2D" uid="uid://dpo02p4hv83nq" path="res://ui/sprites/stratagems/buff_stratagems.png" id="1_av8rk"]
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/backgammon.gd" id="1_tprpp"]

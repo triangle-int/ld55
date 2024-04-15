@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ShieldBuff" load_steps=4 format=3 uid="uid://bmij4jua33m13"]
+[gd_resource type="Resource" script_class="ShieldBuff" load_steps=4 format=3 uid="uid://gmoynsxxvh6t"]
 
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/shield.gd" id="1_2i0kw"]
 [ext_resource type="Texture2D" uid="uid://dpo02p4hv83nq" path="res://ui/sprites/stratagems/buff_stratagems.png" id="1_6koi6"]

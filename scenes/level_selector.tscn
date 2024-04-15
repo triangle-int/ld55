@@ -1,14 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq7oyqa4ojebs"]
+[gd_scene load_steps=5 format=3 uid="uid://dq7oyqa4ojebs"]
 
+[ext_resource type="Texture2D" uid="uid://c1beq3n0l8frc" path="res://ui/sprites/menu.png" id="1_bsn0y"]
+[ext_resource type="Texture2D" uid="uid://d3aadkj4yx6bg" path="res://ui/sprites/main_menu.png" id="1_ppuj1"]
 [ext_resource type="PackedScene" uid="uid://kqqbrtfkxk2m" path="res://scenes/ui/level_select_button.tscn" id="1_xoq1v"]
+[ext_resource type="Script" path="res://scripts/ui/level_select_buttons.gd" id="3_6gybq"]
 
 [node name="LevelSelector" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LevelSelectButton" parent="CanvasLayer" instance=ExtResource("1_xoq1v")]
-offset_left = -34.0
-offset_top = -127.0
-offset_right = 66.0
-offset_bottom = -27.0
-level_key = "level_4"
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ppuj1")
+stretch_mode = 6
+
+[node name="LevelSelectPanel" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("buttons")]
+texture_filter = 1
+offset_right = 600.0
+offset_bottom = 800.0
+texture = ExtResource("1_bsn0y")
+stretch_mode = 5
+script = ExtResource("3_6gybq")
+buttons = [NodePath("LevelSelectButton1"), NodePath("LevelSelectButton2"), NodePath("LevelSelectButton3")]
+
+[node name="LevelSelectButton1" parent="CanvasLayer/LevelSelectPanel" instance=ExtResource("1_xoq1v")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_top = 170.0
+offset_right = 200.0
+offset_bottom = 310.0
+grow_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "First Level"
+
+[node name="LevelSelectButton2" parent="CanvasLayer/LevelSelectPanel" instance=ExtResource("1_xoq1v")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_top = 330.0
+offset_right = 200.0
+offset_bottom = 470.0
+grow_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "Second Level"
+level_key = "empty_level"
+
+[node name="LevelSelectButton3" parent="CanvasLayer/LevelSelectPanel" instance=ExtResource("1_xoq1v")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_top = 480.0
+offset_right = 200.0
+offset_bottom = 620.0
+grow_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "Third Level"
+level_key = ""

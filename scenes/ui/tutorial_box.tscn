@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsi6wis841cwd"]
+
+[ext_resource type="Texture2D" uid="uid://b3rijsd6a6mhh" path="res://ui/sprites/panel.png" id="1_0684k"]
+[ext_resource type="Script" path="res://scripts/ui/tutorial_box.gd" id="1_khsus"]
+[ext_resource type="Theme" uid="uid://bwxiatqpr5m2m" path="res://ui/ui_theme.tres" id="2_42tcl"]
+
+[node name="TutorialBox" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("1_khsus")
+label = NodePath("NinePatchRect/Label")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -500.0
+offset_bottom = 300.0
+grow_horizontal = 0
+texture = ExtResource("1_0684k")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_42tcl")
+theme_override_font_sizes/font_size = 16
+text = "asd asd asd asd asd asd asd asd asd asd asd asd"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -375.0
+offset_top = 236.0
+offset_right = -125.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_42tcl")
+text = "NEXT TIP"
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

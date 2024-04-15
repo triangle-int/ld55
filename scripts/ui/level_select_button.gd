@@ -1,4 +1,6 @@
-extends Node
+class_name LevelSelectButton
+
+extends Button
 
 @export var level_key: String
 

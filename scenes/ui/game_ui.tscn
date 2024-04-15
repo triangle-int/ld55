@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdk0kbjb8exv0"]
+[gd_scene load_steps=17 format=3 uid="uid://cdk0kbjb8exv0"]
 
 [ext_resource type="Script" path="res://scripts/ui/stratagems_view.gd" id="1_bb3qg"]
 [ext_resource type="Script" path="res://scripts/ui/summon_area_input.gd" id="1_g44e8"]
+[ext_resource type="Script" path="res://scripts/ui/points_view.gd" id="1_sgnru"]
 [ext_resource type="PackedScene" uid="uid://pa2kech3qylp" path="res://scenes/ui/stratagem_info.tscn" id="1_y5d8v"]
+[ext_resource type="PackedScene" uid="uid://bsi6wis841cwd" path="res://scenes/ui/tutorial_box.tscn" id="2_jq17u"]
 [ext_resource type="Script" path="res://scripts/ui/stratagem_input_panel.gd" id="3_2fyuu"]
 [ext_resource type="PackedScene" uid="uid://cyei2kuujtgwl" path="res://scenes/ui/stratagem_input_arrow.tscn" id="3_ibe4d"]
 [ext_resource type="Script" path="res://scripts/ui/combination_view.gd" id="5_4jtk7"]
@@ -20,7 +22,10 @@ font_size = 35
 [sub_resource type="LabelSettings" id="LabelSettings_3ueim"]
 font_size = 32
 
-[node name="GameUI" type="CanvasLayer"]
+[node name="GameUI" type="CanvasLayer" node_paths=PackedStringArray("player_points", "ai_points")]
+script = ExtResource("1_sgnru")
+player_points = NodePath("PlayerPoints/Label")
+ai_points = NodePath("AIPoints/Label")
 
 [node name="AvailableStratagems" type="VBoxContainer" parent="." node_paths=PackedStringArray("parent")]
 anchors_preset = 9
@@ -103,8 +108,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g44e8")
 
-[node name="GameOverPopup" type="NinePatchRect" parent="."]
-visible = false
+[node name="TutorialBox" parent="." instance=ExtResource("2_jq17u")]
+
+[node name="GameOverPopup" type="NinePatchRect" parent="." node_paths=PackedStringArray("label", "next_level_button")]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,7 +120,7 @@ anchor_bottom = 0.5
 offset_left = -200.0
 offset_top = -100.0
 offset_right = 200.0
-offset_bottom = 100.0
+offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_u7ceq")
@@ -124,6 +130,8 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 script = ExtResource("10_te0c2")
+label = NodePath("GameOverLabel")
+next_level_button = NodePath("NextLevelButton")
 
 [node name="GameOverLabel" type="Label" parent="GameOverPopup"]
 layout_mode = 1
@@ -145,13 +153,89 @@ layout_mode = 1
 anchors_preset = 7
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -85.0
-offset_right = 100.0
-offset_bottom = -35.0
+offset_top = -64.0
+offset_bottom = -10.0
 grow_vertical = 0
-text = "Back To Level Selector"
+text = "Back To Menu"
 level_key = "level_selector"
+
+[node name="NextLevelButton" type="Button" parent="GameOverPopup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -77.0
+offset_top = -114.0
+offset_right = 77.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("7_gdasf")
+text = "Next Level"
+flat = true
+
+[node name="PlayerPoints" type="NinePatchRect" parent="." node_paths=PackedStringArray("combination_view")]
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -106.0
+offset_right = 350.0
+grow_vertical = 0
+texture = ExtResource("5_u7ceq")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+script = ExtResource("3_2fyuu")
+combination_view = NodePath("../StratagemInput/MarginContainer/ArrowContainer")
+
+[node name="Label" type="Label" parent="PlayerPoints"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_gdasf")
+theme_override_font_sizes/font_size = 32
+text = "YOU: 100"
+horizontal_alignment = 1
+
+[node name="AIPoints" type="NinePatchRect" parent="." node_paths=PackedStringArray("combination_view")]
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -106.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_u7ceq")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+script = ExtResource("3_2fyuu")
+combination_view = NodePath("../StratagemInput/MarginContainer/ArrowContainer")
+
+[node name="Label" type="Label" parent="AIPoints"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_gdasf")
+theme_override_font_sizes/font_size = 32
+text = "ENEMY: 100"
+horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="SummonArea" to="SummonArea" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SummonArea" to="SummonArea" method="_on_mouse_exited"]

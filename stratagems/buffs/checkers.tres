@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CheckersBuff" load_steps=4 format=3 uid="uid://caf3u1q104wix"]
+[gd_resource type="Resource" script_class="CheckersBuff" load_steps=4 format=3 uid="uid://big0e4erp8y66"]
 
 [ext_resource type="Texture2D" uid="uid://dpo02p4hv83nq" path="res://ui/sprites/stratagems/buff_stratagems.png" id="1_th26o"]
 [ext_resource type="Script" path="res://scripts/stratagem/stratagems/buffs/checkers.gd" id="1_x3qbr"]
