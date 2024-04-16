@@ -28,6 +28,7 @@ func _ready():
 	StratagemInput.set_stratagems(armys)
 	StratagemInput.stratagem_called.connect(_on_called)
 	StratagemInput.wrong_combination.connect(_on_wrong_combination)
+	Battle.battle_ended.connect(func(_s): state = State.ARMY)
 
 func _on_called(stratagem: Stratagem):
 	if state == State.ARMY:
